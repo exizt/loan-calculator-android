@@ -5,10 +5,8 @@ Thumbs.db
 # log files
 *.log
 
-# Java - class files
+# generated files (apk:android, class:java)
 *.class
-
-# Android App files
 *.apk
 
 # Android Studio - Gradle files
@@ -19,23 +17,17 @@ gradle/
 # Android Studio - captures folder
 captures/
 
+# Local configuration file (sdk path, etc)
+/local.properties
+
 # User-specific configurations
+*.iml
 .idea/libraries/
+.idea/dictionaries
 .idea/workspace.xml
 .idea/tasks.xml
-.idea/.name
-.idea/compiler.xml
-.idea/copyright/profiles_settings.xml
-.idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/scopes/scope_settings.xml
+.idea/gradle.xml
 .idea/vcs.xml
-*.iml
-
-# other files
-*.iml
-/local.properties
 
 # Keystore files
 *.jks
