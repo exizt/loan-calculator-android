@@ -1,4 +1,4 @@
-package kr.asv.apps.loancalculator
+package kr.asv.apps.loancalculator.activities
 
 import android.content.Context
 import android.os.Bundle
@@ -20,6 +20,9 @@ import android.view.inputmethod.InputMethodManager
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
+import kr.asv.apps.loancalculator.NavigationItemFactory
+import kr.asv.apps.loancalculator.R
+import kr.asv.apps.loancalculator.Services
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 

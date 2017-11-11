@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="kr.asv.apps.loancalculator.ReportActivity"
+    tools:context="kr.asv.apps.loancalculator.activities.ReportActivity"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_full_amortization.*
 import kr.asv.apps.loancalculator.R
-import kr.asv.apps.loancalculator.ReportActivity
+import kr.asv.apps.loancalculator.activities.ReportActivity
 import kr.asv.apps.loancalculator.Services
 import kr.asv.calculators.loan.LoanCalculator
 

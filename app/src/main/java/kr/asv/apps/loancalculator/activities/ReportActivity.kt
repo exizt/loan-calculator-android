@@ -1,4 +1,4 @@
-package kr.asv.apps.loancalculator
+package kr.asv.apps.loancalculator.activities
 
 import android.content.Context
 import android.os.Bundle
@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.activity_report.*
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
+import kr.asv.apps.loancalculator.R
+import kr.asv.apps.loancalculator.Services
 
 import kr.asv.apps.loancalculator.fragments.ReportScheduleFragment
 import kr.asv.apps.loancalculator.fragments.ReportSummaryFragment
