@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import kotlinx.android.synthetic.main.activity_report.*
 
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -25,18 +25,25 @@ class ReportActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
 
-        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.run{
+            setDisplayHomeAsUpEnabled(true)
+        }
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
 
-        mViewPager = findViewById<View>(R.id.container)
-        mViewPager!!.adapter = mSectionsPagerAdapter
+        //mViewPager = findViewById(R.id.container)
+        //mViewPager!!.adapter = mSectionsPagerAdapter
+        container.adapter = mSectionsPagerAdapter
 
-        val tabLayout = findViewById<View>(R.id.tabs) as TabLayout
-        tabLayout.setupWithViewPager(mViewPager)
+        //val tabLayout:TabLayout = findViewById(R.id.tabs)
+        //tabLayout.setupWithViewPager(mViewPager)
+
+        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
+
 
         if (Services.getInstance().calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL) {
             title = "원금균등상환"
@@ -64,21 +71,13 @@ class ReportActivity : AppCompatActivity() {
         override fun getCount(): Int {
             return 2
         }
-
-        override fun getPageTitle(position: Int): CharSequence? {
-            when (position) {
-                0 -> return "요약"
-                1 -> return "상환 스케쥴"
-            }
-            return null
-        }
     }
 
     /**
      * 구글 광고 추가할 때에.
      */
     fun loadAdMobBanner(id: Int) {
-        val mAdView = findViewById<View>(id) as AdView
+        val mAdView:AdView = findViewById(id)
         mAdView.loadAd(newAdRequest())
     }
 

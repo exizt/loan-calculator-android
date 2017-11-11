@@ -1,51 +1,42 @@
 package kr.asv.apps.loancalculator.fragments
 
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-
+import kotlinx.android.synthetic.main.fragment_full_amortization.*
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.ReportActivity
 import kr.asv.apps.loancalculator.Services
 import kr.asv.calculators.loan.LoanCalculator
 
-class FullAmortizationFragment : BaseFragment() {
+class FullAmortizationFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater!!.inflate(R.layout.fragment_full_amortization, container, false)
-        setFragmentView(view)
         return view
 
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initEventListener()
-    }
-
-    fun initEventListener() {
-        setActionBarTitle(R.string.menu_title_full_amortization)
+        (activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.menu_title_full_amortization)
+        //setActionBarTitle(R.string.menu_title_full_amortization)
 
         // 계산하기 버튼 클릭시
-        findViewById(R.id.id_btn_calculate).setOnClickListener(object : Button.OnClickListener {
-            override fun onClick(v: View) {
-                onClickButtonCalculate(v)// 계산하기 버튼 클릭시
-            }
-        })
+        id_btn_calculate.setOnClickListener {
+            calculate()// 계산하기 버튼 클릭시
+        }
     }
 
-    fun onClickButtonCalculate(v: View) {
-        val principal = java.lang.Double.parseDouble((findViewById(R.id.id_input_principal) as EditText).text.toString())
-        val interestRate = java.lang.Double.parseDouble((findViewById(R.id.id_input_interest_rate) as EditText).text.toString())
-        val amortizationPeriod = Integer.parseInt((findViewById(R.id.id_input_term) as EditText).text.toString())
+    fun calculate() {
+        val principal = java.lang.Double.parseDouble(id_input_principal.text.toString())
+        val interestRate = java.lang.Double.parseDouble(id_input_interest_rate.text.toString())
+        val amortizationPeriod = Integer.parseInt(id_input_term.text.toString())
 
         Services.getInstance().calculatorMethod = Services.CalculatorMethods.FULL_AMORTIZATION
 

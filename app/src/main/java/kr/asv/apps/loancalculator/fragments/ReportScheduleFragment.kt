@@ -1,6 +1,5 @@
 package kr.asv.apps.loancalculator.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -9,18 +8,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
-import kr.asv.calculators.loan.LoanCalculator
 import kr.asv.calculators.loan.PaymentSchedules
 
 /**
- * A fragment representing a list of Items.
- */
-/**
- * Mandatory empty constructor for the fragment manager to instantiate the
- * fragment (e.g. upon screen orientation changes).
+ * ReportActivity 의 하위 프래그먼트
+ * 리포트 결과 Summary 와 관련된 Fragment
  */
 class ReportScheduleFragment : Fragment() {
 
