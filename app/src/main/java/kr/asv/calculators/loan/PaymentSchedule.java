@@ -1,7 +1,8 @@
 package kr.asv.calculators.loan;
 
 /**
- * Created by Administrator on 2016-06-08.
+ * 계산기 에서 지불 스케쥴 과 관련된 클래스. 하나의 로우. 데이터 클래스 인가?
+ * Created by exizt on 2016-06-08.
  */
 public class PaymentSchedule {
     public double payment;//합계지불

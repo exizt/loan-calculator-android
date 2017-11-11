@@ -67,10 +67,10 @@ public class FullAmortization implements Amortization
 		// 이자율
 		double rate = options.getInterestRate();
 		// 월 지불 이자액
-		double paidInterest = 0;
+		double paidInterest;
 
 		// 월 지불 원금
-		double paidPrincipal = 0;
+		double paidPrincipal;
 		summaryInterest = 0;
 		for (int i = 0; i < period; i++)
 		{
@@ -122,8 +122,7 @@ public class FullAmortization implements Amortization
 		double principal = options.getPrincipal();
 
 		double calc = CalculatorUtils.pow((1 + rate / 12), period);
-		double paymentPI = (principal * rate / 12) * (calc / (calc - 1));
-		return paymentPI;
+		return (principal * rate / 12) * (calc / (calc - 1));
 	}
 
 	public PaymentSchedules getSchedules()

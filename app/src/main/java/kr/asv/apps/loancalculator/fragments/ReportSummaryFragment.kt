@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_report_summary.*
 
 import java.math.BigDecimal
+import java.lang.Double
 
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
-import java.lang.Double.toString
+
 
 /**
  * ReportActivity 의 하위 프래그먼트
@@ -22,9 +23,7 @@ class ReportSummaryFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.fragment_report_summary, container, false)
-        return view
-
+        return inflater!!.inflate(R.layout.fragment_report_summary, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -35,11 +34,11 @@ class ReportSummaryFragment : Fragment() {
     private fun showResult() {
         val calculator = Services.getInstance().calculator
 
-        summary_principal.text = toString(calculator.options.principal)
+        summary_principal.text = Double.toString(calculator.options.principal)
         summary_term.text = Integer.toString(calculator.options.amortizationPeriod)
-        val interestRate = BigDecimal(toString(calculator.options.interestRate))
+        val interestRate = BigDecimal(Double.toString(calculator.options.interestRate))
         summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).toString()
-        summary_interest.text = toString(calculator.summaryInterest)
+        summary_interest.text = Double.toString(calculator.summaryInterest)
     }
 
     companion object {

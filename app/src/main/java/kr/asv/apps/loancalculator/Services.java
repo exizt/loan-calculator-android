@@ -21,7 +21,8 @@ public class Services {
     //objects
     private LoanCalculator calculator = new LoanCalculator();
 
-    public enum CalculatorMethods{EQUAL_PRINCIPAL,FULL_AMORTIZATION};
+    public enum CalculatorMethods{EQUAL_PRINCIPAL,FULL_AMORTIZATION}
+
     public CalculatorMethods calculatorMethod;
 
     public static Services getInstance() {

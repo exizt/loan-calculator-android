@@ -66,10 +66,10 @@ public class EqualPrincipalAmortization implements Amortization
 		double paidPrincipal = CalculatorUtils.rounddown(loanBalance / period, 1);
 		
 		// 월지불 이자액
-		double paidInterest = 0;
+		double paidInterest;
 		
 		// 월지불액
-		double payment = 0;
+		double payment;
 		summaryInterest = 0;
 		for (int i = 0; i < period; i++)
 		{

@@ -14,7 +14,8 @@ import kr.asv.apps.loancalculator.fragments.EqualPrincipalFragment
 import kr.asv.apps.loancalculator.fragments.FullAmortizationFragment
 
 /**
- * Created by Administrator on 2016-06-08.
+ * 메인 액티비티 등에서 상단 좌측 의 메뉴 네비게이션
+ * Created by exizt on 2016-06-08.
  */
 class NavigationItemFactory {
 

@@ -12,11 +12,10 @@ public class LoanCalculator
 
 	public enum AmortizationMethods {
 		FULL_AMORTIZATION, EQUAL_PRINCIPAL
-	};
+	}
 
 	private PaymentSchedules schedules;
-	
-	private Amortization amortization;
+
 	private double summaryInterest;
 	/**
 	 * 생성자
@@ -69,6 +68,7 @@ public class LoanCalculator
 			debug(options);
 		}
 		schedules = new PaymentSchedules();
+		Amortization amortization;
 		if (options.getAmortizationMethod() == AmortizationMethods.EQUAL_PRINCIPAL)
 		{
 			amortization = new EqualPrincipalAmortization();
@@ -84,7 +84,7 @@ public class LoanCalculator
 		summaryInterest = amortization.getSummaryInterest();
 	}
 
-	protected void debug(Object obj)
+	private void debug(Object obj)
 	{
 		System.out.println(obj);
 	}
