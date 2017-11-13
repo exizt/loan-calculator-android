@@ -1,4 +1,4 @@
-package kr.asv.calculators.loan;
+package kr.asv.calculators.loancalculator;
 
 /**
  * 원리금 균등분할 상환 방식

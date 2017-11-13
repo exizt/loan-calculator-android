@@ -1,4 +1,4 @@
-package kr.asv.calculators.loan;
+package kr.asv.calculators.loancalculator;
 
 /**
  * 대출이자 계산기

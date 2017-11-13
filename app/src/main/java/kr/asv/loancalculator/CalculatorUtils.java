@@ -1,4 +1,4 @@
-package kr.asv.calculators.loan;
+package kr.asv.calculators.loancalculator;
 
 public class CalculatorUtils
 {
@@ -8,7 +8,8 @@ public class CalculatorUtils
 	 * @param pow
 	 * @return
 	 */
-	public static double rounddown(double value,int pow)
+	@SuppressWarnings("SameParameterValue")
+	public static double rounddown(double value, int pow)
 	{
 		return Math.floor(value/pow) * pow;
 	}
@@ -18,6 +19,7 @@ public class CalculatorUtils
 	 * @param pow
 	 * @return
 	 */
+	@SuppressWarnings("SameParameterValue")
 	public static double roundup(double value, int pow)
 	{
 		return Math.ceil(value/pow) * pow;

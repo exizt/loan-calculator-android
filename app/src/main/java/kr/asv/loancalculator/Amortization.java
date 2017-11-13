@@ -1,4 +1,4 @@
-package kr.asv.calculators.loan;
+package kr.asv.calculators.loancalculator;
 
 public interface Amortization
 {

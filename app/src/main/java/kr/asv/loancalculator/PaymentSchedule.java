@@ -1,4 +1,4 @@
-package kr.asv.calculators.loan;
+package kr.asv.calculators.loancalculator;
 
 /**
  * 계산기 에서 지불 스케쥴 과 관련된 클래스. 하나의 로우. 데이터 클래스 인가?

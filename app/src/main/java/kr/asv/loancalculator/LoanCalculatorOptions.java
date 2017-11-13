@@ -1,4 +1,4 @@
-package kr.asv.calculators.loan;
+package kr.asv.calculators.loancalculator;
 
 public class LoanCalculatorOptions
 {
@@ -76,6 +76,7 @@ public class LoanCalculatorOptions
 		return debug;
 	}
 
+	@SuppressWarnings("SameParameterValue")
 	public void setDebug(boolean debug)
 	{
 		this.debug = debug;
