@@ -19,6 +19,11 @@ import kr.asv.apps.loancalculator.NavigationItemFactory
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
 import kr.asv.util.AdmobAdapter
+import android.view.ViewGroup
+import android.widget.Button
+import com.crashlytics.android.Crashlytics
+
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -38,7 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         NavigationItemFactory.instance.onNavigationItemFirst(this)
 
         // Services 초기화 및 인스턴스 가져오기
-        val services = Services.getInstanceWithInit(this)
+        Services.getInstance()
 
         // Admob 호출
         AdmobAdapter.loadBannerAdMob(adView)
@@ -76,9 +81,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
+
     /**
      * 키보드 내리기
      */
+    @Suppress("unused")
     fun hideSoftKeyboard() {
         val view = currentFocus
         if (view != null) {
@@ -87,11 +94,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
+    /**
+     *
+     */
+    @Suppress("unused")
     fun debug(msg: String) {
         Log.e("[SHH DEBUG]", msg)
-    }
-
-    fun setActionBarTitle(title: String) {
-        supportActionBar!!.setTitle(title)
     }
 }
