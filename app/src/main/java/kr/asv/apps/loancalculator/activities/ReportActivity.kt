@@ -1,20 +1,17 @@
 package kr.asv.apps.loancalculator.activities
 
-import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.InterstitialAd
 import kotlinx.android.synthetic.main.activity_report.*
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
 import kr.asv.apps.loancalculator.fragments.ReportScheduleFragment
 import kr.asv.apps.loancalculator.fragments.ReportSummaryFragment
+import kr.asv.util.AdmobAdapter
 
 class ReportActivity : AppCompatActivity() {
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
@@ -43,14 +40,14 @@ class ReportActivity : AppCompatActivity() {
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
-
         if (Services.getInstance().calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL) {
             title = "원금균등상환"
         } else {
             title = "원리금균등상환"
         }
 
-        loadAdMobBanner(R.id.adView)
+        // Admob 호출
+        AdmobAdapter.loadBannerAdMob(adView)
     }
 
     /**
@@ -70,31 +67,5 @@ class ReportActivity : AppCompatActivity() {
         override fun getCount(): Int {
             return 2
         }
-    }
-
-    /**
-     * 구글 광고 추가할 때에.
-     */
-    fun loadAdMobBanner(id: Int) {
-        val mAdView:AdView = findViewById(id)
-        mAdView.loadAd(newAdRequest())
-    }
-
-    /**
-     * 구글 전면광고 추가할 때에.
-     * @param context
-     */
-    fun loadAdMobInterstitial(context: Context) {
-        val interstitialAd = InterstitialAd(context)
-        interstitialAd.adUnitId = resources.getString(R.string.banner_ad_unit_id)
-        interstitialAd.loadAd(newAdRequest())
-    }
-
-    /**
-     * 구글 광고의 adRequest 를 생성 및 반환
-     * @return
-     */
-    fun newAdRequest(): AdRequest {
-        return AdRequest.Builder().addTestDevice("2D81264572D2AB096C895509EDBD419F").build()
     }
 }

@@ -3,9 +3,6 @@ package kr.asv.apps.loancalculator.activities
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -25,24 +22,25 @@ import kr.asv.util.AdmobAdapter
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * onCreate
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        //네비게이션 드로워 셋팅
+        // 네비게이션 드로워 셋팅
         onCreateNavigationDrawer()
 
-        //첫번째 Fragment 호출
+        // 첫번째 Fragment 호출
         //NavigationItemFactory.onNavigationItemFirst(this)
         NavigationItemFactory.instance.onNavigationItemFirst(this)
 
-        //Services 초기화 및 인스턴스 가져오기
+        // Services 초기화 및 인스턴스 가져오기
         val services = Services.getInstanceWithInit(this)
 
-        //MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
-
-        //loadAdMobBanner(R.id.adView)
+        // Admob 호출
         AdmobAdapter.loadBannerAdMob(adView)
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
@@ -76,22 +74,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         NavigationItemFactory.instance.onNavigationItemSelected(this, item)
         return true
-    }
-
-    @JvmOverloads
-    fun replaceFragments(fragment: Fragment, backStack: Boolean? = true) {
-        val fragmentManager: FragmentManager
-        fragmentManager = supportFragmentManager
-
-        val fragmentTransaction: FragmentTransaction
-        fragmentTransaction = fragmentManager.beginTransaction()
-
-        fragmentTransaction.replace(R.id.fragment_container, fragment)
-
-        if (backStack!!) {
-            fragmentTransaction.addToBackStack(null)//히스토리에 남긴다.
-        }
-        fragmentTransaction.commit()
     }
 
     /**
