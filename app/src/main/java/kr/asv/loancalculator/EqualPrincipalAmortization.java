@@ -1,4 +1,4 @@
-package kr.asv.calculators.loancalculator;
+package kr.asv.loancalculator;
 
 /**
  * 원금 균등 분할 상환 방식
@@ -22,12 +22,13 @@ public class EqualPrincipalAmortization implements Amortization
 	{
 	}
 	
+	@SuppressWarnings("unused")
 	public EqualPrincipalAmortization(LoanCalculatorOptions options)
 	{
 		this.setOptions(options);
 	}
 	/**
-	 * @param options
+	 * @param options LoanCalculatorOptions
 	 */
 	private void setOptions(LoanCalculatorOptions options)
 	{
@@ -35,7 +36,7 @@ public class EqualPrincipalAmortization implements Amortization
 	}
 	/**
 	 * 생성자
-	 * @param options
+	 * @param options LoanCalculatorOptions
      */
 	public void calculate(LoanCalculatorOptions options)
 	{

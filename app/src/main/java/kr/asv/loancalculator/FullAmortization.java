@@ -1,4 +1,4 @@
-package kr.asv.calculators.loancalculator;
+package kr.asv.loancalculator;
 
 /**
  * 원리금 균등분할 상환 방식
@@ -21,12 +21,14 @@ public class FullAmortization implements Amortization
 	public FullAmortization()
 	{
 	}
+
+	@SuppressWarnings("unused")
 	public FullAmortization(LoanCalculatorOptions options)
 	{
 		this.setOptions(options);
 	}	
 	/**
-	 * @param options
+	 * @param options LoanCalculatorOptions
 	 */
 	private void setOptions(LoanCalculatorOptions options)
 	{
@@ -34,7 +36,7 @@ public class FullAmortization implements Amortization
 	}
 	/**
 	 * 생성자
-	 * @param options
+	 * @param options LoanCalculatorOptions
      */
 	public void calculate(LoanCalculatorOptions options)
 	{
@@ -109,7 +111,7 @@ public class FullAmortization implements Amortization
 	 * 월별로 납부할 원리금 계산
 	 * 납부금 = 대출원금 × 이자율 ÷ 12 × (1 + 이자율 ÷ 12)^기간 ÷((1 + 이자율 ÷ 12)^기간 -1)
 	 * 
-	 * @return
+	 * @return double
 	 */
 	private double getPaymentMonthly()
 	{

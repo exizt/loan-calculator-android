@@ -1,6 +1,6 @@
-package kr.asv.calculators.loancalculator;
+package kr.asv.loancalculator;
 
-public interface Amortization
+interface Amortization
 {
 	void calculate(LoanCalculatorOptions options);
 	PaymentSchedules getSchedules();

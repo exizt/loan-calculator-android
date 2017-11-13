@@ -1,5 +1,6 @@
 package kr.asv.apps.loancalculator.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -31,6 +32,7 @@ class ReportSummaryFragment : Fragment() {
         showResult()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showResult() {
         val calculator = Services.getInstance().calculator
 

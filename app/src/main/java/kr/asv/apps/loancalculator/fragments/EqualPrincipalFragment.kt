@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_equal_principal.*
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.activities.ReportActivity
 import kr.asv.apps.loancalculator.Services
-import kr.asv.calculators.loan.LoanCalculator
+import kr.asv.loancalculator.LoanCalculator
 
 
 class EqualPrincipalFragment : Fragment() {
@@ -58,6 +58,7 @@ class EqualPrincipalFragment : Fragment() {
 
     companion object {
 
+        @Suppress("unused")
         fun newInstance(param1: String, param2: String): EqualPrincipalFragment {
             val fragment = EqualPrincipalFragment()
             val args = Bundle()

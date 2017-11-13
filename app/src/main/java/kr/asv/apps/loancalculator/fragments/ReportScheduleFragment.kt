@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
-import kr.asv.calculators.loan.PaymentSchedules
+import kr.asv.loancalculator.PaymentSchedules
 
 /**
  * ReportActivity 의 하위 프래그먼트

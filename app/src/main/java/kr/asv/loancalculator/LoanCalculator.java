@@ -1,4 +1,4 @@
-package kr.asv.calculators.loancalculator;
+package kr.asv.loancalculator;
 
 /**
  * 대출이자 계산기
@@ -28,7 +28,7 @@ public class LoanCalculator
 	/**
 	 * 생성자
 	 * 
-	 * @param options
+	 * @param options LoanCalculatorOptions
 	 */
 	public LoanCalculator(LoanCalculatorOptions options)
 	{
@@ -50,7 +50,7 @@ public class LoanCalculator
 
 	/**
 	 * 
-	 * @param options
+	 * @param options LoanCalculatorOptions
 	 */
 	public void run(LoanCalculatorOptions options)
 	{

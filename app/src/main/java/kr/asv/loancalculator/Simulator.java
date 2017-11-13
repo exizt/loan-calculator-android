@@ -1,4 +1,4 @@
-package kr.asv.calculators.loancalculator;
+package kr.asv.loancalculator;
 
 /**
  * 진입점

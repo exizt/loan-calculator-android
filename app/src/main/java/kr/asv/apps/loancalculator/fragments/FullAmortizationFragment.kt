@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_full_amortization.*
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.activities.ReportActivity
 import kr.asv.apps.loancalculator.Services
-import kr.asv.calculators.loan.LoanCalculator
+import kr.asv.loancalculator.LoanCalculator
 
 class FullAmortizationFragment : Fragment() {
 
@@ -51,6 +51,7 @@ class FullAmortizationFragment : Fragment() {
     }
 
     companion object {
+        @Suppress("unused")
         fun newInstance(param1: String, param2: String): FullAmortizationFragment {
             val fragment = FullAmortizationFragment()
             val args = Bundle()

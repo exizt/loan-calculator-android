@@ -1,34 +1,38 @@
-package kr.asv.calculators.loancalculator;
+package kr.asv.loancalculator;
 
-public class CalculatorUtils
+class CalculatorUtils
 {
 	/**
-	 * 버림 함수
-	 * @param value
-	 * @param pow
-	 * @return
+	 * 내림 함수
+	 * @param value 값
+	 * @param pow 자리수
+	 * @return double
 	 */
 	@SuppressWarnings("SameParameterValue")
-	public static double rounddown(double value, int pow)
+	static double rounddown(double value, int pow)
 	{
 		return Math.floor(value/pow) * pow;
 	}
+
 	/**
 	 * 올림 함수
-	 * @param value
-	 * @param pow
-	 * @return
+	 * @param value 값
+	 * @param pow 자리수
+	 * @return double
 	 */
 	@SuppressWarnings("SameParameterValue")
-	public static double roundup(double value, int pow)
+	static double roundup(double value, int pow)
 	{
 		return Math.ceil(value/pow) * pow;
 	}
-	public static double round(double value,int pow)
+
+	@SuppressWarnings("unused")
+	public static double round(double value, int pow)
 	{
 		return Math.round(value/pow) + pow;
 	}
-	public static double pow(double a, double b)
+
+	static double pow(double a, double b)
 	{
 		return Math.pow(a, b);
 	}

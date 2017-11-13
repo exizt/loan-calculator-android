@@ -1,5 +1,6 @@
 package kr.asv.apps.loancalculator.fragments
 
+import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import kr.asv.apps.loancalculator.R
-import kr.asv.calculators.loan.PaymentSchedules
+import kr.asv.loancalculator.PaymentSchedules
 
 class MyScheduleRecyclerViewAdapter(private val mValues: PaymentSchedules) : RecyclerView.Adapter<MyScheduleRecyclerViewAdapter.ViewHolder>() {
 
@@ -17,6 +18,7 @@ class MyScheduleRecyclerViewAdapter(private val mValues: PaymentSchedules) : Rec
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mItem = mValues[position]
         holder.mIdView.text = Integer.toString(position + 1)

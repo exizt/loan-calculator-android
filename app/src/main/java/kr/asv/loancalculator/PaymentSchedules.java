@@ -1,4 +1,4 @@
-package kr.asv.calculators.loancalculator;
+package kr.asv.loancalculator;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ public class PaymentSchedules extends ArrayList<PaymentSchedules.Schedule>
 	 */
 	private static final long serialVersionUID = -3698533479210025025L;
 
-	public Schedule createSchedule(double payment,double paidPrincipal,double paidInterest,double loanBalance)
+	private Schedule createSchedule(double payment, double paidPrincipal, double paidInterest, double loanBalance)
 	{
 		return new Schedule(payment,paidPrincipal,paidInterest,loanBalance);
 	}

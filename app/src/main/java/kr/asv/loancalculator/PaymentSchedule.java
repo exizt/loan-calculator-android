@@ -1,20 +1,23 @@
-package kr.asv.calculators.loancalculator;
+package kr.asv.loancalculator;
 
 /**
  * 계산기 에서 지불 스케쥴 과 관련된 클래스. 하나의 로우. 데이터 클래스 인가?
  * Created by exizt on 2016-06-08.
  */
-public class PaymentSchedule {
+class PaymentSchedule {
     public double payment;//합계지불
     public double paidPrincipal;//상환원금
     public double paidInterest;//상환이자
     public double loanBalance;//잔액
 
+
+    @SuppressWarnings("unused")
     public PaymentSchedule()
     {
 
     }
-    public PaymentSchedule(double payment,double paidPrincipal,double paidInterest,double loanBalance)
+    @SuppressWarnings("unused")
+    public PaymentSchedule(double payment, double paidPrincipal, double paidInterest, double loanBalance)
     {
         this.payment = payment;
         this.paidPrincipal = paidPrincipal;

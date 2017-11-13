@@ -16,20 +16,18 @@ import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
-
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.InterstitialAd
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kr.asv.apps.loancalculator.NavigationItemFactory
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
+import kr.asv.util.AdmobAdapter
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
         //네비게이션 드로워 셋팅
@@ -44,7 +42,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
 
-        loadAdMobBanner(R.id.adView)
+        //loadAdMobBanner(R.id.adView)
+        AdmobAdapter.loadBannerAdMob(adView)
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
     }
@@ -65,32 +64,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
     }
 
-    /**
-     * 구글 광고 추가할 때에.
-     */
-    fun loadAdMobBanner(id: Int) {
-        val mAdView = findViewById<View>(id) as AdView
-        mAdView.loadAd(newAdRequest())
-    }
-
-    /**
-     * 구글 전면광고 추가할 때에.
-     * @param context
-     */
-    fun loadAdMobInterstitial(context: Context) {
-        val interstitialAd = InterstitialAd(context)
-        interstitialAd.adUnitId = resources.getString(R.string.banner_ad_unit_id)
-        interstitialAd.loadAd(newAdRequest())
-    }
-
-    /**
-     * 구글 광고의 adRequest 를 생성 및 반환
-     * @return
-     */
-    fun newAdRequest(): AdRequest {
-        return AdRequest.Builder().addTestDevice("2D81264572D2AB096C895509EDBD419F").build()
-    }
-
     override fun onBackPressed() {
         val drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -99,7 +72,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             super.onBackPressed()
         }
     }
-
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         NavigationItemFactory.instance.onNavigationItemSelected(this, item)
