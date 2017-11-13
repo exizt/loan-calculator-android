@@ -3,7 +3,7 @@ package kr.asv.loancalculator;
 /**
  * 원리금 균등분할 상환 방식
  * 
- * @author Administrator
+ * @author EXIZT
  *
  */
 public class FullAmortization implements Amortization
@@ -58,7 +58,7 @@ public class FullAmortization implements Amortization
 		schedules = new PaymentSchedules();
 		
 		// 월지불액
-		double payment = CalculatorUtils.roundup(getPaymentMonthly(),1);
+		double payment = CalculatorUtils.roundUp(getPaymentMonthly(),1);
 
 		// 원금잔액
 		double loanBalance = options.getPrincipal();
@@ -78,7 +78,7 @@ public class FullAmortization implements Amortization
 		{
 			//상환이자 계산
 			paidInterest = (loanBalance * rate) / 12;
-			paidInterest = CalculatorUtils.roundup(paidInterest, 1);// 올림
+			paidInterest = CalculatorUtils.roundUp(paidInterest, 1);// 올림
 			
 			//상환원금 계산
 			paidPrincipal = payment - paidInterest;

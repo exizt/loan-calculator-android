@@ -9,7 +9,7 @@ class CalculatorUtils
 	 * @return double
 	 */
 	@SuppressWarnings("SameParameterValue")
-	static double rounddown(double value, int pow)
+	static double roundDown(double value, int pow)
 	{
 		return Math.floor(value/pow) * pow;
 	}
@@ -21,7 +21,7 @@ class CalculatorUtils
 	 * @return double
 	 */
 	@SuppressWarnings("SameParameterValue")
-	static double roundup(double value, int pow)
+	static double roundUp(double value, int pow)
 	{
 		return Math.ceil(value/pow) * pow;
 	}

@@ -37,7 +37,7 @@ class EqualPrincipalFragment : Fragment() {
     /**
      * 계산 기능 호출
      */
-    fun calculate() {
+    private fun calculate() {
         val principal = java.lang.Double.parseDouble(id_input_principal.text.toString())
         val interestRate = java.lang.Double.parseDouble(id_input_interest_rate.text.toString())
         val amortizationPeriod = Integer.parseInt(id_input_term.text.toString())
@@ -58,7 +58,7 @@ class EqualPrincipalFragment : Fragment() {
 
     companion object {
 
-        @Suppress("unused")
+        @Suppress("unused", "UNUSED_PARAMETER")
         fun newInstance(param1: String, param2: String): EqualPrincipalFragment {
             val fragment = EqualPrincipalFragment()
             val args = Bundle()

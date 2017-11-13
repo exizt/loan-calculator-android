@@ -1,17 +1,16 @@
 package kr.asv.apps.loancalculator;
 
 import android.content.Context;
+import android.util.Log;
 
 import kr.asv.loancalculator.LoanCalculator;
 
 /**
  * 어플 전체적으로 활용되는 기능들을 모아두는 클래스
- * Created by Administrator on 2016-04-27.
+ * Created by EXIZT on 2016-04-27.
  */
 public class Services {
-    //default
     private static final Services instance = new Services();
-    private Context context = null;
     private final LoanCalculator calculator = new LoanCalculator();
     public CalculatorMethods calculatorMethod;
     public enum CalculatorMethods{EQUAL_PRINCIPAL,FULL_AMORTIZATION}
@@ -20,31 +19,32 @@ public class Services {
      * 생성자
      */
     private Services() {
+        init();
     }
 
     /**
      *
      * @return instance:Services
      */
+    @SuppressWarnings("unused")
     public static Services getInstance() {
         return instance;
     }
 
-    public static Services getInstanceWithInit(Context context)
+    @SuppressWarnings("unused")
+    public static Services getInstance(Context context)
     {
-        if(instance.context == null){
-            instance.initialize(context);
-        }
+        instance.load(context);
         return instance;
     }
 
-    /**
-     * 최초 한번만 실행
-     * @param context Context
-     */
-    private void initialize(Context context)
-    {
-        this.context = context.getApplicationContext();
+    @SuppressWarnings({"unused", "EmptyMethod"})
+    private void init(){
+    }
+
+    @SuppressWarnings({"unused", "EmptyMethod"})
+    private void load(Context context){
+
     }
 
     public LoanCalculator getCalculator()
@@ -52,4 +52,12 @@ public class Services {
         return calculator;
     }
 
+    /**
+     * 디버깅
+     * @param msg string
+     */
+    @SuppressWarnings("unused")
+    public void debug(String msg) {
+        Log.e("[EXIZT-DEBUG]", msg);
+    }
 }

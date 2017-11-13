@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">대출이자계산기</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="menu_title_equal_principal">원금 균등분할 계산기</string>
+    <string name="menu_title_full_amortization">원리금 균등분할 계산기</string>
+    <string name="title_activity_report">ReportActivity</string>
+
+    <string name="nav_header_title">대출이자 계산기</string>
+    <string name="schedule_count_suffix">회차</string>
+    <string name="schedule_paid_principal">원금</string>
+    <string name="schedule_paid_interest">이자</string>
+    <string name="schedule_payment">지불금</string>
+    <string name="summary_principal">대출금액</string>
+    <string name="summary_term">상환기간</string>
+    <string name="summary_rate">대출금리</string>
+    <string name="summary_interest">상환이자</string>
+    <string name="schedule_balance">잔액</string>
+    <string name="calc_principal">대출원금</string>
+    <string name="calc_interest_rate">대출금리</string>
+    <string name="cal_input_term">상환기간</string>
+    <string name="calc_button">계산하기</string>
+    <string name="default_zero">0</string>
+    <string name="calculator_title_full_amortization">원리금균등상환</string>
+    <string name="calculator_title_equal_principal">원금균등상환</string>
+    <string name="summary">요약</string>
+    <string name="paid_schedule">상환 스케쥴</string>
+    <string name="main_drawer_title">계산방식 종류</string>
+</resources>

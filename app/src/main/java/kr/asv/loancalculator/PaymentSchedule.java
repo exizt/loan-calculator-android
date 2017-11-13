@@ -5,17 +5,17 @@ package kr.asv.loancalculator;
  * Created by exizt on 2016-06-08.
  */
 class PaymentSchedule {
-    public double payment;//합계지불
-    public double paidPrincipal;//상환원금
-    public double paidInterest;//상환이자
-    public double loanBalance;//잔액
-
+    private double payment;//합계지불
+    private double paidPrincipal;//상환원금
+    private double paidInterest;//상환이자
+    private double loanBalance;//잔액
 
     @SuppressWarnings("unused")
     public PaymentSchedule()
     {
 
     }
+
     @SuppressWarnings("unused")
     public PaymentSchedule(double payment, double paidPrincipal, double paidInterest, double loanBalance)
     {
@@ -24,6 +24,7 @@ class PaymentSchedule {
         this.paidInterest = paidInterest;
         this.loanBalance = loanBalance;
     }
+
     @Override
     public String toString()
     {

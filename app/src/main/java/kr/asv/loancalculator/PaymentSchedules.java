@@ -19,7 +19,7 @@ public class PaymentSchedules extends ArrayList<PaymentSchedules.Schedule>
 		this.add(createSchedule(payment, paidPrincipal, paidInterest, loanBalance));
 	}
 	/**
-	 * Created by Administrator on 2016-06-08.
+	 * Created by EXIZT on 2016-06-08.
 	 */
 	public class Schedule {
 	    public double payment;//합계지불

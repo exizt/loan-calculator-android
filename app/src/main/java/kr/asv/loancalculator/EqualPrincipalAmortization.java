@@ -3,7 +3,7 @@ package kr.asv.loancalculator;
 /**
  * 원금 균등 분할 상환 방식
  * 
- * @author Administrator
+ * @author EXIZT
  *
  */
 public class EqualPrincipalAmortization implements Amortization
@@ -64,7 +64,7 @@ public class EqualPrincipalAmortization implements Amortization
 		double rate = options.getInterestRate();
 
 		// 상환 원금. 원금 균등방식에서는 매월(또는 회차별) 상환원금은 동일하다.
-		double paidPrincipal = CalculatorUtils.rounddown(loanBalance / period, 1);
+		double paidPrincipal = CalculatorUtils.roundDown(loanBalance / period, 1);
 		
 		// 월지불 이자액
 		double paidInterest;
@@ -82,7 +82,7 @@ public class EqualPrincipalAmortization implements Amortization
 			 * 이에 맞춰서 월이자 금액을 매달 재계산하는 셈이다.
 			 */
 			paidInterest = (loanBalance * rate) / 12;// 이자 금액
-			paidInterest = CalculatorUtils.roundup(paidInterest, 1);// 올림
+			paidInterest = CalculatorUtils.roundUp(paidInterest, 1);// 올림
 
 			loanBalance = loanBalance - paidPrincipal;
 			if (loanBalance < 0)

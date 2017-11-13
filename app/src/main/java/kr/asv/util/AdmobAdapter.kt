@@ -34,9 +34,13 @@ class AdmobAdapter{
          * 구글 광고의 adRequest 를 생성 및 반환
          * @return
          */
-        @Suppress("unused")
-        fun newAdRequest(): AdRequest {
-            return AdRequest.Builder().addTestDevice("2D81264572D2AB096C895509EDBD419F").build()
+        @Suppress("unused","SpellCheckingInspection")
+        private fun newAdRequest(): AdRequest {
+            val builder = AdRequest.Builder()
+            builder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            //builder.addTestDevice("621CBEEDE09F6A5B37180A718E74C41C");// G pro code
+            //builder.addTestDevice("2D81264572D2AB096C895509EDBD419F");// 확인 필요
+            return builder.build()
         }
     }
 }

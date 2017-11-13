@@ -3,7 +3,7 @@ package kr.asv.loancalculator;
 /**
  * 진입점
  */
-public class Simulator
+class Simulator
 {
 	public static void main(String[] args)
 	{

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
+
         <TextView
             android:id="@+id/id"
             android:layout_width="wrap_content"
@@ -25,25 +25,26 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="2dp"
+            android:text="@string/schedule_count_suffix"
             android:textAppearance="?attr/textAppearanceListItem"
-            android:text=" 회차"
-            />
+            android:layout_marginStart="2dp" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        >
+        android:weightSum="4">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:text="잔액"
-            />
+            android:layout_weight="1"
+            android:text="@string/schedule_balance"
+            android:textAppearance="?attr/textAppearanceListItem" />
 
         <TextView
             android:id="@+id/loan_balance"
@@ -52,6 +53,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
+            android:layout_weight="1"
             android:textAppearance="?attr/textAppearanceListItem" />
 
         <TextView
@@ -60,34 +62,36 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:text="지불금 : "
-            />
+            android:layout_weight="1"
+            android:text="@string/schedule_payment"
+            android:textAppearance="?attr/textAppearanceListItem" />
 
         <TextView
             android:id="@+id/payment"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
+            android:layout_weight="1"
             android:textAppearance="?attr/textAppearanceListItem" />
-        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        >
+        android:weightSum="4">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:text="원금 : "
-            />
+            android:layout_weight="1"
+            android:text="@string/schedule_paid_principal"
+            android:textAppearance="?attr/textAppearanceListItem" />
 
         <TextView
             android:id="@+id/paid_principal"
@@ -96,6 +100,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
+            android:layout_weight="1"
             android:textAppearance="?attr/textAppearanceListItem" />
 
         <TextView
@@ -104,21 +109,19 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:text="이자 : "
-            />
+            android:layout_weight="1"
+            android:text="@string/schedule_paid_interest"
+            android:textAppearance="?attr/textAppearanceListItem" />
 
         <TextView
             android:id="@+id/paid_interest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center_vertical|end"
             android:layout_marginLeft="2dp"
             android:layout_marginRight="2dp"
+            android:layout_weight="1"
             android:textAppearance="?attr/textAppearanceListItem" />
 
-
     </LinearLayout>
-
-
 </LinearLayout>

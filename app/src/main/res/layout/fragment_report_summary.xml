@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="20sp"
-        android:text="대출금액" />
+        android:text="@string/summary_principal" />
 
     <TextView
         android:id="@+id/summary_principal"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="30sp"
-        android:gravity="right"
+        android:gravity="end"
         />
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="20sp"
-        android:text="상환기간" />
+        android:text="@string/summary_term" />
 
     <TextView
         android:id="@+id/summary_term"
@@ -38,14 +38,14 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="30sp"
-        android:gravity="right"
+        android:gravity="end"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="20sp"
-        android:text="대출금리" />
+        android:text="@string/summary_rate" />
 
     <TextView
         android:id="@+id/summary_interest_rate"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="30sp"
-        android:gravity="right"
+        android:gravity="end"
         />
 
     <TextView
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="20sp"
-        android:text="상환이자" />
+        android:text="@string/summary_interest" />
 
     <TextView
         android:id="@+id/summary_interest"
@@ -69,6 +69,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="30sp"
-        android:gravity="right"
+        android:gravity="end"
         />
 </LinearLayout>

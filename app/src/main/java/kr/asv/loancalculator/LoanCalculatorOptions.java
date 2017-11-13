@@ -40,6 +40,7 @@ public class LoanCalculatorOptions
 	{
 		return principal;
 	}
+	@SuppressWarnings("SameParameterValue")
 	public void setPrincipal(double principal)
 	{
 		this.principal = principal;
@@ -48,6 +49,7 @@ public class LoanCalculatorOptions
 	{
 		return interestRate * 0.01;
 	}
+	@SuppressWarnings("SameParameterValue")
 	public void setInterestRate(double interestRate)
 	{
 		this.interestRate = interestRate;
@@ -56,6 +58,7 @@ public class LoanCalculatorOptions
 	{
 		return amortizationPeriod;
 	}
+	@SuppressWarnings("SameParameterValue")
 	public void setAmortizationPeriod(int amortizationPeriod)
 	{
 		this.amortizationPeriod = amortizationPeriod;
@@ -66,6 +69,7 @@ public class LoanCalculatorOptions
 		return amortizationMethod;
 	}
 
+	@SuppressWarnings("SameParameterValue")
 	public void setAmortizationMethod(LoanCalculator.AmortizationMethods amortizationMethod)
 	{
 		this.amortizationMethod = amortizationMethod;

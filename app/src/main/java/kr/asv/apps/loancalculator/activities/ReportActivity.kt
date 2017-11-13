@@ -40,10 +40,10 @@ class ReportActivity : AppCompatActivity() {
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
-        if (Services.getInstance().calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL) {
-            title = "원금균등상환"
+        title = if (Services.getInstance().calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL) {
+            "원금균등상환"
         } else {
-            title = "원리금균등상환"
+            "원리금균등상환"
         }
 
         // Admob 호출

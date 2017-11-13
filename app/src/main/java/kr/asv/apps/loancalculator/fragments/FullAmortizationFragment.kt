@@ -31,7 +31,7 @@ class FullAmortizationFragment : Fragment() {
         }
     }
 
-    fun calculate() {
+    private fun calculate() {
         val principal = java.lang.Double.parseDouble(id_input_principal.text.toString())
         val interestRate = java.lang.Double.parseDouble(id_input_interest_rate.text.toString())
         val amortizationPeriod = Integer.parseInt(id_input_term.text.toString())

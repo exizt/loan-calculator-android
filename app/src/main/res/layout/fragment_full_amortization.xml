@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="원리금균등상환"/>
+        android:text="@string/calculator_title_full_amortization"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -22,7 +22,7 @@
             android:gravity="center_vertical"
             android:layout_weight="1"
             android:textSize="15sp"
-            android:text="대출원금" />
+            android:text="@string/calc_principal" />
 
         <EditText
             android:id="@+id/id_input_principal"
@@ -31,7 +31,7 @@
             android:ems="10"
             android:inputType="number"
             android:textSize="30sp"
-            android:text="2000000" />
+            android:text="@string/default_zero" />
     </LinearLayout>
 
     <LinearLayout
@@ -45,7 +45,7 @@
             android:gravity="center_vertical"
             android:layout_weight="1"
             android:textSize="15sp"
-            android:text="대출금리" />
+            android:text="@string/calc_interest_rate" />
 
         <EditText
             android:id="@+id/id_input_interest_rate"
@@ -54,7 +54,7 @@
             android:ems="10"
             android:inputType="numberDecimal"
             android:textSize="30sp"
-            android:text="3.5" />
+            android:text="@string/default_zero" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -67,7 +67,7 @@
             android:gravity="center_vertical"
             android:layout_weight="1"
             android:textSize="15sp"
-            android:text="상환기간" />
+            android:text="@string/cal_input_term" />
 
         <EditText
             android:id="@+id/id_input_term"
@@ -77,15 +77,15 @@
             android:inputType="number"
             android:textSize="30sp"
             android:imeOptions="actionDone"
-            android:text="12" />
+            android:text="@string/default_zero" />
     </LinearLayout>
 
     <Button
-        style="?android:attr/buttonStyleSmall"
         android:id="@+id/id_btn_calculate"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="계산"
-        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+        android:layout_marginTop="50dp"
+        android:text="@string/calc_button"
         android:textStyle="bold" />
 </LinearLayout>

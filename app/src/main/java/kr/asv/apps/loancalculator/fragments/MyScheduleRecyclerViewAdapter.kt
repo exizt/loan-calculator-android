@@ -35,21 +35,12 @@ class MyScheduleRecyclerViewAdapter(private val mValues: PaymentSchedules) : Rec
     }
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mIdView: TextView
-        val mPayment: TextView
-        val mPaidPrincipal: TextView
-        val mPaidInterest: TextView
-        val mLoanBalance: TextView
-
+        val mIdView: TextView = mView.findViewById<View>(R.id.id) as TextView
+        val mPayment: TextView = mView.findViewById<View>(R.id.payment) as TextView
+        val mPaidPrincipal: TextView = mView.findViewById<View>(R.id.paid_principal) as TextView
+        val mPaidInterest: TextView = mView.findViewById<View>(R.id.paid_interest) as TextView
+        val mLoanBalance: TextView = mView.findViewById<View>(R.id.loan_balance) as TextView
         var mItem: PaymentSchedules.Schedule? = null
-
-        init {
-            mIdView = mView.findViewById<View>(R.id.id) as TextView
-            mPayment = mView.findViewById<View>(R.id.payment) as TextView
-            mPaidPrincipal = mView.findViewById<View>(R.id.paid_principal) as TextView
-            mPaidInterest = mView.findViewById<View>(R.id.paid_interest) as TextView
-            mLoanBalance = mView.findViewById<View>(R.id.loan_balance) as TextView
-        }
 
         override fun toString(): String {
             return super.toString() + " '" + mPayment.text + "'"
