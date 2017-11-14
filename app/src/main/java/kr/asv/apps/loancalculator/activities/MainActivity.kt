@@ -18,11 +18,7 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kr.asv.apps.loancalculator.NavigationItemFactory
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
-import kr.asv.util.AdmobAdapter
-import android.view.ViewGroup
-import android.widget.Button
-import com.crashlytics.android.Crashlytics
-
+import kr.asv.androidutils.AdmobAdapter
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -99,6 +95,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
      */
     @Suppress("unused")
     fun debug(msg: String) {
-        Log.e("[SHH DEBUG]", msg)
+        Log.e("[EXIZT-DEBUG]","[MainActivity]"+ msg)
     }
 }

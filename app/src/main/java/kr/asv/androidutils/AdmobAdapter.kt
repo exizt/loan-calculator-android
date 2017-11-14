@@ -1,4 +1,4 @@
-package kr.asv.util
+package kr.asv.androidutils
 
 import android.content.Context
 import com.google.android.gms.ads.AdRequest

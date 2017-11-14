@@ -11,7 +11,7 @@ import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
 import kr.asv.apps.loancalculator.fragments.ReportScheduleFragment
 import kr.asv.apps.loancalculator.fragments.ReportSummaryFragment
-import kr.asv.util.AdmobAdapter
+import kr.asv.androidutils.AdmobAdapter
 
 class ReportActivity : AppCompatActivity() {
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null

@@ -39,18 +39,19 @@ class NavigationItemFactory {
         val id = item.itemId
         var isAction = false
 
-        if (id == R.id.nav_calculator_equal_principal) {
-            /*
-             */
-            val fragment = EqualPrincipalFragment()
-            replaceFragments(fragmentActivity, fragment, true)
-            isAction = true
-
-        } else if (id == R.id.nav_calculator_full_amortization) {
-            val fragment = FullAmortizationFragment()
-            replaceFragments(fragmentActivity, fragment, true)
-            isAction = true
+        when (id) {
+            R.id.nav_calculator_equal_principal -> {
+                val fragment = EqualPrincipalFragment()
+                replaceFragments(fragmentActivity, fragment, true)
+                isAction = true
+            }
+            R.id.nav_calculator_full_amortization -> {
+                val fragment = FullAmortizationFragment()
+                replaceFragments(fragmentActivity, fragment, true)
+                isAction = true
+            }
         }
+
         /*
         액티비티 또는 프레그먼트 호출 후에 처리.
         navigationDrawer(메뉴부분) 을 close 하는 부분.
@@ -71,7 +72,7 @@ class NavigationItemFactory {
      * 프레그먼트 를 교체할 경우에 발생
      * @param fragmentActivity 보통은 MainActivity 를 넘긴다. 그게 아닌 경우 일반 Activity 를 넘긴다.
      * @param fragment 프레그먼트 정보
-     * @param backStack backStack 을 남길지 여부. true 인 경우는 히스토리에 남긴다.
+     * @param backStack backStack 을 남길지 여부. true 인 경우는 backStack 히스토리에 남긴다.
      */
     private fun replaceFragments(fragmentActivity: FragmentActivity, fragment: Fragment, backStack: Boolean?) {
         val fragmentManager: FragmentManager = fragmentActivity.supportFragmentManager
