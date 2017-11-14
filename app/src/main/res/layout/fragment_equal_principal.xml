@@ -31,6 +31,8 @@
             android:ems="10"
             android:inputType="number"
             android:text="@string/default_zero"
+            android:maxLines="1"
+            android:maxLength="15"
             android:textSize="30sp" />
     </LinearLayout>
 
@@ -54,6 +56,8 @@
             android:ems="10"
             android:inputType="numberDecimal"
             android:text="@string/default_zero"
+            android:maxLines="1"
+            android:maxLength="6"
             android:textSize="30sp" />
     </LinearLayout>
 
@@ -77,6 +81,8 @@
             android:ems="10"
             android:imeOptions="actionDone"
             android:inputType="number"
+            android:maxLines="1"
+            android:maxLength="3"
             android:text="@string/default_zero"
             android:textSize="30sp" />
     </LinearLayout>

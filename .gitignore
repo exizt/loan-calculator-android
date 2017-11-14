@@ -12,6 +12,7 @@ Thumbs.db
 # Android Studio - Gradle files
 .gradle/
 build/
+release/
 gradle/
 
 # Android Studio - captures folder
