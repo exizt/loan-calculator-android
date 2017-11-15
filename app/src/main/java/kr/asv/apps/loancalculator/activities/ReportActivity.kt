@@ -14,56 +14,56 @@ import kr.asv.apps.loancalculator.fragments.ReportSummaryFragment
 import kr.asv.androidutils.AdmobAdapter
 
 class ReportActivity : AppCompatActivity() {
-    private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
-    //private var mViewPager: ViewPager? = null
+	private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
+	//private var mViewPager: ViewPager? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_report)
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContentView(R.layout.activity_report)
 
-        setSupportActionBar(toolbar)
-        supportActionBar?.run{
-            setDisplayHomeAsUpEnabled(true)
-        }
+		setSupportActionBar(toolbar)
+		supportActionBar?.run {
+			setDisplayHomeAsUpEnabled(true)
+		}
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
+		// Create the adapter that will return a fragment for each of the three
+		// primary sections of the activity.
+		mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
 
-        //mViewPager = findViewById(R.id.container)
-        //mViewPager!!.adapter = mSectionsPagerAdapter
-        container.adapter = mSectionsPagerAdapter
+		//mViewPager = findViewById(R.id.container)
+		//mViewPager!!.adapter = mSectionsPagerAdapter
+		container.adapter = mSectionsPagerAdapter
 
-        //val tabLayout:TabLayout = findViewById(R.id.tabs)
-        //tabLayout.setupWithViewPager(mViewPager)
+		//val tabLayout:TabLayout = findViewById(R.id.tabs)
+		//tabLayout.setupWithViewPager(mViewPager)
 
-        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
-        tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
+		container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
+		tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
-        title = if (Services.getInstance().calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL) {
-            "원금균등상환"
-        } else {
-            "원리금균등상환"
-        }
+		title = if (Services.instance.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL) {
+			"원금균등상환"
+		} else {
+			"원리금균등상환"
+		}
 
-        // Admob 호출
-        AdmobAdapter.loadBannerAdMob(adView)
-    }
+		// Admob 호출
+		AdmobAdapter.loadBannerAdMob(adView)
+	}
 
-    /**
-     * A [FragmentPagerAdapter] that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+	/**
+	 * A [FragmentPagerAdapter] that returns a fragment corresponding to
+	 * one of the sections/tabs/pages.
+	 */
+	inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-        override fun getItem(position: Int): Fragment {
-            when (position) {
-                0 -> return ReportSummaryFragment.newInstance()
-                1 -> return ReportScheduleFragment.newInstance()
-            }
-            return ReportScheduleFragment.newInstance()
-        }
+		override fun getItem(position: Int): Fragment {
+			when (position) {
+				0 -> return ReportSummaryFragment.newInstance()
+				1 -> return ReportScheduleFragment.newInstance()
+			}
+			return ReportScheduleFragment.newInstance()
+		}
 
-        override fun getCount(): Int = 2
-    }
+		override fun getCount(): Int = 2
+	}
 }

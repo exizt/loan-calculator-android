@@ -20,74 +20,74 @@ import kr.asv.apps.loancalculator.Services
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    /**
-     * onCreate
-     */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+	/**
+	 * onCreate
+	 */
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContentView(R.layout.activity_main)
+		setSupportActionBar(toolbar)
 
-        // 네비게이션 드로워 셋팅
-        onCreateNavigationDrawer()
+		// 네비게이션 드로워 셋팅
+		onCreateNavigationDrawer()
 
-        // 첫번째 Fragment 호출
-        //NavigationItemFactory.onNavigationItemFirst(this)
-        NavigationItemFactory.instance.onNavigationItemFirst(this)
+		// 첫번째 Fragment 호출
+		//NavigationItemFactory.onNavigationItemFirst(this)
+		NavigationItemFactory.instance.onNavigationItemFirst(this)
 
-        // Services 초기화 및 인스턴스 가져오기
-        Services.getInstance()
+		// Services 초기화 및 인스턴스 가져오기
+		Services.instance
 
-        // Admob 호출
-        AdmobAdapter.loadBannerAdMob(adView)
+		// Admob 호출
+		AdmobAdapter.loadBannerAdMob(adView)
 
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
-    }
+		window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+	}
 
-    /**
-     * 네비게이션 드로워 셋팅
-     */
-    private fun onCreateNavigationDrawer() {
-        val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        //drawer.setDrawerListener(toggle);//deprecated
-        drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
+	/**
+	 * 네비게이션 드로워 셋팅
+	 */
+	private fun onCreateNavigationDrawer() {
+		val toggle = ActionBarDrawerToggle(
+				this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+		//drawer.setDrawerListener(toggle);//deprecated
+		drawer_layout.addDrawerListener(toggle)
+		toggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
-    }
+		nav_view.setNavigationItemSelectedListener(this)
+	}
 
-    override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }
-    }
+	override fun onBackPressed() {
+		if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+			drawer_layout.closeDrawer(GravityCompat.START)
+		} else {
+			super.onBackPressed()
+		}
+	}
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        NavigationItemFactory.instance.onNavigationItemSelected(this, item)
-        return true
-    }
+	override fun onNavigationItemSelected(item: MenuItem): Boolean {
+		NavigationItemFactory.instance.onNavigationItemSelected(this, item)
+		return true
+	}
 
 
-    /**
-     * 키보드 내리기
-     */
-    @Suppress("unused")
-    fun hideSoftKeyboard() {
-        val view = currentFocus
-        if (view != null) {
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken, 0)
-        }
-    }
+	/**
+	 * 키보드 내리기
+	 */
+	@Suppress("unused")
+	fun hideSoftKeyboard() {
+		val view = currentFocus
+		if (view != null) {
+			val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+			imm.hideSoftInputFromWindow(view.windowToken, 0)
+		}
+	}
 
-    /**
-     *
-     */
-    @Suppress("unused")
-    fun debug(msg: String) {
-        Log.e("[EXIZT-DEBUG]", "[MainActivity]" + msg)
-    }
+	/**
+	 *
+	 */
+	@Suppress("unused")
+	fun debug(msg: String) {
+		Log.e("[EXIZT-DEBUG]", "[MainActivity]" + msg)
+	}
 }

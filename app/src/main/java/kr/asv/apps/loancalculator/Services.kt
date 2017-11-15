@@ -27,6 +27,7 @@ private constructor() {
 
 	private fun init() {}
 
+	@Suppress("unused")
 	private fun load(context: Context) {
 
 	}

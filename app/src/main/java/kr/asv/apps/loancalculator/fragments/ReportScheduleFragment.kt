@@ -18,63 +18,63 @@ import kr.asv.loancalculator.PaymentSchedules
  */
 class ReportScheduleFragment : Fragment() {
 
-    // TODO: Customize parameters
-    private var mColumnCount = 1
+	// TODO: Customize parameters
+	private var mColumnCount = 1
 
-    private//ArrayList<PaymentSchedule> schedules;
-            /*
-        if(calculator.getOptions().getAmortizationMethod()== LoanCalculator.AmortizationMethods.EQUAL_PRINCIPAL)
-        {
-            //schedules = calculator.getEqualPrincipalAmortization().getSchedules();
-            schedules = calculator.getSchedules();
-        } else {
-            schedules = calculator.getFullAmortization().getSchedules();
-        }
-        */ val schedules: PaymentSchedules
-        get() {
-            val calculator = Services.getInstance().calculator
-            val schedules: PaymentSchedules
-            schedules = calculator.schedules
-            return schedules
-        }
+	private//ArrayList<PaymentSchedule> schedules;
+			/*
+		if(calculator.getOptions().getAmortizationMethod()== LoanCalculator.AmortizationMethods.EQUAL_PRINCIPAL)
+		{
+			//schedules = calculator.getEqualPrincipalAmortization().getSchedules();
+			schedules = calculator.getSchedules();
+		} else {
+			schedules = calculator.getFullAmortization().getSchedules();
+		}
+		*/ val schedules: PaymentSchedules
+		get() {
+			val calculator = Services.instance.calculator
+			val schedules: PaymentSchedules
+			schedules = calculator.schedules
+			return schedules
+		}
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
 
-        if (arguments != null) {
-            mColumnCount = arguments!!.getInt(ARG_COLUMN_COUNT)
-        }
+		if (arguments != null) {
+			mColumnCount = arguments!!.getInt(ARG_COLUMN_COUNT)
+		}
 
-    }
+	}
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_schedule_list, container, false)
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+	                          savedInstanceState: Bundle?): View? {
+		val view = inflater.inflate(R.layout.fragment_schedule_list, container, false)
 
-        // Set the adapter
-        if (view is RecyclerView) {
-            val context = view.getContext()
-            if (mColumnCount <= 1) {
-                view.layoutManager = LinearLayoutManager(context)
-            } else {
-                view.layoutManager = GridLayoutManager(context, mColumnCount)
-            }
-            view.adapter = MyScheduleRecyclerViewAdapter(schedules)
-        }
-        return view
-    }
+		// Set the adapter
+		if (view is RecyclerView) {
+			val context = view.getContext()
+			if (mColumnCount <= 1) {
+				view.layoutManager = LinearLayoutManager(context)
+			} else {
+				view.layoutManager = GridLayoutManager(context, mColumnCount)
+			}
+			view.adapter = MyScheduleRecyclerViewAdapter(schedules)
+		}
+		return view
+	}
 
-    companion object {
+	companion object {
 
-        // TODO: Customize parameter argument names
-        private val ARG_COLUMN_COUNT = "column-count"
+		// TODO: Customize parameter argument names
+		private val ARG_COLUMN_COUNT = "column-count"
 
-        // TODO: Customize parameter initialization
-        fun newInstance(): ReportScheduleFragment {
-            val fragment = ReportScheduleFragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
-    }
+		// TODO: Customize parameter initialization
+		fun newInstance(): ReportScheduleFragment {
+			val fragment = ReportScheduleFragment()
+			val args = Bundle()
+			fragment.arguments = args
+			return fragment
+		}
+	}
 }
