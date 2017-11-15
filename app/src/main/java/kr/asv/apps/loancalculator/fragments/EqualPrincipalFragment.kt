@@ -17,9 +17,8 @@ import kr.asv.loancalculator.LoanCalculator
 class EqualPrincipalFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_equal_principal, container, false)
-    }
+                              savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_equal_principal, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -38,9 +37,21 @@ class EqualPrincipalFragment : Fragment() {
      * 계산 기능 호출
      */
     private fun calculate() {
-        val principal = java.lang.Double.parseDouble(id_input_principal.text.toString())
-        val interestRate = java.lang.Double.parseDouble(id_input_interest_rate.text.toString())
-        val amortizationPeriod = Integer.parseInt(id_input_term.text.toString())
+        val principal = if(id_input_principal.text.toString() == ""){
+            0.0
+        } else {
+            java.lang.Double.parseDouble(id_input_principal.text.toString())
+        }
+        val interestRate = if(id_input_interest_rate.text.toString() == ""){
+            0.0
+        } else {
+            java.lang.Double.parseDouble(id_input_interest_rate.text.toString())
+        }
+        val amortizationPeriod = if(id_input_term.text.toString() == ""){
+            0
+        } else {
+            Integer.parseInt(id_input_term.text.toString())
+        }
 
         Services.getInstance().calculatorMethod = Services.CalculatorMethods.EQUAL_PRINCIPAL
 

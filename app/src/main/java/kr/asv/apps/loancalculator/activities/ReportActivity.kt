@@ -64,8 +64,6 @@ class ReportActivity : AppCompatActivity() {
             return ReportScheduleFragment.newInstance()
         }
 
-        override fun getCount(): Int {
-            return 2
-        }
+        override fun getCount(): Int = 2
     }
 }

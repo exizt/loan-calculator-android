@@ -23,9 +23,8 @@ class ReportSummaryFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_report_summary, container, false)
-    }
+                              savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_report_summary, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -45,8 +44,6 @@ class ReportSummaryFragment : Fragment() {
 
     companion object {
 
-        fun newInstance(): ReportSummaryFragment {
-            return ReportSummaryFragment()
-        }
+        fun newInstance(): ReportSummaryFragment = ReportSummaryFragment()
     }
 }

@@ -10,54 +10,53 @@ import kr.asv.loancalculator.LoanCalculator;
  * Created by EXIZT on 2016-04-27.
  */
 public class Services {
-    private static final Services instance = new Services();
-    private final LoanCalculator calculator = new LoanCalculator();
-    public CalculatorMethods calculatorMethod;
-    public enum CalculatorMethods{EQUAL_PRINCIPAL,FULL_AMORTIZATION}
+	private static final Services instance = new Services();
+	private final LoanCalculator calculator = new LoanCalculator();
+	public CalculatorMethods calculatorMethod;
 
-    /**
-     * 생성자
-     */
-    private Services() {
-        init();
-    }
+	public enum CalculatorMethods {EQUAL_PRINCIPAL, FULL_AMORTIZATION}
 
-    /**
-     *
-     * @return instance:Services
-     */
-    @SuppressWarnings("unused")
-    public static Services getInstance() {
-        return instance;
-    }
+	/**
+	 * 생성자
+	 */
+	private Services() {
+		init();
+	}
 
-    @SuppressWarnings("unused")
-    public static Services getInstance(Context context)
-    {
-        instance.load(context);
-        return instance;
-    }
+	/**
+	 * @return instance:Services
+	 */
+	@SuppressWarnings("unused")
+	public static Services getInstance() {
+		return instance;
+	}
 
-    @SuppressWarnings({"unused", "EmptyMethod"})
-    private void init(){
-    }
+	@SuppressWarnings("unused")
+	public static Services getInstance(Context context) {
+		instance.load(context);
+		return instance;
+	}
 
-    @SuppressWarnings({"unused", "EmptyMethod"})
-    private void load(Context context){
+	@SuppressWarnings({"unused", "EmptyMethod"})
+	private void init() {
+	}
 
-    }
+	@SuppressWarnings({"unused", "EmptyMethod"})
+	private void load(Context context) {
 
-    public LoanCalculator getCalculator()
-    {
-        return calculator;
-    }
+	}
 
-    /**
-     * 디버깅
-     * @param msg string
-     */
-    @SuppressWarnings("unused")
-    public void debug(String msg) {
-        Log.e("[EXIZT-DEBUG]", msg);
-    }
+	public LoanCalculator getCalculator() {
+		return calculator;
+	}
+
+	/**
+	 * 디버깅
+	 *
+	 * @param msg string
+	 */
+	@SuppressWarnings("unused")
+	public void debug(String msg) {
+		Log.e("[EXIZT-DEBUG]", msg);
+	}
 }

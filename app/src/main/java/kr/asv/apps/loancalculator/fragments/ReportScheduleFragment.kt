@@ -20,6 +20,7 @@ class ReportScheduleFragment : Fragment() {
 
     // TODO: Customize parameters
     private var mColumnCount = 1
+
     private//ArrayList<PaymentSchedule> schedules;
             /*
         if(calculator.getOptions().getAmortizationMethod()== LoanCalculator.AmortizationMethods.EQUAL_PRINCIPAL)

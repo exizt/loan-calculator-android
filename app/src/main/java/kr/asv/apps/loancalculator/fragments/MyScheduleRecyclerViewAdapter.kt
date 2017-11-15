@@ -30,9 +30,7 @@ class MyScheduleRecyclerViewAdapter(private val mValues: PaymentSchedules) : Rec
         holder.mView.setOnClickListener { }
     }
 
-    override fun getItemCount(): Int {
-        return mValues.size
-    }
+    override fun getItemCount(): Int = mValues.size
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         val mIdView: TextView = mView.findViewById<View>(R.id.id) as TextView
@@ -42,8 +40,6 @@ class MyScheduleRecyclerViewAdapter(private val mValues: PaymentSchedules) : Rec
         val mLoanBalance: TextView = mView.findViewById<View>(R.id.loan_balance) as TextView
         var mItem: PaymentSchedules.Schedule? = null
 
-        override fun toString(): String {
-            return super.toString() + " '" + mPayment.text + "'"
-        }
+        override fun toString(): String = super.toString() + " '" + mPayment.text + "'"
     }
 }
