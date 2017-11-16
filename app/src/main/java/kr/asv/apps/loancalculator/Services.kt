@@ -32,11 +32,12 @@ private constructor() {
 
 	}
 
+
 	/**
 	 * 디버깅
-	 *
 	 * @param msg string
 	 */
+	@Suppress("unused")
 	fun debug(msg: String) {
 		Log.e("[EXIZT-DEBUG]", msg)
 	}
@@ -47,6 +48,7 @@ private constructor() {
 		 */
 		val instance = Services()
 
+		@Suppress("unused")
 		fun getInstance(context: Context): Services {
 			instance.load(context)
 			return instance
