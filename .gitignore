@@ -11,9 +11,9 @@ Thumbs.db
 
 # Android Studio - Gradle files
 .gradle/
+gradle/
 build/
 release/
-gradle/
 
 # Android Studio - captures folder
 captures/
@@ -21,7 +21,7 @@ captures/
 # Local configuration file (sdk path, etc)
 /local.properties
 
-# User-specific configurations
+# IntelliJ User-specific configurations
 *.iml
 .idea/libraries/
 .idea/dictionaries
@@ -35,3 +35,4 @@ captures/
 
 # Keystore files
 *.jks
+*.keystore
