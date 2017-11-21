@@ -18,14 +18,6 @@ import kr.asv.loancalculator.PaymentSchedules
 class ReportScheduleFragment : Fragment() {
 
 	/**
-	 * tabbed fragment 형태의 activity 안에서는,
-	 * fragment 의 onCreate 는 매번 호출되게 되는 듯 하다.
-	 */
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-	}
-
-	/**
 	 * onCreateView 는 매번 호출되는 메서드 이다.
 	 * 순서상 onCreate 이후에 호출되고, UI 와 연관성을 갖게 된다.
 	 */

@@ -3,11 +3,13 @@ package kr.asv.apps.loancalculator.activities
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,7 +35,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 		// 첫번째 Fragment 호출
 		//NavigationItemFactory.onNavigationItemFirst(this)
-		NavigationItemFactory.instance.onNavigationItemFirst(this)
+		//NavigationItemFactory.instance.onNavigationItemFirst(this)
+		onNavigationItemFirst()
 
 		// Services 초기화 및 인스턴스 가져오기
 		Services.instance
@@ -48,8 +51,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 	 * 네비게이션 드로워 셋팅
 	 */
 	private fun onCreateNavigationDrawer() {
-		val toggle = ActionBarDrawerToggle(
-				this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+		val toggle = object: ActionBarDrawerToggle(
+				this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+			override fun onDrawerOpened(drawerView: View) {
+				super.onDrawerOpened(drawerView)
+				hideSoftKeyboard()
+			}
+
+			override fun onDrawerClosed(drawerView: View) {
+				super.onDrawerClosed(drawerView)
+				hideSoftKeyboard()
+			}
+		}
 		//drawer.setDrawerListener(toggle);//deprecated
 		drawer_layout.addDrawerListener(toggle)
 		toggle.syncState()
@@ -57,6 +70,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		nav_view.setNavigationItemSelectedListener(this)
 	}
 
+	/**
+	 * drawer 형태이고 open 이라면 closeDrawer 호출
+	 */
 	override fun onBackPressed() {
 		if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
 			drawer_layout.closeDrawer(GravityCompat.START)
@@ -65,11 +81,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		}
 	}
 
+	/**
+	 * navigationDrawer 에서 item 을 선택했을 때 발생하는 메서드
+	 * 해당 항목이 없을 시에는 '준비중입니다' 가 뜨도록 처리
+	 */
 	override fun onNavigationItemSelected(item: MenuItem): Boolean {
-		NavigationItemFactory.instance.onNavigationItemSelected(this, item)
+
+		//NavigationItemFactory.instance.onNavigationItemSelected(this, item)
+		if (!NavigationItemFactory.onItemSelected(this,item, true)) {
+			Snackbar.make(this.currentFocus, "준비중입니다", Snackbar.LENGTH_LONG)
+					.setAction("Action", null).show()
+		}
 		return true
 	}
 
+	/**
+	 * default 로 로딩하는 fragment
+	 * navigation menu 의 특정 항목을 불러오게함.
+	 * 백스택 히스토리에는 기록하지 않는다.
+	 */
+	private fun onNavigationItemFirst() {
+		NavigationItemFactory.onItemSelected(this,nav_view.menu.findItem(R.id.nav_calculator_equal_principal), false)
+	}
 
 	/**
 	 * 키보드 내리기

@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import kotlinx.android.synthetic.main.fragment_full_amortization.*
+import kr.asv.androidutils.MoneyTextWatcher
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.activities.ReportActivity
 import kr.asv.apps.loancalculator.Services
@@ -15,13 +17,18 @@ import kr.asv.loancalculator.LoanCalculator
 
 class FullAmortizationFragment : Fragment() {
 
-	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-			inflater.inflate(R.layout.fragment_full_amortization, container, false)
+	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+	                          savedInstanceState: Bundle?): View? {
+		val view = inflater.inflate(R.layout.fragment_full_amortization, container, false)
+		val principal = view.findViewById<EditText>(R.id.id_input_principal)
+		principal.addTextChangedListener(MoneyTextWatcher(principal))
+		return view
+	}
+
 
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
 		super.onActivityCreated(savedInstanceState)
 		(activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.menu_title_full_amortization)
-		//setActionBarTitle(R.string.menu_title_full_amortization)
 
 		// 계산하기 버튼 클릭시
 		id_btn_calculate.setOnClickListener {
@@ -29,12 +36,19 @@ class FullAmortizationFragment : Fragment() {
 		}
 	}
 
+	/**
+	 * 계산 기능 호출
+	 */
 	private fun calculate() {
+		/*
 		val principal = if (id_input_principal.text.toString() == "") {
 			0.0
 		} else {
 			java.lang.Double.parseDouble(id_input_principal.text.toString())
 		}
+		*/
+		val principal = MoneyTextWatcher.getValue(id_input_principal).toDouble()
+
 		val interestRate = if (id_input_interest_rate.text.toString() == "") {
 			0.0
 		} else {
