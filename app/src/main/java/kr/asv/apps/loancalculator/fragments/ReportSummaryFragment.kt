@@ -20,7 +20,6 @@ import kr.asv.apps.loancalculator.Services
  */
 class ReportSummaryFragment : Fragment() {
 
-
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
 	                          savedInstanceState: Bundle?): View? =
 			inflater.inflate(R.layout.fragment_report_summary, container, false)

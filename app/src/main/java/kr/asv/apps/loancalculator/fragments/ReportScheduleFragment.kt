@@ -2,7 +2,6 @@ package kr.asv.apps.loancalculator.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -18,58 +17,34 @@ import kr.asv.loancalculator.PaymentSchedules
  */
 class ReportScheduleFragment : Fragment() {
 
-	// TODO: Customize parameters
-	private var mColumnCount = 1
-
-	private//ArrayList<PaymentSchedule> schedules;
-			/*
-		if(calculator.getOptions().getAmortizationMethod()== LoanCalculator.AmortizationMethods.EQUAL_PRINCIPAL)
-		{
-			//schedules = calculator.getEqualPrincipalAmortization().getSchedules();
-			schedules = calculator.getSchedules();
-		} else {
-			schedules = calculator.getFullAmortization().getSchedules();
-		}
-		*/ val schedules: PaymentSchedules
-		get() {
-			val calculator = Services.instance.calculator
-			val schedules: PaymentSchedules
-			schedules = calculator.schedules
-			return schedules
-		}
-
+	/**
+	 * tabbed fragment 형태의 activity 안에서는,
+	 * fragment 의 onCreate 는 매번 호출되게 되는 듯 하다.
+	 */
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
-		if (arguments != null) {
-			mColumnCount = arguments!!.getInt(ARG_COLUMN_COUNT)
-		}
-
 	}
 
+	/**
+	 * onCreateView 는 매번 호출되는 메서드 이다.
+	 * 순서상 onCreate 이후에 호출되고, UI 와 연관성을 갖게 된다.
+	 */
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
 	                          savedInstanceState: Bundle?): View? {
 		val view = inflater.inflate(R.layout.fragment_schedule_list, container, false)
 
+		val schedule : PaymentSchedules = Services.instance.calculator.schedules
+
 		// Set the adapter
 		if (view is RecyclerView) {
 			val context = view.getContext()
-			if (mColumnCount <= 1) {
-				view.layoutManager = LinearLayoutManager(context)
-			} else {
-				view.layoutManager = GridLayoutManager(context, mColumnCount)
-			}
-			view.adapter = MyScheduleRecyclerViewAdapter(schedules)
+			view.layoutManager = LinearLayoutManager(context)
+			view.adapter = MyScheduleRecyclerViewAdapter(schedule)
 		}
 		return view
 	}
 
 	companion object {
-
-		// TODO: Customize parameter argument names
-		private val ARG_COLUMN_COUNT = "column-count"
-
-		// TODO: Customize parameter initialization
 		fun newInstance(): ReportScheduleFragment {
 			val fragment = ReportScheduleFragment()
 			val args = Bundle()

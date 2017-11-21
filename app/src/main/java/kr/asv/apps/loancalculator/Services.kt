@@ -25,13 +25,18 @@ private constructor() {
 		init()
 	}
 
+	/**
+	 *
+	 */
 	private fun init() {}
 
+	/**
+	 *
+	 */
 	@Suppress("unused")
 	private fun load(context: Context) {
 
 	}
-
 
 	/**
 	 * 디버깅
