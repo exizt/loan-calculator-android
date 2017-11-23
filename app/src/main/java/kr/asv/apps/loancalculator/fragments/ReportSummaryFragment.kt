@@ -34,8 +34,9 @@ class ReportSummaryFragment : Fragment() {
 		val calculator = Services.instance.calculator
 		summary_principal.text = calculator.options.principal.toString()
 		summary_term.text = Integer.toString(calculator.options.amortizationPeriod)
-		val interestRate = BigDecimal(calculator.options.interestRate)
+		val interestRate = BigDecimal(calculator.options.interestRate.toString())
 		summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).toString()
+		//summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).setScale(1,BigDecimal.ROUND_FLOOR).toString()
 		summary_interest.text = calculator.summaryInterest.toString()
 	}
 

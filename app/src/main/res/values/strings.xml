@@ -1,8 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Loan Calculator</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" tools:keep="@string/navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" tools:keep="@string/navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
     <string name="menu_title_equal_principal">Equal Principal Calculator</string>
     <string name="menu_title_full_amortization">Full Amortization Calculator</string>
@@ -23,7 +23,7 @@
     <string name="calc_interest_rate">Interest Rate</string>
     <string name="cal_input_term">Paid Term</string>
     <string name="calc_button">Calculate</string>
-    <string name="default_zero">0</string>
+    <string name="default_zero" translatable="false" tools:keep="@string/default_zero">0</string>
     <string name="calculator_title_full_amortization">Full Amortization</string>
     <string name="calculator_title_equal_principal">Equal Principal</string>
     <string name="summary">Summary</string>

@@ -4,26 +4,23 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import kotlinx.android.synthetic.main.fragment_equal_principal.*
+import kr.asv.androidutils.InputFilterDoubleMinMax
 import kr.asv.androidutils.MoneyTextWatcher
 import kr.asv.apps.loancalculator.R
-import kr.asv.apps.loancalculator.activities.ReportActivity
 import kr.asv.apps.loancalculator.Services
+import kr.asv.apps.loancalculator.activities.ReportActivity
 import kr.asv.loancalculator.LoanCalculator
 
 class EqualPrincipalFragment : Fragment() {
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-	                          savedInstanceState: Bundle?): View? {
-		val view = inflater.inflate(R.layout.fragment_equal_principal, container, false)
-		val principal = view.findViewById<EditText>(R.id.id_input_principal)
-		principal.addTextChangedListener(MoneyTextWatcher(principal))
-		return view
-	}
+	                          savedInstanceState: Bundle?): View? =
+			inflater.inflate(R.layout.fragment_equal_principal, container, false)
 
 
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -34,23 +31,30 @@ class EqualPrincipalFragment : Fragment() {
 		val subtitle : String
 		if(Services.instance.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL){
 			title = getString(R.string.menu_title_equal_principal)
-			//subtitle = "원금균등상환"
 			subtitle = getString(R.string.calculator_title_equal_principal)
 		} else {
 			title = getString(R.string.menu_title_full_amortization)
-			//subtitle = "원리금균등상환"
 			subtitle = getString(R.string.calculator_title_full_amortization)
 		}
-		(activity as AppCompatActivity).supportActionBar!!.setTitle(title)
+		(activity as AppCompatActivity).supportActionBar!!.title = title
 		textView_subtitle.text = subtitle
-		//calculator_title_equal_principal
+
+		initEventListener()
+
+	}
+
+	private fun initEventListener(){
 
 		// 계산하기 버튼 클릭시
 		id_btn_calculate.setOnClickListener {
 			calculate()// 계산하기 버튼 클릭시
 		}
-	}
 
+		id_input_principal.addTextChangedListener(MoneyTextWatcher(id_input_principal))
+		//id_input_principal.filters = arrayOf<InputFilter>(InputFilterDoubleMinMax(0.0,10000000000.0))
+		id_input_term.filters  = arrayOf<InputFilter>(InputFilterDoubleMinMax(0,1200))
+		id_input_interest_rate.filters = arrayOf<InputFilter>(InputFilterDoubleMinMax(0.0,100.0))
+	}
 	/**
 	 * 계산 기능 호출
 	 */
