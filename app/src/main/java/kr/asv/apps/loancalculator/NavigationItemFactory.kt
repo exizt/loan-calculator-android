@@ -24,13 +24,13 @@ class NavigationItemFactory {
 
 			when (item.itemId) {
 				R.id.nav_calculator_equal_principal -> {
-					Services.instance.calculatorMethod = Services.CalculatorMethods.EQUAL_PRINCIPAL
+					Services.calculatorMethod = Services.CalculatorMethods.EQUAL_PRINCIPAL
 					val fragment = EqualPrincipalFragment()
 					replaceFragments(activity, fragment, backStack)
 					isAvailable = true
 				}
 				R.id.nav_calculator_full_amortization -> {
-					Services.instance.calculatorMethod = Services.CalculatorMethods.FULL_AMORTIZATION
+					Services.calculatorMethod = Services.CalculatorMethods.FULL_AMORTIZATION
 					val fragment = EqualPrincipalFragment()
 					replaceFragments(activity, fragment, backStack)
 					isAvailable = true

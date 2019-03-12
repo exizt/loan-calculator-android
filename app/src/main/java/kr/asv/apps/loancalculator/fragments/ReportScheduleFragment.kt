@@ -25,7 +25,7 @@ class ReportScheduleFragment : Fragment() {
 	                          savedInstanceState: Bundle?): View? {
 		val view = inflater.inflate(R.layout.fragment_schedule_list, container, false)
 
-		val schedule : PaymentSchedules = Services.instance.calculator.schedules
+		val schedule : PaymentSchedules = Services.calculator.schedules
 
 		// Set the adapter
 		if (view is RecyclerView) {

@@ -1,5 +1,6 @@
 package kr.asv.apps.loancalculator.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -40,7 +41,7 @@ class ReportActivity : AppCompatActivity() {
 		container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
 		tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
-		title = if (Services.instance.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL) {
+		title = if (Services.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL) {
 			"원금균등상환"
 		} else {
 			"원리금균등상환"
@@ -50,6 +51,15 @@ class ReportActivity : AppCompatActivity() {
 		AdmobAdapter.loadBannerAdMob(adView)
 	}
 
+	/**
+	 * 네비게이션 백버튼 클릭시, 메인액티비티를 recreate 를 하는 것을 방지하려는 목적.
+	 * @return
+	 */
+	override fun getSupportParentActivityIntent(): Intent? {
+		finish()
+		return null
+	}
+	
 	/**
 	 * A [FragmentPagerAdapter] that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.

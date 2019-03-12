@@ -29,7 +29,7 @@ class EqualPrincipalFragment : Fragment() {
 
 		val title : String
 		val subtitle : String
-		if(Services.instance.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL){
+		if(Services.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL){
 			title = getString(R.string.menu_title_equal_principal)
 			subtitle = getString(R.string.calculator_title_equal_principal)
 		} else {
@@ -79,8 +79,8 @@ class EqualPrincipalFragment : Fragment() {
 			Integer.parseInt(id_input_term.text.toString())
 		}
 
-		val calculator = Services.instance.calculator
-		if(Services.instance.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL){
+		val calculator = Services.calculator
+		if(Services.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL){
 			calculator.options.amortizationMethod = LoanCalculator.AmortizationMethods.EQUAL_PRINCIPAL
 		} else {
 			calculator.options.amortizationMethod = LoanCalculator.AmortizationMethods.FULL_AMORTIZATION

@@ -31,7 +31,7 @@ class ReportSummaryFragment : Fragment() {
 
 	@SuppressLint("SetTextI18n")
 	private fun showResult() {
-		val calculator = Services.instance.calculator
+		val calculator = Services.calculator
 		summary_principal.text = calculator.options.principal.toString()
 		summary_term.text = Integer.toString(calculator.options.amortizationPeriod)
 		val interestRate = BigDecimal(calculator.options.interestRate.toString())

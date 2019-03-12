@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		onNavigationItemFirst()
 
 		// Services 초기화 및 인스턴스 가져오기
-		Services.instance
+		//Services.instance
 
 		// Admob 호출
 		AdmobAdapter.loadBannerAdMob(adView)
@@ -121,6 +121,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 	 */
 	@Suppress("unused")
 	fun debug(msg: String) {
-		Log.e("[EXIZT-DEBUG]", "[MainActivity]" + msg)
+		Log.e("[EXIZT-DEBUG]", "[MainActivity]$msg")
 	}
 }
