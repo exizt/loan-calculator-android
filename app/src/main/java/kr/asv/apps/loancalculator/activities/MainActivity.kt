@@ -17,11 +17,9 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kr.asv.androidutils.AdmobAdapter
 import kr.asv.apps.loancalculator.NavigationItemFactory
 import kr.asv.apps.loancalculator.R
-import kr.asv.apps.loancalculator.Services
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
     /**
      * onCreate
      */
@@ -117,10 +115,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     /**
-     *
+     * 디버깅 메서드
+     * @param msg 메시지
      */
     @Suppress("unused")
-    fun debug(msg: String) {
-        Log.e("[EXIZT-DEBUG]", "[MainActivity]$msg")
+    private fun debug(msg: String, msg2 : Any = "") {
+        @Suppress("ConstantConditionIf")
+        if (IS_DEBUG) {
+            if(msg2 == ""){
+                Log.d(TAG, msg)
+            } else {
+                Log.d(TAG, "$msg $msg2")
+            }
+        }
+    }
+
+    companion object {
+        private const val TAG = "[EXIZT][MainActivity]"
+        private const val IS_DEBUG = false
     }
 }

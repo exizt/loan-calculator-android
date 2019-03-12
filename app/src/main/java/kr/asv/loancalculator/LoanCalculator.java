@@ -10,6 +10,7 @@ public class LoanCalculator
 	 */
 	private LoanCalculatorOptions options;
 
+	@SuppressWarnings("unused")
 	public enum AmortizationMethods {
 		FULL_AMORTIZATION, EQUAL_PRINCIPAL
 	}
@@ -52,6 +53,7 @@ public class LoanCalculator
 	 * 
 	 * @param options LoanCalculatorOptions
 	 */
+	@SuppressWarnings("unused")
 	public void run(LoanCalculatorOptions options)
 	{
 		this.options = options;
@@ -94,11 +96,13 @@ public class LoanCalculator
 		return this.options;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public PaymentSchedules getSchedules()
 	{
 		return schedules;
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	public double getSummaryInterest()
 	{
 		return summaryInterest;

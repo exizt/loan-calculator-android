@@ -11,7 +11,7 @@ import kr.asv.loancalculator.LoanCalculator
  */
 object Services {
     val calculator = LoanCalculator()
-    var calculatorMethod: CalculatorMethods? = null
+    var calculatorMethod: CalculatorMethods = CalculatorMethods.EQUAL_PRINCIPAL
 
     enum class CalculatorMethods {
         EQUAL_PRINCIPAL, FULL_AMORTIZATION
@@ -29,7 +29,7 @@ object Services {
     /**
      *
      */
-    @Suppress("unused")
+    @Suppress("unused", "UNUSED_PARAMETER")
     private fun load(context: Context) {
 
     }

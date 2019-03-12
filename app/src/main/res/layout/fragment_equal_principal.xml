@@ -33,7 +33,10 @@
             android:inputType="number"
             android:maxLines="1"
             android:maxLength="15"
-            android:textSize="30sp" />
+            android:importantForAutofill="no"
+            tools:targetApi="o"
+            android:textSize="30sp"
+            tools:ignore="LabelFor" />
     </LinearLayout>
 
     <LinearLayout
@@ -57,7 +60,10 @@
             android:inputType="numberDecimal"
             android:maxLines="1"
             android:maxLength="6"
-            android:textSize="30sp" />
+            android:importantForAutofill="no"
+            tools:targetApi="o"
+            android:textSize="30sp"
+            tools:ignore="LabelFor" />
     </LinearLayout>
 
     <LinearLayout
@@ -81,8 +87,11 @@
             android:imeOptions="actionDone"
             android:inputType="number"
             android:maxLines="1"
+            android:importantForAutofill="no"
+            tools:targetApi="o"
             android:maxLength="3"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            tools:ignore="LabelFor" />
     </LinearLayout>
 
     <Button
