@@ -17,31 +17,31 @@ import kr.asv.loancalculator.PaymentSchedules
  */
 class ReportScheduleFragment : Fragment() {
 
-	/**
-	 * onCreateView 는 매번 호출되는 메서드 이다.
-	 * 순서상 onCreate 이후에 호출되고, UI 와 연관성을 갖게 된다.
-	 */
-	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-	                          savedInstanceState: Bundle?): View? {
-		val view = inflater.inflate(R.layout.fragment_schedule_list, container, false)
+    /**
+     * onCreateView 는 매번 호출되는 메서드 이다.
+     * 순서상 onCreate 이후에 호출되고, UI 와 연관성을 갖게 된다.
+     */
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_schedule_list, container, false)
 
-		val schedule : PaymentSchedules = Services.calculator.schedules
+        val schedule : PaymentSchedules = Services.calculator.schedules
 
-		// Set the adapter
-		if (view is RecyclerView) {
-			val context = view.getContext()
-			view.layoutManager = LinearLayoutManager(context)
-			view.adapter = MyScheduleRecyclerViewAdapter(schedule)
-		}
-		return view
-	}
+        // Set the adapter
+        if (view is RecyclerView) {
+            val context = view.getContext()
+            view.layoutManager = LinearLayoutManager(context)
+            view.adapter = MyScheduleRecyclerViewAdapter(schedule)
+        }
+        return view
+    }
 
-	companion object {
-		fun newInstance(): ReportScheduleFragment {
-			val fragment = ReportScheduleFragment()
-			val args = Bundle()
-			fragment.arguments = args
-			return fragment
-		}
-	}
+    companion object {
+        fun newInstance(): ReportScheduleFragment {
+            val fragment = ReportScheduleFragment()
+            val args = Bundle()
+            fragment.arguments = args
+            return fragment
+        }
+    }
 }

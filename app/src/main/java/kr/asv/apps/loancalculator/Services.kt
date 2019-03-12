@@ -10,36 +10,36 @@ import kr.asv.loancalculator.LoanCalculator
  * Created by EXIZT on 2016-04-27.
  */
 object Services {
-	val calculator = LoanCalculator()
-	var calculatorMethod: CalculatorMethods? = null
+    val calculator = LoanCalculator()
+    var calculatorMethod: CalculatorMethods? = null
 
-	enum class CalculatorMethods {
-		EQUAL_PRINCIPAL, FULL_AMORTIZATION
-	}
+    enum class CalculatorMethods {
+        EQUAL_PRINCIPAL, FULL_AMORTIZATION
+    }
 
-	init {
-		init()
-	}
+    init {
+        init()
+    }
 
-	/**
-	 *
-	 */
-	private fun init() {}
+    /**
+     *
+     */
+    private fun init() {}
 
-	/**
-	 *
-	 */
-	@Suppress("unused")
-	private fun load(context: Context) {
+    /**
+     *
+     */
+    @Suppress("unused")
+    private fun load(context: Context) {
 
-	}
+    }
 
-	/**
-	 * 디버깅
-	 * @param msg string
-	 */
-	@Suppress("unused")
-	fun debug(msg: String) {
-		Log.e("[EXIZT-DEBUG]", msg)
-	}
+    /**
+     * 디버깅
+     * @param msg string
+     */
+    @Suppress("unused")
+    fun debug(msg: String) {
+        Log.e("[EXIZT-DEBUG]", msg)
+    }
 }

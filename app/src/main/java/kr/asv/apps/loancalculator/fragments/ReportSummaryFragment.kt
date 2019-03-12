@@ -20,28 +20,28 @@ import kr.asv.apps.loancalculator.Services
  */
 class ReportSummaryFragment : Fragment() {
 
-	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-	                          savedInstanceState: Bundle?): View? =
-			inflater.inflate(R.layout.fragment_report_summary, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_report_summary, container, false)
 
-	override fun onActivityCreated(savedInstanceState: Bundle?) {
-		super.onActivityCreated(savedInstanceState)
-		showResult()
-	}
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        showResult()
+    }
 
-	@SuppressLint("SetTextI18n")
-	private fun showResult() {
-		val calculator = Services.calculator
-		summary_principal.text = calculator.options.principal.toString()
-		summary_term.text = Integer.toString(calculator.options.amortizationPeriod)
-		val interestRate = BigDecimal(calculator.options.interestRate.toString())
-		summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).toString()
-		//summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).setScale(1,BigDecimal.ROUND_FLOOR).toString()
-		summary_interest.text = calculator.summaryInterest.toString()
-	}
+    @SuppressLint("SetTextI18n")
+    private fun showResult() {
+        val calculator = Services.calculator
+        summary_principal.text = calculator.options.principal.toString()
+        summary_term.text = Integer.toString(calculator.options.amortizationPeriod)
+        val interestRate = BigDecimal(calculator.options.interestRate.toString())
+        summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).toString()
+        //summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).setScale(1,BigDecimal.ROUND_FLOOR).toString()
+        summary_interest.text = calculator.summaryInterest.toString()
+    }
 
-	companion object {
+    companion object {
 
-		fun newInstance(): ReportSummaryFragment = ReportSummaryFragment()
-	}
+        fun newInstance(): ReportSummaryFragment = ReportSummaryFragment()
+    }
 }
