@@ -19,6 +19,8 @@
     <string name="calc_button">계산하기</string>
     <string name="calculator_title_full_amortization">원리금균등상환</string>
     <string name="calculator_title_equal_principal">원금균등상환</string>
+    <string name="calculate_full">원리금균등상환</string>
+    <string name="calculate_equal">원금균등상환</string>
     <string name="summary">요약</string>
     <string name="paid_schedule">상환 스케쥴</string>
     <string name="main_drawer_title">계산방식 종류</string>
