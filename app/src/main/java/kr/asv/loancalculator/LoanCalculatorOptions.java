@@ -64,6 +64,7 @@ public class LoanCalculatorOptions
 	 * 이자율
 	 * @return BigDecimal
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public BigDecimal getInterestRate()
 	{
 		//return CalcUtil.divide(interestRate,100, 6, RoundingMode.DOWN);

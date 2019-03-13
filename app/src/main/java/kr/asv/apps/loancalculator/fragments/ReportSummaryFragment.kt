@@ -7,9 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_report_summary.*
-
-import java.math.BigDecimal
-
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
 
