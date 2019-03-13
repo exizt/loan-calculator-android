@@ -1,23 +1,31 @@
 package kr.asv.loancalculator;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.RoundingMode;
+
 public class LoanCalculatorOptions
 {
 	/**
 	 * 원금
 	 */
-	private double principal = 0;
+	private BigInteger principal = new BigInteger("0");
+
 	/**
 	 * 이자율
 	 */
-	private double interestRate = 0;
+	private BigDecimal interestRate = new BigDecimal("0");
+
 	/**
 	 * 상환기간
 	 */
 	private int amortizationPeriod = 0;
+
 	/**
 	 * 상환방법
 	 */
 	private LoanCalculator.AmortizationMethods amortizationMethod;
+
 	/**
 	 * 디버깅 여부
 	 */
@@ -36,28 +44,38 @@ public class LoanCalculatorOptions
 		return "CalculatorOptions [principal=" + principal + ", interestRate=" + interestRate + ", amortizationPeriod="
 				+ amortizationPeriod + ", amortizationMethod=" + amortizationMethod + "]";
 	}
-	public double getPrincipal()
+
+	public BigInteger getPrincipal()
 	{
 		return principal;
 	}
+
 	@SuppressWarnings("SameParameterValue")
-	public void setPrincipal(double principal)
+	public void setPrincipal(BigInteger principal)
 	{
 		this.principal = principal;
 	}
-	public double getInterestRate()
+
+	/**
+	 * 소수점 4자리 까지는 가능하게. (백분율로 처리하면서 소수점 6자리)
+	 * @return BigDecimal
+	 */
+	public BigDecimal getInterestRate()
 	{
-		return interestRate * 0.01;
+		return CalcUtil.divide(interestRate,100, 6, RoundingMode.DOWN);
 	}
+
 	@SuppressWarnings("SameParameterValue")
-	public void setInterestRate(double interestRate)
+	public void setInterestRate(BigDecimal interestRate)
 	{
 		this.interestRate = interestRate;
 	}
+
 	public int getAmortizationPeriod()
 	{
 		return amortizationPeriod;
 	}
+
 	@SuppressWarnings("SameParameterValue")
 	public void setAmortizationPeriod(int amortizationPeriod)
 	{

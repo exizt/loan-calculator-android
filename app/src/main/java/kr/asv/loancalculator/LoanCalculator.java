@@ -1,5 +1,7 @@
 package kr.asv.loancalculator;
 
+import java.math.BigInteger;
+
 /**
  * 대출이자 계산기
  */
@@ -8,7 +10,7 @@ public class LoanCalculator
 	/**
 	 * Options 값들. 가족수, 자녀수, 비과세액 등
 	 */
-	private LoanCalculatorOptions options;
+	private final LoanCalculatorOptions options = new LoanCalculatorOptions();
 
 	@SuppressWarnings("unused")
 	public enum AmortizationMethods {
@@ -17,47 +19,13 @@ public class LoanCalculator
 
 	private PaymentSchedules schedules;
 
-	private double summaryInterest;
+	private BigInteger summaryInterest;
 	/**
 	 * 생성자
 	 */
 	public LoanCalculator()
 	{
-		this.initialize();
-	}
-
-	/**
-	 * 생성자
-	 * 
-	 * @param options LoanCalculatorOptions
-	 */
-	public LoanCalculator(LoanCalculatorOptions options)
-	{
-		this.options = options;
-		this.initialize();
-	}
-
-	/**
-	 * 초기화 메서드.
-	 * 생성시에 한번만 호출되는 부분.
-	 */
-	private void initialize()
-	{
-		if (this.options == null)
-			this.options = new LoanCalculatorOptions();
-		//equalPrincipalAmortization = new EqualPrincipalAmortization();
-		//fullAmortization = new FullAmortization();
-	}
-
-	/**
-	 * 
-	 * @param options LoanCalculatorOptions
-	 */
-	@SuppressWarnings("unused")
-	public void run(LoanCalculatorOptions options)
-	{
-		this.options = options;
-		this.run();
+		//this.initialize();
 	}
 
 	/**
@@ -103,7 +71,7 @@ public class LoanCalculator
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
-	public double getSummaryInterest()
+	public BigInteger getSummaryInterest()
 	{
 		return summaryInterest;
 	}

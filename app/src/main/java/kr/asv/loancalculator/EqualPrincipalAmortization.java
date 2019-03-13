@@ -1,5 +1,8 @@
 package kr.asv.loancalculator;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 /**
  * 원금 균등 분할 상환 방식
  * 
@@ -12,11 +15,12 @@ public class EqualPrincipalAmortization implements Amortization
 	 * Options 값들. 가족수, 자녀수, 비과세액 등
 	 */
 	private LoanCalculatorOptions options;
+
 	/**
 	 * 스케쥴 변수
 	 */	
 	private PaymentSchedules schedules = new PaymentSchedules();
-	private double summaryInterest;
+	private BigInteger summaryInterest;
 	
 	public EqualPrincipalAmortization()
 	{
@@ -27,6 +31,7 @@ public class EqualPrincipalAmortization implements Amortization
 	{
 		this.setOptions(options);
 	}
+
 	/**
 	 * @param options LoanCalculatorOptions
 	 */
@@ -34,8 +39,10 @@ public class EqualPrincipalAmortization implements Amortization
 	{
 		this.options = options;
 	}
+
 	/**
-	 * 생성자
+	 * 외부에서 호출되는 메서드
+	 * 옵션 을 넣고, calculateSchedule 을 호출
 	 * @param options LoanCalculatorOptions
      */
 	public void calculate(LoanCalculatorOptions options)
@@ -47,7 +54,7 @@ public class EqualPrincipalAmortization implements Amortization
 	}
 
 	/**
-	 * 원금 균등 분할 방식
+	 * '원금 균등 분할'을 계산하는 메서드
 	 */
 	private void calculateSchedule()
 	{
@@ -55,23 +62,28 @@ public class EqualPrincipalAmortization implements Amortization
 		schedules = new PaymentSchedules();
 
 		// 원금잔액
-		double loanBalance = options.getPrincipal();
+		BigInteger loanBalance = options.getPrincipal();
 
 		// 상환기간
 		int period = options.getAmortizationPeriod();
 
 		// 이자율
-		double rate = options.getInterestRate();
+		BigDecimal rate = options.getInterestRate();
 
 		// 상환 원금. 원금 균등방식에서는 매월(또는 회차별) 상환원금은 동일하다.
-		double paidPrincipal = CalculatorUtils.roundDown(loanBalance / period, 1);
+		//val principal = MoneyTextWatcher.getValue(id_input_principal).toDouble()
+		//BigInteger paidPrincipal = loanBalance.divide(BigInteger.valueOf(period));
+		BigInteger paidPrincipal = CalcUtil.divide(loanBalance,period);
 		
 		// 월지불 이자액
-		double paidInterest;
+		BigInteger paidInterest;
+
+		// 연간 지불 이자액을 잠깐 계산하기 위한 변수
+		BigDecimal loanBalanceMultiplyRate;
 		
 		// 월지불액
-		double payment;
-		summaryInterest = 0;
+		BigInteger payment;
+		summaryInterest = BigInteger.ZERO;
 		for (int i = 0; i < period; i++)
 		{
 			/*
@@ -80,26 +92,43 @@ public class EqualPrincipalAmortization implements Amortization
 			 * 이자금액이 월마다 달라지게 된다. 더 정확하게 보자면, 매년 연이자율만큼 이자를 계산해서 납부를 해야하지만,
 			 * 원금납부로 인하여 원금잔액이 줄어들었으므로,
 			 * 이에 맞춰서 월이자 금액을 매달 재계산하는 셈이다.
+			 *
+			 * 여기서 중요한 부분이 있는데, 소수점인 이자율을 곱하면 결과값이 소수점까지 나오게 된다.. 이것을 어떻게 처리해야하는지 궁금..
+			 * CASE 1 : 원금 * 이자율 = 이자액 에서 소수점 절삭 후 / 12
+			 * CASE 2 : 원금 * 이자율 / 12 = 결과 에서 소수점 절삭 (이게 정답이라고 함) (그래서 중간에 있는 값을 BigDecimal 로 변경함)
 			 */
-			paidInterest = (loanBalance * rate) / 12;// 이자 금액
-			paidInterest = CalculatorUtils.roundUp(paidInterest, 1);// 올림
+			loanBalanceMultiplyRate = CalcUtil.multiply(loanBalance,rate);
+			paidInterest = CalcUtil.divide(loanBalanceMultiplyRate,12);// 이자 금액 (소수점 이하는 절삭)
 
-			loanBalance = loanBalance - paidPrincipal;
-			if (loanBalance < 0)
-				loanBalance = 0;
-			if (period - i == 1 && loanBalance > 0)
-			{
-				// 마지막차수일때, 잔액이 있다면. 잔액을 합침.
-				paidPrincipal += loanBalance;
-				loanBalance = 0;
+			//paidInterest = (loanBalance * rate) / 12;// 이자 금액
+			//paidInterest = CalcUtil.roundUp(paidInterest, 1);// 소수점 이하 절삭
+
+			loanBalance = CalcUtil.minus(loanBalance,paidPrincipal);
+			//loanBalance = loanBalance - paidPrincipal;
+
+			// 0 보다 작으면 0 을 대입 (음수 방지)
+			if (loanBalance.compareTo(BigInteger.ZERO) < 0) {
+				loanBalance = BigInteger.ZERO;
 			}
-			payment = paidPrincipal + paidInterest;
-			
-			summaryInterest += paidInterest;
+
+			// 마지막차수일때, 남은 잔액이 있다면. 잔액을 합침.
+			if (period - i == 1 && loanBalance.compareTo(BigInteger.ZERO) > 0)
+			{
+				paidPrincipal = CalcUtil.plus(paidPrincipal,loanBalance);
+				//paidPrincipal += loanBalance;
+				loanBalance = BigInteger.ZERO;
+			}
+
+			// 이번달 납부액 (원금 납부액 + 이자 납부액)
+			payment = CalcUtil.plus(paidPrincipal, paidInterest);
+			//payment = paidPrincipal + paidInterest;
+
+			// 총 납부 이자액 (계속 더하면서 진행)
+			summaryInterest = CalcUtil.plus(summaryInterest, paidInterest);
+			//summaryInterest += paidInterest;
 			
 			// 스케쥴 리스트에 추가
 			schedules.addSchedule(payment, paidPrincipal, paidInterest, loanBalance);
-			
 			//PaymentSchedules.Schedule schedule = new PaymentSchedules.Schedule(payment,paidPrincipal,paidInterest,loanBalance);
 			//schedules.add(schedule);
 		}
@@ -111,11 +140,12 @@ public class EqualPrincipalAmortization implements Amortization
 			}
 		}
 	}
+
 	public PaymentSchedules getSchedules()
 	{
 		return schedules;
 	}
-	public double getSummaryInterest() {
+	public BigInteger getSummaryInterest() {
 		return summaryInterest;
 	}	
 }

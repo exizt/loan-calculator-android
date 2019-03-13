@@ -1,5 +1,8 @@
 package kr.asv.loancalculator;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 /**
  * 원리금 균등분할 상환 방식
  * 
@@ -12,11 +15,12 @@ public class FullAmortization implements Amortization
 	 * Options 값들. 가족수, 자녀수, 비과세액 등
 	 */
 	private LoanCalculatorOptions options;
+
 	/**
 	 * 스케쥴 변수
 	 */
 	private PaymentSchedules schedules = new PaymentSchedules();
-	private double summaryInterest;
+	private BigInteger summaryInterest;
 	
 	public FullAmortization()
 	{
@@ -26,7 +30,8 @@ public class FullAmortization implements Amortization
 	public FullAmortization(LoanCalculatorOptions options)
 	{
 		this.setOptions(options);
-	}	
+	}
+
 	/**
 	 * @param options LoanCalculatorOptions
 	 */
@@ -34,6 +39,7 @@ public class FullAmortization implements Amortization
 	{
 		this.options = options;
 	}
+
 	/**
 	 * 생성자
 	 * @param options LoanCalculatorOptions
@@ -58,34 +64,46 @@ public class FullAmortization implements Amortization
 		schedules = new PaymentSchedules();
 		
 		// 월지불액
-		double payment = CalculatorUtils.roundUp(getPaymentMonthly(),1);
+		BigInteger payment = getPaymentMonthly();
+		//BigInteger payment = CalcUtil.roundUp(getPaymentMonthly(),1);
 
 		// 원금잔액
-		double loanBalance = options.getPrincipal();
+		BigInteger loanBalance = options.getPrincipal();
 
 		// 상환기간
 		int period = options.getAmortizationPeriod();
 		
 		// 이자율
-		double rate = options.getInterestRate();
+		BigDecimal rate = options.getInterestRate();
+
 		// 월 지불 이자액
-		double paidInterest;
+		BigInteger paidInterest;
+
+		// 연간 지불 이자액을 잠깐 계산하기 위한 변수
+		BigDecimal loanBalanceMultiplyRate;
 
 		// 월 지불 원금
-		double paidPrincipal;
-		summaryInterest = 0;
+		BigInteger paidPrincipal;
+		summaryInterest = BigInteger.ZERO;
 		for (int i = 0; i < period; i++)
 		{
 			//상환이자 계산
-			paidInterest = (loanBalance * rate) / 12;
-			paidInterest = CalculatorUtils.roundUp(paidInterest, 1);// 올림
+			loanBalanceMultiplyRate = CalcUtil.multiply(loanBalance,rate);
+			paidInterest = CalcUtil.divide(loanBalanceMultiplyRate,12);
+			//paidInterest = (loanBalance * rate) / 12;
+			//paidInterest = CalcUtil.roundUp(paidInterest, 1);// 올림
 			
-			//상환원금 계산
-			paidPrincipal = payment - paidInterest;
-			//잔액
-			loanBalance = loanBalance - paidPrincipal;
+			//상환원금 계산 (이번달 원금 납부액 = 월 총 납부액 - 이번달 이자 납부액)
+			paidPrincipal = CalcUtil.minus(payment,paidInterest);
+			//paidPrincipal = payment - paidInterest;
 
-			summaryInterest += paidInterest;
+			//원금 잔액 (원금 잔액 = 원금 잔액 - 이번 달 원금 납부액)
+			loanBalance = CalcUtil.minus(loanBalance, paidPrincipal);
+			//loanBalance = loanBalance - paidPrincipal;
+
+			// 총 납부 이자액 (계속 더하면서 진행)
+			summaryInterest = CalcUtil.plus(summaryInterest, paidInterest);
+			//summaryInterest += paidInterest;
 
 			// 스케쥴 리스트에 추가
 			//PaymentSchedule schedule = new PaymentSchedule();
@@ -113,25 +131,31 @@ public class FullAmortization implements Amortization
 	 * 
 	 * @return double
 	 */
-	private double getPaymentMonthly()
+	private BigInteger getPaymentMonthly()
 	{
 		// 이자율
-		double rate = options.getInterestRate();
+		BigDecimal rate = options.getInterestRate();
 
 		// 상환기간
 		int period = options.getAmortizationPeriod();
 
-		double principal = options.getPrincipal();
+		// 원금
+		BigInteger principal = options.getPrincipal();
 
-		double calc = CalculatorUtils.pow((1 + rate / 12), period);
-		return (principal * rate / 12) * (calc / (calc - 1));
+		// 가장 문제가 되는 구간. 소수점 자리를 몇 자리까지 계산하느냐 에 따라서 결과가 크게 달라진다.
+		// 일단 double 로 처리.
+		double calc = CalcUtil.pow((1 + rate.doubleValue() / 12), period);
+		// double calc = CalcUtil.pow((1 + rate.doubleValue() / 12), period);
+
+		return BigDecimal.valueOf((CalcUtil.multiply(principal, rate).doubleValue() / 12) * (calc / (calc - 1))).toBigInteger();
+		//return (principal * rate / 12) * (calc / (calc - 1));
 	}
 
 	public PaymentSchedules getSchedules()
 	{
 		return schedules;
 	}
-	public double getSummaryInterest() {
+	public BigInteger getSummaryInterest() {
 		return summaryInterest;
 	}
 }

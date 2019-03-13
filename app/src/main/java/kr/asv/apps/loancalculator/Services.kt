@@ -2,7 +2,6 @@ package kr.asv.apps.loancalculator
 
 import android.content.Context
 import android.util.Log
-
 import kr.asv.loancalculator.LoanCalculator
 
 /**

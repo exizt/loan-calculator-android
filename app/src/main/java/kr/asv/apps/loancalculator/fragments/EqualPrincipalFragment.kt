@@ -15,6 +15,7 @@ import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
 import kr.asv.apps.loancalculator.activities.ReportActivity
 import kr.asv.loancalculator.LoanCalculator
+import java.math.BigDecimal
 
 class EqualPrincipalFragment : Fragment() {
 
@@ -43,6 +44,9 @@ class EqualPrincipalFragment : Fragment() {
 
     }
 
+    /**
+     * 이벤트 리스너들
+     */
     private fun initEventListener(){
 
         // 계산하기 버튼 클릭시
@@ -50,11 +54,13 @@ class EqualPrincipalFragment : Fragment() {
             calculate()// 계산하기 버튼 클릭시
         }
 
+        // EditText 처리
         id_input_principal.addTextChangedListener(MoneyTextWatcher(id_input_principal))
         //id_input_principal.filters = arrayOf<InputFilter>(InputFilterDoubleMinMax(0.0,10000000000.0))
         id_input_term.filters  = arrayOf<InputFilter>(InputFilterDoubleMinMax(0,1200))
         id_input_interest_rate.filters = arrayOf<InputFilter>(InputFilterDoubleMinMax(0.0,100.0))
     }
+
     /**
      * 계산 기능 호출
      */
@@ -66,19 +72,28 @@ class EqualPrincipalFragment : Fragment() {
             java.lang.Double.parseDouble(id_input_principal.text.toString())
         }
         */
-        val principal = MoneyTextWatcher.getValue(id_input_principal).toDouble()
+        // 원금
+        //val principal = MoneyTextWatcher.getValue(id_input_principal).toDouble()
+        val principal = MoneyTextWatcher.getBigInteger(id_input_principal)
 
+        // 이자율
+        /*
         val interestRate = if (id_input_interest_rate.text.toString() == "") {
             0.0
         } else {
             java.lang.Double.parseDouble(id_input_interest_rate.text.toString())
         }
+        */
+        val interestRate = BigDecimal(id_input_interest_rate.text.toString())
+
+        // 납부 기간
         val amortizationPeriod = if (id_input_term.text.toString() == "") {
             0
         } else {
             Integer.parseInt(id_input_term.text.toString())
         }
 
+        // 계산 동작
         val calculator = Services.calculator
         if(Services.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL){
             calculator.options.amortizationMethod = LoanCalculator.AmortizationMethods.EQUAL_PRINCIPAL

@@ -1,7 +1,11 @@
 package kr.asv.loancalculator;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
+/**
+ * 데이터만 갖고 있을 스케쥴 모델 클래스
+ */
 public class PaymentSchedules extends ArrayList<PaymentSchedules.Schedule>
 {
 
@@ -10,11 +14,11 @@ public class PaymentSchedules extends ArrayList<PaymentSchedules.Schedule>
 	 */
 	private static final long serialVersionUID = -3698533479210025025L;
 
-	private Schedule createSchedule(double payment, double paidPrincipal, double paidInterest, double loanBalance)
+	private Schedule createSchedule(BigInteger payment, BigInteger paidPrincipal, BigInteger paidInterest, BigInteger loanBalance)
 	{
 		return new Schedule(payment,paidPrincipal,paidInterest,loanBalance);
 	}
-	public void addSchedule(double payment,double paidPrincipal,double paidInterest,double loanBalance)
+	public void addSchedule(BigInteger payment,BigInteger paidPrincipal,BigInteger paidInterest,BigInteger loanBalance)
 	{
 		this.add(createSchedule(payment, paidPrincipal, paidInterest, loanBalance));
 	}
@@ -22,16 +26,16 @@ public class PaymentSchedules extends ArrayList<PaymentSchedules.Schedule>
 	 * Created by EXIZT on 2016-06-08.
 	 */
 	public class Schedule {
-	    public double payment;//합계지불
-	    public double paidPrincipal;//상환원금
-	    public double paidInterest;//상환이자
-	    public double loanBalance;//잔액
+	    public BigInteger payment;//합계지불
+	    public BigInteger paidPrincipal;//상환원금
+	    public BigInteger paidInterest;//상환이자
+	    public BigInteger loanBalance;//잔액
 
 	    public Schedule()
 	    {
 
 	    }
-	    public Schedule(double payment,double paidPrincipal,double paidInterest,double loanBalance)
+	    public Schedule(BigInteger payment,BigInteger paidPrincipal,BigInteger paidInterest,BigInteger loanBalance)
 	    {
 	        this.payment = payment;
 	        this.paidPrincipal = paidPrincipal;

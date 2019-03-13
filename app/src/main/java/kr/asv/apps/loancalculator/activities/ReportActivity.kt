@@ -26,25 +26,18 @@ class ReportActivity : AppCompatActivity() {
         supportActionBar?.run {
             setDisplayHomeAsUpEnabled(true)
         }
-
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
-
-        //mViewPager = findViewById(R.id.container)
-        //mViewPager!!.adapter = mSectionsPagerAdapter
         container.adapter = mSectionsPagerAdapter
 
         //val tabLayout:TabLayout = findViewById(R.id.tabs)
         //tabLayout.setupWithViewPager(mViewPager)
-
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabs))
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
 
         title = if (Services.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL) {
-            "원금균등상환"
+            getString(R.string.calculate_equal)
         } else {
-            "원리금균등상환"
+            getString(R.string.calculate_full)
         }
 
         // Admob 호출

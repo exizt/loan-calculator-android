@@ -32,12 +32,18 @@ class ReportSummaryFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun showResult() {
         val calculator = Services.calculator
-        summary_principal.text = calculator.options.principal.toString()
+        val formatA = java.text.DecimalFormat("###,##0")
+
+        // 원금
+        summary_principal.text = formatA.format(calculator.options.principal)
+        // 상환 기간
         summary_term.text = Integer.toString(calculator.options.amortizationPeriod)
+        // 상환 이자율
         val interestRate = BigDecimal(calculator.options.interestRate.toString())
         summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).toString()
         //summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).setScale(1,BigDecimal.ROUND_FLOOR).toString()
-        summary_interest.text = calculator.summaryInterest.toString()
+        // 상환 이자 금액
+        summary_interest.text = formatA.format(calculator.summaryInterest)
     }
 
     companion object {

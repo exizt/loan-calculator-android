@@ -22,10 +22,10 @@ class MyScheduleRecyclerViewAdapter(private val mValues: PaymentSchedules) : Rec
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mItem = mValues[position]
         holder.mIdView.text = Integer.toString(position + 1)
-        holder.mPayment.text = java.lang.Double.toString(mValues[position].payment)
-        holder.mPaidPrincipal.text = java.lang.Double.toString(mValues[position].paidPrincipal)
-        holder.mPaidInterest.text = java.lang.Double.toString(mValues[position].paidInterest)
-        holder.mLoanBalance.text = java.lang.Double.toString(mValues[position].loanBalance)
+        holder.mPayment.text = mValues[position].payment.toString()
+        holder.mPaidPrincipal.text = mValues[position].paidPrincipal.toString()
+        holder.mPaidInterest.text = mValues[position].paidInterest.toString()
+        holder.mLoanBalance.text = mValues[position].loanBalance.toString()
 
         holder.mView.setOnClickListener { }
     }
