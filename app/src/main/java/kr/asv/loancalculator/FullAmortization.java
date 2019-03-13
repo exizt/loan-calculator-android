@@ -74,7 +74,7 @@ public class FullAmortization implements Amortization
 		int period = options.getAmortizationPeriod();
 		
 		// 이자율
-		BigDecimal rate = options.getInterestRate();
+		BigDecimal rate = options.getInterestRate2();
 
 		// 월 지불 이자액
 		BigInteger paidInterest;
@@ -134,7 +134,7 @@ public class FullAmortization implements Amortization
 	private BigInteger getPaymentMonthly()
 	{
 		// 이자율
-		BigDecimal rate = options.getInterestRate();
+		BigDecimal rate = options.getInterestRate2();
 
 		// 상환기간
 		int period = options.getAmortizationPeriod();

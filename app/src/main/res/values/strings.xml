@@ -10,12 +10,11 @@
 
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-6702794513299112/7109161783</string>
     <string name="nav_header_title">Loan Calculator</string>
-    <string name="schedule_count_suffix">회차</string>
     <string name="schedule_paid_principal">Principal</string>
     <string name="schedule_paid_interest">Interest</string>
     <string name="schedule_payment">paid payment</string>
     <string name="summary_principal">Principal</string>
-    <string name="summary_term">상환기간</string>
+    <string name="summary_term">Paid Term</string>
     <string name="summary_rate">Interest Rate</string>
     <string name="summary_interest">Interest</string>
     <string name="schedule_balance">balance</string>
@@ -28,7 +27,8 @@
     <string name="calculator_title_equal_principal">Equal Principal</string>
     <string name="summary">Summary</string>
     <string name="paid_schedule">Paid Schedule</string>
-    <string name="main_drawer_title">계산방식 종류</string>
+    <string name="main_drawer_title">List</string>
     <string name="calculate_full">Full Amortization</string>
     <string name="calculate_equal">Equal Principal</string>
+    <string name="schedule_count_suffix">No %1$s</string>
 </resources>

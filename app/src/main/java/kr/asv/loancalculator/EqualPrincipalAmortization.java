@@ -68,7 +68,7 @@ public class EqualPrincipalAmortization implements Amortization
 		int period = options.getAmortizationPeriod();
 
 		// 이자율
-		BigDecimal rate = options.getInterestRate();
+		BigDecimal rate = options.getInterestRate2();
 
 		// 상환 원금. 원금 균등방식에서는 매월(또는 회차별) 상환원금은 동일하다.
 		//val principal = MoneyTextWatcher.getValue(id_input_principal).toDouble()

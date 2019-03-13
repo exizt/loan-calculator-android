@@ -15,9 +15,20 @@ import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
 import kr.asv.apps.loancalculator.activities.ReportActivity
 import kr.asv.loancalculator.LoanCalculator
+import java.lang.Exception
 import java.math.BigDecimal
+import java.math.BigInteger
 
 class EqualPrincipalFragment : Fragment() {
+    /**
+     * '원금' 계산 가능 최소값
+     */
+    private val principalMinimum : Int = 10000
+
+    /**
+     * '상환 기간' 계산 가능 최소값
+     */
+    private val periodMinimum = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? =
@@ -66,34 +77,60 @@ class EqualPrincipalFragment : Fragment() {
      */
     private fun calculate() {
         /*
-        val principal = if (id_input_principal.text.toString() == "") {
-            0.0
-        } else {
-            java.lang.Double.parseDouble(id_input_principal.text.toString())
+         * 유효성 체크. 빈 값 여부
+         */
+        if(id_input_principal.text.isEmpty()){
+            return
         }
-        */
-        // 원금
-        //val principal = MoneyTextWatcher.getValue(id_input_principal).toDouble()
-        val principal = MoneyTextWatcher.getBigInteger(id_input_principal)
+        if(id_input_interest_rate.text.isEmpty()){
+            return
+        }
+        if(id_input_term.text.isEmpty()){
+            return
+        }
+
+        /*
+         * 이상이 있을 경우에는 0으로 대입.
+         */
+        // 원금 (0 보다 작은 값이 들어와도 0으로 치환)
+        val principal : BigInteger = try {
+            if(MoneyTextWatcher.getBigInteger(id_input_principal).compareTo(BigInteger.ZERO) == 1){
+                MoneyTextWatcher.getBigInteger(id_input_principal)
+            } else {
+                BigInteger.ZERO
+            }
+        } catch (e : Exception){
+            BigInteger.ZERO
+        }
 
         // 이자율
-        /*
-        val interestRate = if (id_input_interest_rate.text.toString() == "") {
-            0.0
-        } else {
-            java.lang.Double.parseDouble(id_input_interest_rate.text.toString())
+        val interestRate : BigDecimal = try{
+            BigDecimal(id_input_interest_rate.text.toString())
+        } catch (e: Exception){
+            BigDecimal.ZERO
         }
-        */
-        val interestRate = BigDecimal(id_input_interest_rate.text.toString())
 
         // 납부 기간
-        val amortizationPeriod = if (id_input_term.text.toString() == "") {
-            0
-        } else {
+        val amortizationPeriod : Int = try{
             Integer.parseInt(id_input_term.text.toString())
+        } catch (e: Exception) {
+            0
         }
 
-        // 계산 동작
+        /*
+         * 최소값 체크
+         */
+        // 최소값 보다 작으면 연산 안 함
+        if(principal < BigInteger.valueOf(principalMinimum.toLong())){
+            return
+        }
+
+        // 최소값 보다 작으면 연산 안 함
+        if(amortizationPeriod < periodMinimum){
+            return
+        }
+
+        // 계산 프로세스
         val calculator = Services.calculator
         if(Services.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL){
             calculator.options.amortizationMethod = LoanCalculator.AmortizationMethods.EQUAL_PRINCIPAL

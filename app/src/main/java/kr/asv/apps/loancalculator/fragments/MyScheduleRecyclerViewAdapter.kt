@@ -11,9 +11,11 @@ import kr.asv.apps.loancalculator.R
 import kr.asv.loancalculator.PaymentSchedules
 
 class MyScheduleRecyclerViewAdapter(private val mValues: PaymentSchedules) : RecyclerView.Adapter<MyScheduleRecyclerViewAdapter.ViewHolder>() {
+    private lateinit var view : View
+    private val formatA = java.text.DecimalFormat("###,##0")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
+        view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.fragment_schedule, parent, false)
         return ViewHolder(view)
     }
@@ -21,11 +23,12 @@ class MyScheduleRecyclerViewAdapter(private val mValues: PaymentSchedules) : Rec
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mItem = mValues[position]
-        holder.mIdView.text = Integer.toString(position + 1)
-        holder.mPayment.text = mValues[position].payment.toString()
-        holder.mPaidPrincipal.text = mValues[position].paidPrincipal.toString()
-        holder.mPaidInterest.text = mValues[position].paidInterest.toString()
-        holder.mLoanBalance.text = mValues[position].loanBalance.toString()
+        //holder.mIdView.text = Integer.toString(position + 1)
+        holder.mOrderView.text = view.resources.getString(R.string.schedule_count_suffix,Integer.toString(position + 1))
+        holder.mPayment.text = formatA.format(mValues[position].payment)
+        holder.mPaidPrincipal.text = formatA.format(mValues[position].paidPrincipal)
+        holder.mPaidInterest.text = formatA.format(mValues[position].paidInterest)
+        holder.mLoanBalance.text = formatA.format(mValues[position].loanBalance)
 
         holder.mView.setOnClickListener { }
     }
@@ -33,7 +36,8 @@ class MyScheduleRecyclerViewAdapter(private val mValues: PaymentSchedules) : Rec
     override fun getItemCount(): Int = mValues.size
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mIdView: TextView = mView.findViewById<View>(R.id.id) as TextView
+        //val mIdView: TextView = mView.findViewById<View>(R.id.id) as TextView
+        val mOrderView: TextView = mView.findViewById<View>(R.id.order) as TextView
         val mPayment: TextView = mView.findViewById<View>(R.id.payment) as TextView
         val mPaidPrincipal: TextView = mView.findViewById<View>(R.id.paid_principal) as TextView
         val mPaidInterest: TextView = mView.findViewById<View>(R.id.paid_interest) as TextView

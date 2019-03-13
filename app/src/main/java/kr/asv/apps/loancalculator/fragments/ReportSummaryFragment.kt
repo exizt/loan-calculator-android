@@ -36,12 +36,15 @@ class ReportSummaryFragment : Fragment() {
 
         // 원금
         summary_principal.text = formatA.format(calculator.options.principal)
+
         // 상환 기간
         summary_term.text = Integer.toString(calculator.options.amortizationPeriod)
+
         // 상환 이자율
-        val interestRate = BigDecimal(calculator.options.interestRate.toString())
-        summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).toString()
-        //summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).setScale(1,BigDecimal.ROUND_FLOOR).toString()
+        summary_interest_rate.text = String.format("%.2f %%",calculator.options.interestRate)
+        //val interestRate = BigDecimal(calculator.options.interestRate.toString())
+        //summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).toString()
+
         // 상환 이자 금액
         summary_interest.text = formatA.format(calculator.summaryInterest)
     }

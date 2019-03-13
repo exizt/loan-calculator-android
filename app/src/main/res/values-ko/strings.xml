@@ -4,7 +4,7 @@
     <string name="menu_title_full_amortization">원리금 균등분할 계산기</string>
     <string name="title_activity_report">ReportActivity</string>
     <string name="nav_header_title">대출이자 계산기</string>
-    <string name="schedule_count_suffix">회차</string>
+    <string name="schedule_count_suffix">%1$s 회차</string>
     <string name="schedule_paid_principal">원금</string>
     <string name="schedule_paid_interest">이자</string>
     <string name="schedule_payment">지불금</string>
