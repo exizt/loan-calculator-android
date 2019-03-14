@@ -23,7 +23,7 @@ class EqualPrincipalFragment : Fragment() {
     /**
      * '원금' 계산 가능 최소값
      */
-    private val principalMinimum : Int = 10000
+    private val principalMinimum : Int = 1000
 
     /**
      * '상환 기간' 계산 가능 최소값

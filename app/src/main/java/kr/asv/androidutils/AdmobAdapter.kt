@@ -1,6 +1,7 @@
 package kr.asv.androidutils
 
 import android.content.Context
+import android.provider.Settings
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
@@ -16,7 +17,9 @@ class AdmobAdapter {
          */
         @Suppress("unused")
         fun loadBannerAdMob(mAdView: AdView) {
-            mAdView.loadAd(newAdRequest())
+            if(!isTestDevice(mAdView.context)){
+                mAdView.loadAd(newAdRequest())
+            }
         }
 
         /**
@@ -37,10 +40,19 @@ class AdmobAdapter {
         @Suppress("unused", "SpellCheckingInspection")
         private fun newAdRequest(): AdRequest {
             val builder = AdRequest.Builder()
-            builder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            // builder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
             //builder.addTestDevice("621CBEEDE09F6A5B37180A718E74C41C");// G pro code
             //builder.addTestDevice("2D81264572D2AB096C895509EDBD419F");// 확인 필요
             return builder.build()
+        }
+
+        /**
+         * 구글 Test Lab 에서 멍청하게 자꾸 광고를 클릭하기 때문에 추가한 메서드.
+         * 나중에 구글 Test Lab 서비스가 똑똑해지면 필요하지 않게 될 예정. (가능하려나?)
+         */
+        private fun isTestDevice(context: Context): Boolean {
+            val testLabSetting = Settings.System.getString(context.contentResolver, "firebase.test.lab")
+            return "true" == testLabSetting
         }
     }
 }

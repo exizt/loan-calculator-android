@@ -2,6 +2,7 @@ package kr.asv.apps.loancalculator.activities
 
 import android.content.Context
 import android.os.Bundle
+import android.provider.Settings
 import android.support.design.widget.NavigationView
 import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // Admob 호출
         AdmobAdapter.loadBannerAdMob(adView)
+        Settings.System.getString(contentResolver, "firebase.test.lab")
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
     }
