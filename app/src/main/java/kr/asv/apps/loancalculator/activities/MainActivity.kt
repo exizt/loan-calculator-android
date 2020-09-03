@@ -89,8 +89,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //NavigationItemFactory.instance.onNavigationItemSelected(this, item)
         if (!NavigationItemFactory.onItemSelected(this,item, true)) {
-            Snackbar.make(this.currentFocus, "준비중입니다", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            //Snackbar.make(this.currentFocus, "준비중입니다", Snackbar.LENGTH_LONG).setAction("Action", null).show()
         }
         return true
     }
