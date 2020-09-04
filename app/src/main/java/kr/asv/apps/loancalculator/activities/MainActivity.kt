@@ -3,16 +3,18 @@ package kr.asv.apps.loancalculator.activities
 import android.content.Context
 import android.os.Bundle
 import android.provider.Settings
-import android.support.design.widget.NavigationView
-import android.support.design.widget.Snackbar
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kr.asv.androidutils.AdmobAdapter
@@ -21,6 +23,8 @@ import kr.asv.apps.loancalculator.R
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     /**
      * onCreate
      */
@@ -45,6 +49,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         Settings.System.getString(contentResolver, "firebase.test.lab")
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+
+        //firebaseAnalytics 호출
+        firebaseAnalytics = Firebase.analytics
     }
 
     /**
@@ -89,8 +96,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //NavigationItemFactory.instance.onNavigationItemSelected(this, item)
         if (!NavigationItemFactory.onItemSelected(this,item, true)) {
-            Snackbar.make(this.currentFocus, "준비중입니다", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            //Snackbar.make(this.currentFocus, "준비중입니다", Snackbar.LENGTH_LONG).setAction("Action", null).show()
         }
         return true
     }
