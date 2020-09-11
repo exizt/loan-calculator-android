@@ -33,13 +33,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        /*
+         * 네비게이션 메뉴 셋팅
+         */
         // 네비게이션 드로워 셋팅
         onCreateNavigationDrawer()
 
         // 첫번째 Fragment 호출
-        //NavigationItemFactory.onNavigationItemFirst(this)
-        //NavigationItemFactory.instance.onNavigationItemFirst(this)
-        onNavigationItemFirst()
+        NavigationItemFactory.onItemFirst(this)
+        // << 네비게이션 메뉴 셋팅
 
         // Services 초기화 및 인스턴스 가져오기
         //Services.instance
@@ -99,15 +101,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             //Snackbar.make(this.currentFocus, "준비중입니다", Snackbar.LENGTH_LONG).setAction("Action", null).show()
         }
         return true
-    }
-
-    /**
-     * default 로 로딩하는 fragment
-     * navigation menu 의 특정 항목을 불러오게함.
-     * 백스택 히스토리에는 기록하지 않는다.
-     */
-    private fun onNavigationItemFirst() {
-        NavigationItemFactory.onItemSelected(this,nav_view.menu.findItem(R.id.nav_calculator_equal_principal), false)
     }
 
     /**
