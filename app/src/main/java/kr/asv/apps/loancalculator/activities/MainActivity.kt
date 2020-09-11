@@ -23,6 +23,7 @@ import kr.asv.apps.loancalculator.R
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private val isDebug = false
     private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     /**
@@ -122,17 +123,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     @Suppress("unused")
     private fun debug(msg: String, msg2 : Any = "") {
         @Suppress("ConstantConditionIf")
-        if (IS_DEBUG) {
+        val tag = "[EXIZT-LC]"
+        val subTag = "(MainActivity)"
+        if (isDebug) {
             if(msg2 == ""){
-                Log.d(TAG, msg)
+                Log.d(tag, "$subTag $msg")
             } else {
-                Log.d(TAG, "$msg $msg2")
+                Log.d(tag, "$subTag $msg $msg2")
             }
         }
-    }
-
-    companion object {
-        private const val TAG = "[EXIZT][MainActivity]"
-        private const val IS_DEBUG = false
     }
 }

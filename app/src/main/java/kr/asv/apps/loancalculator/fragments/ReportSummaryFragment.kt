@@ -35,7 +35,7 @@ class ReportSummaryFragment : Fragment() {
         summary_principal.text = formatA.format(calculator.options.principal)
 
         // 상환 기간
-        summary_term.text = Integer.toString(calculator.options.amortizationPeriod)
+        summary_term.text = calculator.options.amortizationPeriod.toString()
 
         // 상환 이자율
         summary_interest_rate.text = String.format("%.2f %%",calculator.options.interestRate)
