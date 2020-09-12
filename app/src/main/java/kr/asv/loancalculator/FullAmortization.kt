@@ -22,7 +22,9 @@ class FullAmortization : Amortization {
     override var summaryInterest: BigInteger? = null
         private set
 
-    constructor() {}
+    constructor()
+
+    @Suppress("unused")
     constructor(options: LoanCalculatorOptions) {
         setOptions(options)
     }
@@ -70,7 +72,7 @@ class FullAmortization : Amortization {
         val period = options!!.amortizationPeriod
 
         // 이자율
-        val rate = options.getInterestRate2()
+        val rate = options!!.interestRate2
 
         // 월 지불 이자액
         var paidInterest: BigInteger?
@@ -135,7 +137,7 @@ class FullAmortization : Amortization {
     private val paymentMonthly: BigInteger
         private get() {
             // 이자율
-            val rate = options.getInterestRate2()
+            val rate = options!!.interestRate2
 
             // 상환기간
             val period = options!!.amortizationPeriod

@@ -7,7 +7,7 @@ import java.util.*
 /**
  * 데이터만 갖고 있을 스케쥴 모델 클래스
  */
-class PaymentSchedules : ArrayList<Schedule?>() {
+class PaymentSchedules : ArrayList<Schedule>() {
     private fun createSchedule(payment: BigInteger?, paidPrincipal: BigInteger?, paidInterest: BigInteger?, loanBalance: BigInteger?): Schedule {
         return Schedule(payment, paidPrincipal, paidInterest, loanBalance)
     }
@@ -18,11 +18,15 @@ class PaymentSchedules : ArrayList<Schedule?>() {
 
     /**
      * Created by EXIZT on 2016-06-08.
+     * payment : 합계 지불액
+     * paidPrincipal : 상환 원금액
+     * paidInterest : 상환 이자액
+     * loanBalance : 잔액
      */
-    inner class Schedule(//합계지불
-            var payment: BigInteger?, //상환원금
-            var paidPrincipal: BigInteger?, //상환이자
-            var paidInterest: BigInteger?, //잔액
+    inner class Schedule(
+            var payment: BigInteger?,
+            var paidPrincipal: BigInteger?,
+            var paidInterest: BigInteger?,
             var loanBalance: BigInteger?) {
         override fun toString(): String {
             return ("PaymentSchedule [payment=" + payment + ", paidPrincipal=" + paidPrincipal + ", paidInterest="
@@ -31,9 +35,6 @@ class PaymentSchedules : ArrayList<Schedule?>() {
     }
 
     companion object {
-        /**
-         *
-         */
         private const val serialVersionUID = -3698533479210025025L
     }
 }

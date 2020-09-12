@@ -22,7 +22,9 @@ class EqualPrincipalAmortization : Amortization {
     override var summaryInterest: BigInteger? = null
         private set
 
-    constructor() {}
+    constructor()
+
+    @Suppress("unused")
     constructor(options: LoanCalculatorOptions) {
         setOptions(options)
     }
@@ -64,7 +66,7 @@ class EqualPrincipalAmortization : Amortization {
         val period = options!!.amortizationPeriod
 
         // 이자율
-        val rate = options.getInterestRate2()
+        val rate = options!!.interestRate2
 
         // 상환 원금. 원금 균등방식에서는 매월(또는 회차별) 상환원금은 동일하다.
         //val principal = MoneyTextWatcher.getValue(id_input_principal).toDouble()
@@ -101,12 +103,12 @@ class EqualPrincipalAmortization : Amortization {
             //loanBalance = loanBalance - paidPrincipal;
 
             // 0 보다 작으면 0 을 대입 (음수 방지)
-            if (loanBalance.compareTo(BigInteger.ZERO) < 0) {
+            if (loanBalance < BigInteger.ZERO) {
                 loanBalance = BigInteger.ZERO
             }
 
             // 마지막차수일때, 남은 잔액이 있다면. 잔액을 합침.
-            if (period - i == 1 && loanBalance!!.compareTo(BigInteger.ZERO) > 0) {
+            if (period - i == 1 && loanBalance > BigInteger.ZERO) {
                 paidPrincipal = CalcUtil.plus(paidPrincipal, loanBalance)
                 //paidPrincipal += loanBalance;
                 loanBalance = BigInteger.ZERO

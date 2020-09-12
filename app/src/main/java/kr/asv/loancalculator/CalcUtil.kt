@@ -10,6 +10,7 @@ import java.math.RoundingMode
  * (사칙연산에서 인수가 혼합인 경우, 복잡한 것 (소수점 포함된 것) 이 앞에 인수)
  * (BigInteger, BigDecimal 의 나눗셈과 곱셈은 전부 BigDecimal 로 리턴)
  */
+@Suppress("MemberVisibilityCanBePrivate", "unused")
 internal object CalcUtil {
     /*
     더하기 연산
