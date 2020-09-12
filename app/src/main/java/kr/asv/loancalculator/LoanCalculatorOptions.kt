@@ -41,7 +41,7 @@ class LoanCalculatorOptions {
      * 상환기간
      */
     var amortizationPeriod = 0
-        set(amortizationPeriod: Int) {
+        set(amortizationPeriod) {
             // 1 이하 방지.
             field = if (amortizationPeriod > 1) {
                 amortizationPeriod

@@ -25,10 +25,10 @@ class MyScheduleRecyclerViewAdapter(private val mValues: PaymentSchedules) : Rec
         holder.mItem = mValues[position]
         //holder.mIdView.text = Integer.toString(position + 1)
         holder.mOrderView.text = view.resources.getString(R.string.schedule_count_suffix, (position + 1).toString())
-        holder.mPayment.text = formatA.format(mValues[position]?.payment)
-        holder.mPaidPrincipal.text = formatA.format(mValues[position]?.paidPrincipal)
-        holder.mPaidInterest.text = formatA.format(mValues[position]?.paidInterest)
-        holder.mLoanBalance.text = formatA.format(mValues[position]?.loanBalance)
+        holder.mPayment.text = formatA.format(mValues[position].payment)
+        holder.mPaidPrincipal.text = formatA.format(mValues[position].paidPrincipal)
+        holder.mPaidInterest.text = formatA.format(mValues[position].paidInterest)
+        holder.mLoanBalance.text = formatA.format(mValues[position].loanBalance)
 
         holder.mView.setOnClickListener { }
     }
