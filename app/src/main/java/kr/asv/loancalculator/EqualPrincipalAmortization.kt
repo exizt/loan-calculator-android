@@ -1,43 +1,37 @@
-package kr.asv.loancalculator;
+package kr.asv.loancalculator
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.math.BigDecimal
+import java.math.BigInteger
 
 /**
  * 원금 균등 분할 상환 방식
- * 
- * @author EXIZT
  *
+ * @author EXIZT
  */
-public class EqualPrincipalAmortization implements Amortization
-{
+class EqualPrincipalAmortization : Amortization {
     /**
      * Options 값들. 가족수, 자녀수, 비과세액 등
      */
-    private LoanCalculatorOptions options;
+    private var options: LoanCalculatorOptions? = null
 
     /**
      * 스케쥴 변수
      */
-    private PaymentSchedules schedules = new PaymentSchedules();
-    private BigInteger summaryInterest;
+    override var schedules = PaymentSchedules()
+        private set
+    override var summaryInterest: BigInteger? = null
+        private set
 
-    public EqualPrincipalAmortization()
-    {
-    }
-
-    @SuppressWarnings("unused")
-    public EqualPrincipalAmortization(LoanCalculatorOptions options)
-    {
-        this.setOptions(options);
+    constructor() {}
+    constructor(options: LoanCalculatorOptions) {
+        setOptions(options)
     }
 
     /**
      * @param options LoanCalculatorOptions
      */
-    private void setOptions(LoanCalculatorOptions options)
-    {
-        this.options = options;
+    private fun setOptions(options: LoanCalculatorOptions) {
+        this.options = options
     }
 
     /**
@@ -45,47 +39,44 @@ public class EqualPrincipalAmortization implements Amortization
      * 옵션 을 넣고, calculateSchedule 을 호출
      * @param options LoanCalculatorOptions
      */
-    public void calculate(LoanCalculatorOptions options)
-    {
+    override fun calculate(options: LoanCalculatorOptions) {
         //schedules.clear();
         //schedules = new ArrayList<>();
-        setOptions(options);
-        calculateSchedule();
+        setOptions(options)
+        calculateSchedule()
     }
 
     /**
      * '원금 균등 분할'을 계산하는 메서드
      */
-    private void calculateSchedule()
-    {
+    private fun calculateSchedule() {
         //ArrayList<PaymentSchedule> schedules = new ArrayList<>();
-        schedules = new PaymentSchedules();
+        schedules = PaymentSchedules()
 
         // 원금잔액
-        BigInteger loanBalance = options.getPrincipal();
+        var loanBalance = options!!.principal
 
         // 상환기간
-        int period = options.getAmortizationPeriod();
+        val period = options!!.amortizationPeriod
 
         // 이자율
-        BigDecimal rate = options.getInterestRate2();
+        val rate = options.getInterestRate2()
 
         // 상환 원금. 원금 균등방식에서는 매월(또는 회차별) 상환원금은 동일하다.
         //val principal = MoneyTextWatcher.getValue(id_input_principal).toDouble()
         //BigInteger paidPrincipal = loanBalance.divide(BigInteger.valueOf(period));
-        BigInteger paidPrincipal = CalcUtil.divide(loanBalance,period);
+        var paidPrincipal = CalcUtil.divide(loanBalance, period)
 
         // 월지불 이자액
-        BigInteger paidInterest;
+        var paidInterest: BigInteger?
 
         // 연간 지불 이자액을 잠깐 계산하기 위한 변수
-        BigDecimal loanBalanceMultiplyRate;
+        var loanBalanceMultiplyRate: BigDecimal?
 
         // 월지불액
-        BigInteger payment;
-        summaryInterest = BigInteger.ZERO;
-        for (int i = 0; i < period; i++)
-        {
+        var payment: BigInteger?
+        summaryInterest = BigInteger.ZERO
+        for (i in 0 until period) {
             /*
              * 연이자 금액 = 원금잔액 * 연이자율
              * 월이자 금액 = 연이자 금액 / 12 (좀 더 정확하게 할 때에는 월일자/365 와 같은 식으로 계산)
@@ -97,55 +88,44 @@ public class EqualPrincipalAmortization implements Amortization
              * CASE 1 : 원금 * 이자율 = 이자액 에서 소수점 절삭 후 / 12
              * CASE 2 : 원금 * 이자율 / 12 = 결과 에서 소수점 절삭 (이게 정답이라고 함) (그래서 중간에 있는 값을 BigDecimal 로 변경함)
              */
-            loanBalanceMultiplyRate = CalcUtil.multiply(loanBalance,rate);
-            paidInterest = CalcUtil.divide(loanBalanceMultiplyRate,12);// 이자 금액 (소수점 이하는 절삭)
+            loanBalanceMultiplyRate = CalcUtil.multiply(loanBalance, rate)
+            paidInterest = CalcUtil.divide(loanBalanceMultiplyRate, 12) // 이자 금액 (소수점 이하는 절삭)
 
             //paidInterest = (loanBalance * rate) / 12;// 이자 금액
             //paidInterest = CalcUtil.roundUp(paidInterest, 1);// 소수점 이하 절삭
-
-            loanBalance = CalcUtil.minus(loanBalance,paidPrincipal);
+            loanBalance = CalcUtil.minus(loanBalance, paidPrincipal)
             //loanBalance = loanBalance - paidPrincipal;
 
             // 0 보다 작으면 0 을 대입 (음수 방지)
             if (loanBalance.compareTo(BigInteger.ZERO) < 0) {
-                loanBalance = BigInteger.ZERO;
+                loanBalance = BigInteger.ZERO
             }
 
             // 마지막차수일때, 남은 잔액이 있다면. 잔액을 합침.
-            if (period - i == 1 && loanBalance.compareTo(BigInteger.ZERO) > 0)
-            {
-                paidPrincipal = CalcUtil.plus(paidPrincipal,loanBalance);
+            if (period - i == 1 && loanBalance!!.compareTo(BigInteger.ZERO) > 0) {
+                paidPrincipal = CalcUtil.plus(paidPrincipal, loanBalance)
                 //paidPrincipal += loanBalance;
-                loanBalance = BigInteger.ZERO;
+                loanBalance = BigInteger.ZERO
             }
 
             // 이번달 납부액 (원금 납부액 + 이자 납부액)
-            payment = CalcUtil.plus(paidPrincipal, paidInterest);
+            payment = CalcUtil.plus(paidPrincipal, paidInterest)
             //payment = paidPrincipal + paidInterest;
 
             // 총 납부 이자액 (계속 더하면서 진행)
-            summaryInterest = CalcUtil.plus(summaryInterest, paidInterest);
+            summaryInterest = CalcUtil.plus(summaryInterest, paidInterest)
             //summaryInterest += paidInterest;
 
             // 스케쥴 리스트에 추가
-            schedules.addSchedule(payment, paidPrincipal, paidInterest, loanBalance);
+            schedules.addSchedule(payment, paidPrincipal, paidInterest, loanBalance)
             //PaymentSchedules.Schedule schedule = new PaymentSchedules.Schedule(payment,paidPrincipal,paidInterest,loanBalance);
             //schedules.add(schedule);
         }
-        if(options.isDebug()){
-            System.out.println("===원금균등 ====");
-            for (PaymentSchedules.Schedule s : schedules)
-            {
-                System.out.println(s.toString());
+        if (options!!.isDebug) {
+            println("===원금균등 ====")
+            for (s in schedules) {
+                println(s.toString())
             }
         }
-    }
-
-    public PaymentSchedules getSchedules()
-    {
-        return schedules;
-    }
-    public BigInteger getSummaryInterest() {
-        return summaryInterest;
     }
 }
