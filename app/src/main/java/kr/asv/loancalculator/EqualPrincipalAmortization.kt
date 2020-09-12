@@ -43,6 +43,10 @@ class EqualPrincipalAmortization : Amortization {
         //schedules.clear();
         //schedules = new ArrayList<>();
         setOptions(options)
+        calculate()
+    }
+
+    override fun calculate(){
         calculateSchedule()
     }
 

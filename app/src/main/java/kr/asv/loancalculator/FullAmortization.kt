@@ -40,6 +40,10 @@ class FullAmortization : Amortization {
      */
     override fun calculate(options: LoanCalculatorOptions) {
         setOptions(options)
+        calculate()
+    }
+
+    override fun calculate(){
         calculateSchedule()
     }
 
