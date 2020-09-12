@@ -2,7 +2,6 @@ package kr.asv.apps.loancalculator.activities
 
 import android.content.Context
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -11,20 +10,22 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.google.android.gms.ads.AdView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kr.asv.androidutils.AdmobAdapter
+import kr.asv.androidutils.AdMobAdapter
 import kr.asv.apps.loancalculator.NavigationItemFactory
 import kr.asv.apps.loancalculator.R
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private val isDebug = false
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private lateinit var mAdView : AdView
+    private val isDebug = false
 
     /**
      * onCreate
@@ -47,13 +48,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Services 초기화 및 인스턴스 가져오기
         //Services.instance
 
-        // Admob 호출
-        AdmobAdapter.loadBannerAdMob(adView)
-        Settings.System.getString(contentResolver, "firebase.test.lab")
+        /*
+         * Admob 셋팅
+         */
+        // Admob 초기화
+        //MobileAds.initialize(this) {}
+        AdMobAdapter.init(this)
+
+        // Admob 로드
+        mAdView = findViewById(R.id.adView)
+        AdMobAdapter.loadBannerAd(mAdView)
+        // << Admob 셋팅
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
-        //firebaseAnalytics 호출
+        // Firebase Analytics 초기화
         firebaseAnalytics = Firebase.analytics
     }
 
@@ -97,7 +106,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
      */
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
-        //NavigationItemFactory.instance.onNavigationItemSelected(this, item)
+        @Suppress("ControlFlowWithEmptyBody")
         if (!NavigationItemFactory.onItemSelected(this,item, true)) {
             //Snackbar.make(this.currentFocus, "준비중입니다", Snackbar.LENGTH_LONG).setAction("Action", null).show()
         }
