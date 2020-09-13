@@ -12,10 +12,23 @@ class LoanCalculatorUnitTest {
     fun simulation() {
         val calculator = LoanCalculator()
         val options = calculator.options
-        options.principal = BigInteger.valueOf(4700000) //원금
+        options.principal = BigInteger.valueOf(10000000) //원금
         options.amortizationPeriod = 36 //상환기간
-        options.interestRate = BigDecimal.valueOf(19.45) //이자율
+        options.interestRate = BigDecimal.valueOf(5.00) //이자율
         options.amortizationMethod = LoanCalculator.AmortizationMethods.EQUAL_PRINCIPAL
+        options.interestDigits = -1 //이자액 반올림 자릿수
+        options.isDebug = true
+        calculator.run()
+    }
+
+    @Test
+    fun fullAmortizationTest() {
+        val calculator = LoanCalculator()
+        val options = calculator.options
+        options.principal = BigInteger.valueOf(3000000) //원금
+        options.amortizationPeriod = 36 //상환기간
+        options.interestRate = BigDecimal.valueOf(18.22) //이자율
+        options.amortizationMethod = LoanCalculator.AmortizationMethods.FULL_AMORTIZATION
         options.isDebug = true
         calculator.run()
     }

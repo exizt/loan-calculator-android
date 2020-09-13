@@ -2,6 +2,7 @@ package kr.asv.loancalculator
 
 import java.math.BigDecimal
 import java.math.BigInteger
+import java.math.RoundingMode
 
 /**
  * 원금 균등 분할 상환 방식
@@ -19,7 +20,7 @@ class EqualPrincipalAmortization : Amortization {
      */
     override var schedules = PaymentSchedules()
         private set
-    override var summaryInterest: BigInteger? = null
+    override var summaryInterest: BigInteger = BigInteger.ZERO
         private set
 
     constructor()
@@ -42,8 +43,6 @@ class EqualPrincipalAmortization : Amortization {
      * @param options LoanCalculatorOptions
      */
     override fun calculate(options: LoanCalculatorOptions) {
-        //schedules.clear();
-        //schedules = new ArrayList<>();
         setOptions(options)
         calculate()
     }
@@ -56,32 +55,34 @@ class EqualPrincipalAmortization : Amortization {
      * '원금 균등 분할'을 계산하는 메서드
      */
     private fun calculateSchedule() {
-        //ArrayList<PaymentSchedule> schedules = new ArrayList<>();
-        schedules = PaymentSchedules()
 
-        // 원금잔액
-        var loanBalance = options!!.principal
+        // 상환 기간
+        val period: Int = options!!.amortizationPeriod
 
-        // 상환기간
-        val period = options!!.amortizationPeriod
+        // 연 이자율
+        val rate: BigDecimal = options!!.interestRate2
 
-        // 이자율
-        val rate = options!!.interestRate2
+        // 원금 잔액
+        var loanBalance: BigInteger = options!!.principal
 
-        // 상환 원금. 원금 균등방식에서는 매월(또는 회차별) 상환원금은 동일하다.
-        //val principal = MoneyTextWatcher.getValue(id_input_principal).toDouble()
-        //BigInteger paidPrincipal = loanBalance.divide(BigInteger.valueOf(period));
-        var paidPrincipal = CalcUtil.divide(loanBalance, period)
+        // 월 원금 상환액. '원금 균등'방식에서는 매월(또는 회차별) 상환원금은 동일.
+        var paidPrincipal: BigInteger = CalcUtil.divide(loanBalance, period)
 
-        // 월지불 이자액
-        var paidInterest: BigInteger?
+        // 월 이자 납부액
+        var paidInterest: BigInteger
 
         // 연간 지불 이자액을 잠깐 계산하기 위한 변수
-        var loanBalanceMultiplyRate: BigDecimal?
+        //var loanBalanceMultiplyRate: BigDecimal
 
-        // 월지불액
-        var payment: BigInteger?
+        // 월 납부액
+        var payment: BigInteger
+
+        // 납부 스케쥴
+        //schedules = PaymentSchedules()
+
+        // 이자 총합계
         summaryInterest = BigInteger.ZERO
+
         for (i in 0 until period) {
             /*
              * 연이자 금액 = 원금잔액 * 연이자율
@@ -94,33 +95,38 @@ class EqualPrincipalAmortization : Amortization {
              * CASE 1 : 원금 * 이자율 = 이자액 에서 소수점 절삭 후 / 12
              * CASE 2 : 원금 * 이자율 / 12 = 결과 에서 소수점 절삭 (이게 정답이라고 함) (그래서 중간에 있는 값을 BigDecimal 로 변경함)
              */
-            loanBalanceMultiplyRate = CalcUtil.multiply(loanBalance, rate)
-            paidInterest = CalcUtil.divide(loanBalanceMultiplyRate, 12) // 이자 금액 (소수점 이하는 절삭)
+            // 연 이자액
+            //loanBalanceMultiplyRate = CalcUtil.multiply(loanBalance, rate)
 
+            // 월 이자 납부액 (소수점 절삭 / 원 단위 절삭)
             //paidInterest = (loanBalance * rate) / 12;// 이자 금액
             //paidInterest = CalcUtil.roundUp(paidInterest, 1);// 소수점 이하 절삭
-            loanBalance = CalcUtil.minus(loanBalance, paidPrincipal)
-            //loanBalance = loanBalance - paidPrincipal;
+            //paidInterest = CalcUtil.divide(loanBalanceMultiplyRate, 12) // 이자 금액
+            paidInterest = CalcUtil.divide(loanBalance.toBigDecimal() * rate, 12, options!!.interestDigits, RoundingMode.HALF_EVEN).toBigInteger()
+
+            // 잔여 원금 계산 (직전 잔여 원금 - 월 원금 상환액)
+            //loanBalance = CalcUtil.minus(loanBalance, paidPrincipal)
+            loanBalance -= paidPrincipal
 
             // 0 보다 작으면 0 을 대입 (음수 방지)
             if (loanBalance < BigInteger.ZERO) {
                 loanBalance = BigInteger.ZERO
             }
 
-            // 마지막차수일때, 남은 잔액이 있다면. 잔액을 합침.
+            // 마지막 차수일 때, 남은 잔액이 있다면. 잔액을 합침.
             if (period - i == 1 && loanBalance > BigInteger.ZERO) {
-                paidPrincipal = CalcUtil.plus(paidPrincipal, loanBalance)
-                //paidPrincipal += loanBalance;
+                //paidPrincipal = CalcUtil.plus(paidPrincipal, loanBalance)
+                paidPrincipal += loanBalance
                 loanBalance = BigInteger.ZERO
             }
 
             // 이번달 납부액 (원금 납부액 + 이자 납부액)
-            payment = CalcUtil.plus(paidPrincipal, paidInterest)
-            //payment = paidPrincipal + paidInterest;
+            //payment = CalcUtil.plus(paidPrincipal, paidInterest)
+            payment = paidPrincipal + paidInterest
 
             // 총 납부 이자액 (계속 더하면서 진행)
-            summaryInterest = CalcUtil.plus(summaryInterest, paidInterest)
-            //summaryInterest += paidInterest;
+            //summaryInterest = CalcUtil.plus(summaryInterest, paidInterest)
+            summaryInterest += paidInterest
 
             // 스케쥴 리스트에 추가
             schedules.addSchedule(payment, paidPrincipal, paidInterest, loanBalance)

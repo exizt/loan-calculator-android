@@ -38,9 +38,14 @@ class LoanCalculatorOptions {
         }
 
     /**
+     * 이자 절삭 자릿수. 0 은 원단위, 1은 십단위.
+     */
+    var interestDigits : Int = 0
+
+    /**
      * 상환기간
      */
-    var amortizationPeriod = 0
+    var amortizationPeriod : Int = 0
         set(amortizationPeriod) {
             // 1 이하 방지.
             field = if (amortizationPeriod > 1) {
@@ -65,7 +70,7 @@ class LoanCalculatorOptions {
      * 소수점 4자리 까지는 가능하게. (백분율로 처리하면서 소수점 6자리)
      * @return BigDecimal
      */
-    val interestRate2: BigDecimal?
+    val interestRate2: BigDecimal
         get() = CalcUtil.divide(interestRate, 100, 6, RoundingMode.DOWN)
 
     override fun toString(): String {
