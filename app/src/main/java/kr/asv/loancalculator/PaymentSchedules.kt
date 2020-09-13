@@ -8,12 +8,12 @@ import java.util.*
  * 데이터만 갖고 있을 스케쥴 모델 클래스
  */
 class PaymentSchedules : ArrayList<Schedule>() {
-    private fun createSchedule(payment: BigInteger?, paidPrincipal: BigInteger?, paidInterest: BigInteger?, loanBalance: BigInteger?): Schedule {
-        return Schedule(payment, paidPrincipal, paidInterest, loanBalance)
+    private fun createSchedule(payment: BigInteger, paidPrincipal: BigInteger, paidInterest: BigInteger, loanBalance: BigInteger, days:Int): Schedule {
+        return Schedule(payment, paidPrincipal, paidInterest, loanBalance, days)
     }
 
-    fun addSchedule(payment: BigInteger?, paidPrincipal: BigInteger?, paidInterest: BigInteger?, loanBalance: BigInteger?) {
-        this.add(createSchedule(payment, paidPrincipal, paidInterest, loanBalance))
+    fun addSchedule(payment: BigInteger, paidPrincipal: BigInteger, paidInterest: BigInteger, loanBalance: BigInteger, days:Int) {
+        this.add(createSchedule(payment, paidPrincipal, paidInterest, loanBalance, days))
     }
 
     /**
@@ -24,13 +24,13 @@ class PaymentSchedules : ArrayList<Schedule>() {
      * loanBalance : 잔액
      */
     inner class Schedule(
-            var payment: BigInteger?,
-            var paidPrincipal: BigInteger?,
-            var paidInterest: BigInteger?,
-            var loanBalance: BigInteger?) {
+            var payment: BigInteger,
+            var paidPrincipal: BigInteger,
+            var paidInterest: BigInteger,
+            var loanBalance: BigInteger,
+            @Suppress("MemberVisibilityCanBePrivate") var days: Int) {
         override fun toString(): String {
-            return ("PaymentSchedule [payment=" + payment + ", paidPrincipal=" + paidPrincipal + ", paidInterest="
-                    + paidInterest + ", loanBalance=" + loanBalance + "]")
+            return ("PaymentSchedule [payment=$payment, paidPrincipal=$paidPrincipal, paidInterest=$paidInterest, loanBalance=$loanBalance, days = $days]")
         }
     }
 

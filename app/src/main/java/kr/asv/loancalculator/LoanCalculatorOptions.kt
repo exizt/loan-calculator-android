@@ -4,6 +4,7 @@ import kr.asv.loancalculator.LoanCalculator.AmortizationMethods
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.RoundingMode
+import java.util.*
 
 class LoanCalculatorOptions {
     /**
@@ -64,6 +65,14 @@ class LoanCalculatorOptions {
      * 디버깅 여부
      */
     var isDebug = false
+
+    /**
+     * 날짜 연산 여부
+     */
+    var isIncludeDays = false
+
+    @Suppress("unused")
+    lateinit var startDate: Date
 
     /**
      * 이자율
