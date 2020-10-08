@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import android.view.MenuItem
 import android.view.View
+import kr.asv.apps.loancalculator.fragments.AboutFragment
 import kr.asv.apps.loancalculator.fragments.EqualPrincipalFragment
 
 /**
@@ -46,6 +47,11 @@ class NavigationItemFactory {
                 R.id.nav_calculator_full_amortization -> {
                     Services.calculatorMethod = Services.CalculatorMethods.FULL_AMORTIZATION
                     val fragment = EqualPrincipalFragment()
+                    replaceFragments(activity, fragment, backStack)
+                    isDone = true
+                }
+                R.id.nav_about -> {
+                    val fragment = AboutFragment()
                     replaceFragments(activity, fragment, backStack)
                     isDone = true
                 }
