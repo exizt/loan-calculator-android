@@ -1,34 +1,42 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Loan Calculator</string>
 
-    <string name="navigation_drawer_open" tools:keep="@string/navigation_drawer_open" translatable="false">Open navigation drawer</string>
-    <string name="navigation_drawer_close" tools:keep="@string/navigation_drawer_close" translatable="false">Close navigation drawer</string>
-
-    <string name="menu_title_equal_principal">Equal Principal Calculator</string>
-    <string name="menu_title_full_amortization">Full Amortization Calculator</string>
-    <string name="title_activity_report">ReportActivity</string>
-
+    <string name="navigation_drawer_open" translatable="false" tools:keep="@string/navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false" tools:keep="@string/navigation_drawer_close">Close navigation drawer</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-6702794513299112/7109161783</string>
+    <string name="default_zero" translatable="false" tools:keep="@string/default_zero">0</string>
+
     <string name="nav_header_title">Loan Calculator</string>
-    <string name="schedule_paid_principal">Principal</string>
-    <string name="schedule_paid_interest">Interest</string>
-    <string name="schedule_payment">paid payment</string>
+    <string name="nav_about">About</string>
+    <string name="nav_equal_principal">Equal Principal Calculator</string>
+    <string name="nav_full_amortization">Full Amortization Calculator</string>
+
+    <string name="lbl_principal">Principal</string>
+    <string name="lbl_interest_rate">Interest Rate</string>
+    <string name="lbl_payment_term">Paid Term</string>
+    <string name="btn_calculate">Calculate</string>
+
+    <string name="calculator_title_full_amortization">Full Amortization</string>
+    <string name="calculator_title_equal_principal">Equal Principal</string>
+    <string name="calculate_full">Full Amortization</string>
+    <string name="calculate_equal">Equal Principal</string>
+
+    <string name="title_activity_report">ReportActivity</string>
+    <string name="summary">Summary</string>
     <string name="summary_principal">Principal</string>
     <string name="summary_term">Paid Term</string>
     <string name="summary_rate">Interest Rate</string>
     <string name="summary_interest">Interest</string>
-    <string name="schedule_balance">balance</string>
-    <string name="calc_principal">Principal</string>
-    <string name="calc_interest_rate">Interest Rate</string>
-    <string name="cal_input_term">Paid Term</string>
-    <string name="calc_button">Calculate</string>
-    <string name="default_zero" translatable="false" tools:keep="@string/default_zero">0</string>
-    <string name="calculator_title_full_amortization">Full Amortization</string>
-    <string name="calculator_title_equal_principal">Equal Principal</string>
-    <string name="summary">Summary</string>
     <string name="paid_schedule">Paid Schedule</string>
-    <string name="main_drawer_title">List</string>
-    <string name="calculate_full">Full Amortization</string>
-    <string name="calculate_equal">Equal Principal</string>
     <string name="schedule_count_suffix">No %1$s</string>
+    <string name="schedule_paid_principal">Principal</string>
+    <string name="schedule_paid_interest">Interest</string>
+    <string name="schedule_payment">paid payment</string>
+    <string name="schedule_balance">balance</string>
+    <string name="main_drawer_title">List</string>
+
+    <string name="about_info_card_title">App Information</string>
+    <string name="about_app_version_label">App version</string>
+    <string name="about_desc">Loan Calculator \n\n This app is designed to calculate Loan Payment Schedules.</string>
+
 </resources>

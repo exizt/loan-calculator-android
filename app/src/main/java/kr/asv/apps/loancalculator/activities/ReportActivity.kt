@@ -12,7 +12,7 @@ import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
 import kr.asv.apps.loancalculator.fragments.ReportScheduleFragment
 import kr.asv.apps.loancalculator.fragments.ReportSummaryFragment
-import kr.asv.androidutils.AdmobAdapter
+import kr.asv.androidutils.AdMobAdapter
 
 class ReportActivity : AppCompatActivity() {
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
@@ -41,7 +41,7 @@ class ReportActivity : AppCompatActivity() {
         }
 
         // Admob 호출
-        AdmobAdapter.loadBannerAdMob(adView)
+        AdMobAdapter.loadBannerAd(adView)
     }
 
     /**

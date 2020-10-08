@@ -42,10 +42,10 @@ class EqualPrincipalFragment : Fragment() {
         val title : String
         val subtitle : String
         if(Services.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL){
-            title = getString(R.string.menu_title_equal_principal)
+            title = getString(R.string.nav_equal_principal)
             subtitle = getString(R.string.calculator_title_equal_principal)
         } else {
-            title = getString(R.string.menu_title_full_amortization)
+            title = getString(R.string.nav_full_amortization)
             subtitle = getString(R.string.calculator_title_full_amortization)
         }
         (activity as AppCompatActivity).supportActionBar!!.title = title

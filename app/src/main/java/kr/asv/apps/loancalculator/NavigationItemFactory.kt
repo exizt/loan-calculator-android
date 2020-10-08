@@ -8,46 +8,65 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import android.view.MenuItem
 import android.view.View
+import kr.asv.apps.loancalculator.fragments.AboutFragment
 import kr.asv.apps.loancalculator.fragments.EqualPrincipalFragment
 
 /**
  * 메인 액티비티 등에서 상단 좌측 의 메뉴 네비게이션
- * Created by exizt on 2016-06-08.
  */
 class NavigationItemFactory {
     companion object {
+        private const val defaultMenuId = R.id.nav_calculator_equal_principal
         /**
-         * 네비게이션 메뉴 부분
+         * 네비게이션 메뉴 선택시
          */
         fun onItemSelected(activity: FragmentActivity, item: MenuItem, backStack: Boolean): Boolean {
-            val isAvailable: Boolean
+            val isAvailable: Boolean = onItemSelectedEvent(activity, item.itemId, backStack)
 
-            when (item.itemId) {
-                R.id.nav_calculator_equal_principal -> {
-                    Services.calculatorMethod = Services.CalculatorMethods.EQUAL_PRINCIPAL
-                    val fragment = EqualPrincipalFragment()
-                    replaceFragments(activity, fragment, backStack)
-                    isAvailable = true
-                }
-                R.id.nav_calculator_full_amortization -> {
-                    Services.calculatorMethod = Services.CalculatorMethods.FULL_AMORTIZATION
-                    val fragment = EqualPrincipalFragment()
-                    replaceFragments(activity, fragment, backStack)
-                    isAvailable = true
-                }
-                else -> isAvailable = false
-            }
-
-            /*
-            액티비티 또는 프레그먼트 호출 후에 처리.
-            navigationDrawer(메뉴부분) 을 close 하는 부분.
-            해당 메뉴가 없을 시에는 SnackBar 호출
-             */
+            // 해당 메뉴를 선택하고 fragment 전환이 이루어졌으므로 navigation을 close 한다.
             if (isAvailable) {
                 val drawerLayout = activity.findViewById<View>(R.id.drawer_layout) as DrawerLayout
                 drawerLayout.closeDrawer(GravityCompat.START)
             }
             return isAvailable
+        }
+
+        /**
+         * 메뉴 ID 와 변경될 것들의 처리
+         */
+        private fun onItemSelectedEvent(activity: FragmentActivity, itemId: Int, backStack: Boolean): Boolean {
+            val isDone : Boolean
+
+            when (itemId) {
+                R.id.nav_calculator_equal_principal -> {
+                    Services.calculatorMethod = Services.CalculatorMethods.EQUAL_PRINCIPAL
+                    val fragment = EqualPrincipalFragment()
+                    replaceFragments(activity, fragment, backStack)
+                    isDone = true
+                }
+                R.id.nav_calculator_full_amortization -> {
+                    Services.calculatorMethod = Services.CalculatorMethods.FULL_AMORTIZATION
+                    val fragment = EqualPrincipalFragment()
+                    replaceFragments(activity, fragment, backStack)
+                    isDone = true
+                }
+                R.id.nav_about -> {
+                    val fragment = AboutFragment()
+                    replaceFragments(activity, fragment, backStack)
+                    isDone = true
+                }
+                else -> isDone = false
+            }
+            return isDone
+        }
+
+        /**
+         * default 로 로딩하는 fragment
+         * navigation menu 의 특정 항목을 불러오게함.
+         * 백스택 히스토리에는 기록하지 않는다.
+         */
+        fun onItemFirst(activity: FragmentActivity) {
+            onItemSelectedEvent(activity, defaultMenuId, false)
         }
 
         /**

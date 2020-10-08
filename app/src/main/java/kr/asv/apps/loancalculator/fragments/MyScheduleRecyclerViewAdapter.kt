@@ -24,7 +24,7 @@ class MyScheduleRecyclerViewAdapter(private val mValues: PaymentSchedules) : Rec
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mItem = mValues[position]
         //holder.mIdView.text = Integer.toString(position + 1)
-        holder.mOrderView.text = view.resources.getString(R.string.schedule_count_suffix,Integer.toString(position + 1))
+        holder.mOrderView.text = view.resources.getString(R.string.schedule_count_suffix, (position + 1).toString())
         holder.mPayment.text = formatA.format(mValues[position].payment)
         holder.mPaidPrincipal.text = formatA.format(mValues[position].paidPrincipal)
         holder.mPaidInterest.text = formatA.format(mValues[position].paidInterest)

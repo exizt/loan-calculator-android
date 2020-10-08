@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="@string/calc_principal"
+            android:text="@string/lbl_principal"
             android:textSize="15sp" />
 
         <EditText
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="@string/calc_interest_rate"
+            android:text="@string/lbl_interest_rate"
             android:textSize="15sp" />
 
         <EditText
@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:text="@string/cal_input_term"
+            android:text="@string/lbl_payment_term"
             android:textSize="15sp" />
 
         <EditText
@@ -102,6 +102,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:includeFontPadding="false"
-        android:text="@string/calc_button"
+        android:text="@string/btn_calculate"
         android:textStyle="bold" />
 </LinearLayout>

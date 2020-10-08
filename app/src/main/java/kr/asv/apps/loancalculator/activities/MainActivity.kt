@@ -2,7 +2,6 @@ package kr.asv.apps.loancalculator.activities
 
 import android.content.Context
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -11,19 +10,22 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.google.android.gms.ads.AdView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kr.asv.androidutils.AdmobAdapter
+import kr.asv.androidutils.AdMobAdapter
 import kr.asv.apps.loancalculator.NavigationItemFactory
 import kr.asv.apps.loancalculator.R
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private lateinit var mAdView : AdView
+    private val isDebug = false
 
     /**
      * onCreate
@@ -33,24 +35,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        /*
+         * 네비게이션 메뉴 셋팅
+         */
         // 네비게이션 드로워 셋팅
         onCreateNavigationDrawer()
 
         // 첫번째 Fragment 호출
-        //NavigationItemFactory.onNavigationItemFirst(this)
-        //NavigationItemFactory.instance.onNavigationItemFirst(this)
-        onNavigationItemFirst()
+        NavigationItemFactory.onItemFirst(this)
+        // << 네비게이션 메뉴 셋팅
 
         // Services 초기화 및 인스턴스 가져오기
         //Services.instance
 
-        // Admob 호출
-        AdmobAdapter.loadBannerAdMob(adView)
-        Settings.System.getString(contentResolver, "firebase.test.lab")
+        /*
+         * Admob 셋팅
+         */
+        // Admob 초기화
+        //MobileAds.initialize(this) {}
+        AdMobAdapter.init(this)
+
+        // Admob 로드
+        mAdView = findViewById(R.id.adView)
+        AdMobAdapter.loadBannerAd(mAdView)
+        // << Admob 셋팅
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
 
-        //firebaseAnalytics 호출
+        // Firebase Analytics 초기화
         firebaseAnalytics = Firebase.analytics
     }
 
@@ -94,20 +106,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
      */
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
-        //NavigationItemFactory.instance.onNavigationItemSelected(this, item)
+        @Suppress("ControlFlowWithEmptyBody")
         if (!NavigationItemFactory.onItemSelected(this,item, true)) {
             //Snackbar.make(this.currentFocus, "준비중입니다", Snackbar.LENGTH_LONG).setAction("Action", null).show()
         }
         return true
-    }
-
-    /**
-     * default 로 로딩하는 fragment
-     * navigation menu 의 특정 항목을 불러오게함.
-     * 백스택 히스토리에는 기록하지 않는다.
-     */
-    private fun onNavigationItemFirst() {
-        NavigationItemFactory.onItemSelected(this,nav_view.menu.findItem(R.id.nav_calculator_equal_principal), false)
     }
 
     /**
@@ -129,17 +132,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     @Suppress("unused")
     private fun debug(msg: String, msg2 : Any = "") {
         @Suppress("ConstantConditionIf")
-        if (IS_DEBUG) {
+        val tag = "[EXIZT-LC]"
+        val subTag = "(MainActivity)"
+        if (isDebug) {
             if(msg2 == ""){
-                Log.d(TAG, msg)
+                Log.d(tag, "$subTag $msg")
             } else {
-                Log.d(TAG, "$msg $msg2")
+                Log.d(tag, "$subTag $msg $msg2")
             }
         }
-    }
-
-    companion object {
-        private const val TAG = "[EXIZT][MainActivity]"
-        private const val IS_DEBUG = false
     }
 }
