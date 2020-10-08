@@ -37,6 +37,6 @@
 
     <string name="about_info_card_title">App Information</string>
     <string name="about_app_version_label">App version</string>
-    <string name="about_desc">Loan Calculator \n\n </string>
+    <string name="about_desc">Loan Calculator \n\n This app is designed to calculate Loan Payment Schedules.</string>
 
 </resources>
