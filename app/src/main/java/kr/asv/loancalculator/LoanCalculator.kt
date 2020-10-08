@@ -47,6 +47,8 @@ class LoanCalculator {
     }
 
     private fun debug(obj: Any) {
-        println(obj)
+        if (options.isDebug) {
+            println(obj)
+        }
     }
 }

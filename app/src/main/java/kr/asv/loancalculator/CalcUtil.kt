@@ -155,9 +155,9 @@ internal object CalcUtil {
             // 소수점 이하 처리.
             //floor(v * multiplier) / multiplier
             multiplier *= 1000 // 세 자리 정도 더 여유를 남겨두기 위함.
-            println("v [$v]")
+            //println("v [$v]")
             val t = (v * multiplier.toBigDecimal()).toBigInteger().toBigDecimal()
-            println("t [$t]")
+            //println("t [$t]")
             t.divide(multiplier.toBigDecimal(), digits, mode)
         } else {
             // 정수 부분 이상 처리

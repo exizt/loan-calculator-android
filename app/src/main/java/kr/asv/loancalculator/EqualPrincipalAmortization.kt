@@ -195,9 +195,9 @@ class EqualPrincipalAmortization : Amortization {
         return (interestOfDay * days.toBigDecimal())
     }
 
-    private fun debug(msg: Any){
+    private fun debug(obj: Any){
         if (options!!.isDebug) {
-            println(msg.toString())
+            println(obj)
         }
     }
 }

@@ -161,9 +161,9 @@ class FullAmortization : Amortization {
             schedules.addSchedule(payment, paidPrincipal, paidInterest, loanBalance, days)
         }
         if (options!!.isDebug) {
-            println("===원리금균등분할====")
+            debug("===원리금균등분할====")
             for (s in schedules) {
-                println(s.toString())
+                debug(s)
             }
         }
     }
@@ -268,9 +268,9 @@ class FullAmortization : Amortization {
         return paymentMonthly
     }
 
-    private fun debug(msg: Any){
+    private fun debug(obj: Any){
         if (options!!.isDebug) {
-            println(msg.toString())
+            println(obj)
         }
     }
 }
