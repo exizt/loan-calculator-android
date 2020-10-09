@@ -5,6 +5,9 @@
     <string name="navigation_drawer_close" translatable="false" tools:keep="@string/navigation_drawer_close">Close navigation drawer</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-6702794513299112/7109161783</string>
     <string name="default_zero" translatable="false" tools:keep="@string/default_zero">0</string>
+    <string name="default_zero_rate">0 %</string>
+    <string name="default_zero_term">0</string>
+    <string name="default_zero_money">0</string>
 
     <string name="nav_header_title">Loan Calculator</string>
     <string name="nav_about">About</string>

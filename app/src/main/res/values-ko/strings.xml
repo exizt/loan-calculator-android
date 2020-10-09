@@ -24,13 +24,16 @@
     <string name="summary_interest">상환이자</string>
     <string name="paid_schedule">상환 스케쥴</string>
     <string name="schedule_count_suffix">%1$s 회차</string>
-    <string name="schedule_paid_principal">원금</string>
+    <string name="schedule_paid_principal">원금상환</string>
     <string name="schedule_paid_interest">이자</string>
-    <string name="schedule_payment">지불금</string>
-    <string name="schedule_balance">잔액</string>
+    <string name="schedule_payment">상환액</string>
+    <string name="schedule_balance">잔여원금</string>
     <string name="main_drawer_title">계산방식 종류</string>
 
     <string name="about_info_card_title">정보</string>
     <string name="about_app_version_label">앱 버전</string>
     <string name="about_desc">대출이자 계산기 앱 \n\n 이 앱은 대출이자를 간략히 계산해보기 위한 용도로 만들어졌습니다. \n\n 개인정보를 수집하거나 전송하지 않습니다. \n\n 편리성을 위한 기능은 계속 추가될 예정에 있습니다.</string>
+    <string name="default_zero_money">0 원</string>
+    <string name="default_zero_rate">0 %</string>
+    <string name="default_zero_term">0</string>
 </resources>
