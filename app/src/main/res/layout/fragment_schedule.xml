@@ -2,118 +2,108 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_horizontal_margin"
     android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/schedule_count_suffix"
+        android:textAppearance="?attr/textAppearanceListItem"/>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        style="@style/Card_Layout">
 
-        <TextView
-            android:id="@+id/order"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="2dp"
-            android:text="@string/schedule_count_suffix"
-            android:textAppearance="?attr/textAppearanceListItem"
-            android:layout_marginStart="2dp" />
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            style="@style/Card_Container">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="4">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Card_ListItem">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_weight="1"
-            android:text="@string/schedule_balance"
-            android:textAppearance="?attr/textAppearanceListItem" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/schedule_payment"
+                    style="@style/Card_ListItem_Label"/>
 
-        <TextView
-            android:id="@+id/loan_balance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_weight="1"
-            android:textAppearance="?attr/textAppearanceListItem" />
+                <TextView
+                    android:id="@+id/payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Card_ListItem_Value"
+                    android:text="@string/default_zero_money"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_weight="1"
-            android:text="@string/schedule_payment"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/payment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_weight="1"
-            android:textAppearance="?attr/textAppearanceListItem" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Card_ListItem">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="4">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/schedule_paid_principal"
+                    style="@style/Card_ListItem_Label"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_weight="1"
-            android:text="@string/schedule_paid_principal"
-            android:textAppearance="?attr/textAppearanceListItem" />
+                <TextView
+                    android:id="@+id/paid_principal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Card_ListItem_Value"
+                    android:text="@string/default_zero_money"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/paid_principal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_weight="1"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Card_ListItem">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_weight="1"
-            android:text="@string/schedule_paid_interest"
-            android:textAppearance="?attr/textAppearanceListItem" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/schedule_paid_interest"
+                    style="@style/Card_ListItem_Label"/>
 
-        <TextView
-            android:id="@+id/paid_interest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
-            android:layout_weight="1"
-            android:textAppearance="?attr/textAppearanceListItem" />
+                <TextView
+                    android:id="@+id/paid_interest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Card_ListItem_Value"
+                    android:text="@string/default_zero_money"/>
 
-    </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Card_ListItem">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/schedule_balance"
+                    style="@style/Card_ListItem_Label"/>
+
+                <TextView
+                    android:id="@+id/loan_balance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Card_ListItem_Value"
+                    android:text="@string/default_zero_money"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 </LinearLayout>
