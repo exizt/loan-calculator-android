@@ -2,6 +2,10 @@
 
 대출 이자를 계산하고, 회차별 금액을 모의확인하는 용도의 앱
 
+* 개발 문서 : https://swiki.asv.kr/wiki/개발:대출_이자_계산기_-_SLC_프로젝트/안드로이드_앱
+* 구글 플레이 : https://play.google.com/store/apps/details?id=kr.asv.apps.loancalculator
+* 소개 페이지 : https://chosim.asv.kr/softwares/loan-calculator-for-android
+
 
 
 # 버저닝 룰
