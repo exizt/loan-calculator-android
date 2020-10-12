@@ -35,15 +35,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        /*
-         * 네비게이션 메뉴 셋팅
-         */
-        // 네비게이션 드로워 셋팅
-        onCreateNavigationDrawer()
-
-        // 첫번째 Fragment 호출
-        NavigationItemFactory.onItemFirst(this)
-        // << 네비게이션 메뉴 셋팅
+        // 네비게이션 셋팅
+        onCreateNavigationDrawer() // 네비게이션 드로워 셋팅
+        NavigationItemFactory.onItemFirst(this) // 첫번째 메뉴 호출
 
         // Services 초기화 및 인스턴스 가져오기
         //Services.instance
@@ -105,7 +99,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
      * 해당 항목이 없을 시에는 '준비중입니다' 가 뜨도록 처리
      */
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
         @Suppress("ControlFlowWithEmptyBody")
         if (!NavigationItemFactory.onItemSelected(this,item, true)) {
             //Snackbar.make(this.currentFocus, "준비중입니다", Snackbar.LENGTH_LONG).setAction("Action", null).show()
@@ -119,9 +112,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     @Suppress("unused")
     fun hideSoftKeyboard() {
         val view = currentFocus
-        if (view != null) {
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        view?.let { v ->
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.hideSoftInputFromWindow(v.windowToken, 0)
         }
     }
 
@@ -132,13 +125,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     @Suppress("unused")
     private fun debug(msg: String, msg2 : Any = "") {
         @Suppress("ConstantConditionIf")
-        val tag = "[EXIZT-LC]"
-        val subTag = "(MainActivity)"
         if (isDebug) {
             if(msg2 == ""){
-                Log.d(tag, "$subTag $msg")
+                Log.d("[EXIZT-LC]", "(MainActivity) $msg")
             } else {
-                Log.d(tag, "$subTag $msg $msg2")
+                Log.d("[EXIZT-LC]", "(MainActivity) $msg $msg2")
             }
         }
     }

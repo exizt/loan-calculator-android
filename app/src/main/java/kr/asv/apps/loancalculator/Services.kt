@@ -6,7 +6,6 @@ import kr.asv.loancalculator.LoanCalculator
 
 /**
  * 어플 전체적으로 활용되는 기능들을 모아두는 클래스
- * Created by EXIZT on 2016-04-27.
  */
 object Services {
     val calculator = LoanCalculator()
