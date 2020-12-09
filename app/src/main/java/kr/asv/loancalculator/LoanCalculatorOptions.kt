@@ -80,7 +80,7 @@ class LoanCalculatorOptions {
      * @return BigDecimal
      */
     val interestRate2: BigDecimal
-        get() = CalcUtil.divide(interestRate, 100, 6, RoundingMode.DOWN)
+        get() = CalcMath.divide(interestRate, 100, 6, RoundingMode.FLOOR)
 
     override fun toString(): String {
         return ("CalculatorOptions [principal=" + principal + ", interestRate=" + interestRate + ", amortizationPeriod="
