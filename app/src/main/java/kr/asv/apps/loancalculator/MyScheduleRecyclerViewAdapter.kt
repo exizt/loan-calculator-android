@@ -1,4 +1,4 @@
-package kr.asv.apps.loancalculator.fragments
+package kr.asv.apps.loancalculator
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-import kr.asv.apps.loancalculator.R
-import kr.asv.loancalculator.PaymentSchedules
+import kr.asv.loancalculator.calculator.PaymentSchedules
 
 class MyScheduleRecyclerViewAdapter(private val mValues: PaymentSchedules) : RecyclerView.Adapter<MyScheduleRecyclerViewAdapter.ViewHolder>() {
     private lateinit var view : View

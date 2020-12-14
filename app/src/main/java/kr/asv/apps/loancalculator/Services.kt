@@ -2,7 +2,7 @@ package kr.asv.apps.loancalculator
 
 import android.content.Context
 import android.util.Log
-import kr.asv.loancalculator.LoanCalculator
+import kr.asv.loancalculator.calculator.LoanCalculator
 
 /**
  * 어플 전체적으로 활용되는 기능들을 모아두는 클래스

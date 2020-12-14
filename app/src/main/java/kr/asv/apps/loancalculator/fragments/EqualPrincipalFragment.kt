@@ -14,7 +14,7 @@ import kr.asv.androidutils.MoneyTextWatcher
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
 import kr.asv.apps.loancalculator.activities.ReportActivity
-import kr.asv.loancalculator.LoanCalculator
+import kr.asv.loancalculator.calculator.LoanCalculator
 import java.lang.Exception
 import java.math.BigDecimal
 import java.math.BigInteger
