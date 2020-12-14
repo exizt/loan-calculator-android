@@ -2,24 +2,27 @@ package kr.asv.apps.loancalculator.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AppCompatActivity
 import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_equal_principal.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import kr.asv.androidutils.InputFilterDoubleMinMax
 import kr.asv.androidutils.MoneyTextWatcher
 import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
 import kr.asv.apps.loancalculator.activities.ReportActivity
+import kr.asv.apps.loancalculator.databinding.FragmentEqualPrincipalBinding
 import kr.asv.loancalculator.calculator.LoanCalculator
-import java.lang.Exception
 import java.math.BigDecimal
 import java.math.BigInteger
 
 class EqualPrincipalFragment : Fragment() {
+    // view binding
+    private var _binding: FragmentEqualPrincipalBinding? = null
+    private val binding get() = _binding!!
+
     /**
      * '원금' 계산 가능 최소값
      */
@@ -31,14 +34,19 @@ class EqualPrincipalFragment : Fragment() {
     private val periodMinimum = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_equal_principal, container, false)
+                              savedInstanceState: Bundle?): View {
+        _binding = FragmentEqualPrincipalBinding.inflate(inflater, container, false)
+        return binding.root
+        //return inflater.inflate(R.layout.fragment_equal_principal, container, false)
+    }
+
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //(activity as AppCompatActivity).supportActionBar!!.setTitle(R.string.menu_title_equal_principal)
 
+        // 타이틀 지정
         val title : String
         val subtitle : String
         if(Services.calculatorMethod == Services.CalculatorMethods.EQUAL_PRINCIPAL){
@@ -49,7 +57,7 @@ class EqualPrincipalFragment : Fragment() {
             subtitle = getString(R.string.calculator_title_full_amortization)
         }
         (activity as AppCompatActivity).supportActionBar!!.title = title
-        textView_subtitle.text = subtitle
+        binding.subtitle.text = subtitle
 
         initEventListener()
 
@@ -61,15 +69,15 @@ class EqualPrincipalFragment : Fragment() {
     private fun initEventListener(){
 
         // 계산하기 버튼 클릭시
-        id_btn_calculate.setOnClickListener {
+        binding.idBtnCalculate.setOnClickListener {
             calculate()// 계산하기 버튼 클릭시
         }
 
         // EditText 처리
-        id_input_principal.addTextChangedListener(MoneyTextWatcher(id_input_principal))
+        binding.idInputPrincipal.addTextChangedListener(MoneyTextWatcher(binding.idInputPrincipal))
         //id_input_principal.filters = arrayOf<InputFilter>(InputFilterDoubleMinMax(0.0,10000000000.0))
-        id_input_term.filters  = arrayOf<InputFilter>(InputFilterDoubleMinMax(0,1200))
-        id_input_interest_rate.filters = arrayOf<InputFilter>(InputFilterDoubleMinMax(0.0,100.0))
+        binding.idInputTerm.filters  = arrayOf<InputFilter>(InputFilterDoubleMinMax(0,1200))
+        binding.idInputInterestRate.filters = arrayOf<InputFilter>(InputFilterDoubleMinMax(0.0,100.0))
     }
 
     /**
@@ -79,13 +87,13 @@ class EqualPrincipalFragment : Fragment() {
         /*
          * 유효성 체크. 빈 값 여부
          */
-        if(id_input_principal.text.isEmpty()){
+        if(binding.idInputPrincipal.text.isEmpty()){
             return
         }
-        if(id_input_interest_rate.text.isEmpty()){
+        if(binding.idInputInterestRate.text.isEmpty()){
             return
         }
-        if(id_input_term.text.isEmpty()){
+        if(binding.idInputTerm.text.isEmpty()){
             return
         }
 
@@ -94,8 +102,8 @@ class EqualPrincipalFragment : Fragment() {
          */
         // 원금 (0 보다 작은 값이 들어와도 0으로 치환)
         val principal : BigInteger = try {
-            if(MoneyTextWatcher.getBigInteger(id_input_principal).compareTo(BigInteger.ZERO) == 1){
-                MoneyTextWatcher.getBigInteger(id_input_principal)
+            if(MoneyTextWatcher.getBigInteger(binding.idInputPrincipal).compareTo(BigInteger.ZERO) == 1){
+                MoneyTextWatcher.getBigInteger(binding.idInputPrincipal)
             } else {
                 BigInteger.ZERO
             }
@@ -105,14 +113,14 @@ class EqualPrincipalFragment : Fragment() {
 
         // 이자율
         val interestRate : BigDecimal = try{
-            BigDecimal(id_input_interest_rate.text.toString())
+            BigDecimal(binding.idInputInterestRate.text.toString())
         } catch (e: Exception){
             BigDecimal.ZERO
         }
 
         // 납부 기간
         val amortizationPeriod : Int = try{
-            Integer.parseInt(id_input_term.text.toString())
+            Integer.parseInt(binding.idInputTerm.text.toString())
         } catch (e: Exception) {
             0
         }

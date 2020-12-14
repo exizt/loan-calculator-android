@@ -2,8 +2,10 @@ package kr.asv.androidutils
 
 import android.content.Context
 import android.provider.Settings
-import com.google.android.gms.ads.*
-import kr.asv.apps.loancalculator.BuildConfig
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 
 /**
  * AdMob 관련 클래스

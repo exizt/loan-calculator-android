@@ -8,9 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_report_summary.*
-import kr.asv.apps.loancalculator.R
 import kr.asv.apps.loancalculator.Services
+import kr.asv.apps.loancalculator.databinding.FragmentReportSummaryBinding
 import java.text.NumberFormat
 import java.util.*
 
@@ -20,10 +19,17 @@ import java.util.*
  * 리포트 결과 Summary 와 관련된 Fragment
  */
 class ReportSummaryFragment : Fragment() {
+    // view binding
+    private var _binding: FragmentReportSummaryBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_report_summary, container, false)
+                              savedInstanceState: Bundle?): View {
+        _binding = FragmentReportSummaryBinding.inflate(inflater, container, false)
+        return binding.root
+        //inflater.inflate(R.layout.fragment_report_summary, container, false)
+    }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -38,18 +44,18 @@ class ReportSummaryFragment : Fragment() {
         val locale = activity?.let { getCurrentLocale(it) }
 
         // 원금
-        summary_principal.text = getMoneyFormatString(calculator.options.principal, locale)
+        binding.summaryPrincipal.text = getMoneyFormatString(calculator.options.principal, locale)
 
         // 상환 기간
-        summary_term.text = calculator.options.amortizationPeriod.toString()
+        binding.summaryTerm.text = calculator.options.amortizationPeriod.toString()
 
         // 상환 이자율
-        summary_interest_rate.text = String.format("%.2f %%", calculator.options.interestRate)
+        binding.summaryInterestRate.text = String.format("%.2f %%", calculator.options.interestRate)
         //val interestRate = BigDecimal(calculator.options.interestRate.toString())
         //summary_interest_rate.text = interestRate.multiply(BigDecimal("100")).toString()
 
         // 상환 이자 금액
-        summary_interest.text = getMoneyFormatString(calculator.summaryInterest, locale)
+        binding.summaryInterest.text = getMoneyFormatString(calculator.summaryInterest, locale)
 
     }
 
