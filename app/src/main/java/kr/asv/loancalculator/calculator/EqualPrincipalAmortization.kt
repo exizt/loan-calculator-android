@@ -1,4 +1,4 @@
-package kr.asv.loancalculator
+package kr.asv.loancalculator.calculator
 
 import android.annotation.SuppressLint
 import java.math.BigDecimal

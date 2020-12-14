@@ -1,4 +1,4 @@
-package kr.asv.loancalculator
+package kr.asv.loancalculator.calculator
 
 import java.util.*
 

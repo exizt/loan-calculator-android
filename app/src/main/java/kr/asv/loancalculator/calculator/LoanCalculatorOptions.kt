@@ -1,6 +1,6 @@
-package kr.asv.loancalculator
+package kr.asv.loancalculator.calculator
 
-import kr.asv.loancalculator.LoanCalculator.AmortizationMethods
+import kr.asv.loancalculator.calculator.LoanCalculator.AmortizationMethods
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.RoundingMode

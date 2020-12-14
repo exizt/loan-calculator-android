@@ -1,6 +1,6 @@
-package kr.asv.loancalculator
+package kr.asv.loancalculator.calculator
 
-import kr.asv.loancalculator.PaymentSchedules.Schedule
+import kr.asv.loancalculator.calculator.PaymentSchedules.Schedule
 import java.math.BigInteger
 import java.util.*
 
