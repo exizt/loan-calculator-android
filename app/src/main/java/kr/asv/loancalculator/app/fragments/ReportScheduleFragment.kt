@@ -1,4 +1,4 @@
-package kr.asv.apps.loancalculator.fragments
+package kr.asv.loancalculator.app.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kr.asv.apps.loancalculator.MyScheduleRecyclerViewAdapter
-import kr.asv.apps.loancalculator.R
-import kr.asv.apps.loancalculator.Services
+import kr.asv.loancalculator.app.MyScheduleRecyclerViewAdapter
+import kr.asv.loancalculator.app.R
+import kr.asv.loancalculator.app.Services
+import kr.asv.loancalculator.app.databinding.FragmentReportSummaryBinding
 import kr.asv.loancalculator.calculator.PaymentSchedules
 
 /**
@@ -34,6 +35,7 @@ class ReportScheduleFragment : Fragment() {
             view.layoutManager = LinearLayoutManager(context)
             view.adapter = MyScheduleRecyclerViewAdapter(schedules)
         }
+
         return view
     }
 

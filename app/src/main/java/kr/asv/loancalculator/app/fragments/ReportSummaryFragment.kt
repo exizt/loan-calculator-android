@@ -1,4 +1,4 @@
-package kr.asv.apps.loancalculator.fragments
+package kr.asv.loancalculator.app.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kr.asv.apps.loancalculator.Services
-import kr.asv.apps.loancalculator.databinding.FragmentReportSummaryBinding
+import kr.asv.loancalculator.app.Services
+import kr.asv.loancalculator.app.databinding.FragmentReportSummaryBinding
 import java.text.NumberFormat
 import java.util.*
 

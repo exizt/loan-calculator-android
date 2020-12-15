@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     app:statusBarBackground="@color/colorAppBar"
-    tools:context="kr.asv.apps.loancalculator.activities.MainActivity">
+    tools:context="kr.asv.loancalculator.app.MainActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"

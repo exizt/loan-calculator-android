@@ -4,10 +4,10 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/list"
-        android:name="kr.asv.apps.loancalculator.fragments.ReportScheduleFragment"
+        android:name="kr.asv.loancalculator.app.fragments.ReportScheduleFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
         app:layoutManager="LinearLayoutManager"
-        tools:context="kr.asv.apps.loancalculator.fragments.ReportScheduleFragment"
+        tools:context="kr.asv.loancalculator.app.fragments.ReportScheduleFragment"
         tools:listitem="@layout/fragment_schedule"/>

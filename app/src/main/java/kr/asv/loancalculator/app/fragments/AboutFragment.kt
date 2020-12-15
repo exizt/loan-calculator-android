@@ -1,4 +1,4 @@
-package kr.asv.apps.loancalculator.fragments
+package kr.asv.loancalculator.app.fragments
 
 import android.content.Context
 import android.content.pm.PackageInfo
@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kr.asv.apps.loancalculator.databinding.FragmentAboutBinding
+import kr.asv.loancalculator.app.databinding.FragmentAboutBinding
 
 class AboutFragment : Fragment() {
     // view binding

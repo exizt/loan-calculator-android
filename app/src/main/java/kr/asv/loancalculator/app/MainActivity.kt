@@ -1,4 +1,4 @@
-package kr.asv.apps.loancalculator.activities
+package kr.asv.loancalculator.app
 
 import android.content.Context
 import android.os.Bundle
@@ -17,13 +17,8 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
-import kr.asv.androidutils.AdmobAdapter
-import kr.asv.apps.loancalculator.BuildConfig
-import kr.asv.apps.loancalculator.NavigationItemFactory
-import kr.asv.apps.loancalculator.R
-import kr.asv.apps.loancalculator.databinding.ActivityMainBinding
+import kr.asv.loancalculator.app.databinding.ActivityMainBinding
+import kr.asv.loancalculator.utils.AdmobAdapter
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -109,7 +104,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
      */
     private fun onCreateNavigationDrawer() {
         val toggle = object: ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+                this, binding.drawerLayout, binding.appBarMain.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
                 hideSoftKeyboard()
@@ -121,18 +116,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
         //drawer.setDrawerListener(toggle);//deprecated
-        drawer_layout.addDrawerListener(toggle)
+        binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
+        //네비게이션 바 안에서 메뉴항목 부분
+        binding.navView.setNavigationItemSelectedListener(this)
     }
 
     /**
      * drawer 형태이고 open 이라면 closeDrawer 호출
      */
     override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
@@ -160,6 +156,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             imm?.hideSoftInputFromWindow(v.windowToken, 0)
         }
+    }
+
+    /** Called when leaving the activity  */
+    public override fun onPause() {
+        adView.pause()
+        super.onPause()
+    }
+
+    /** Called when returning to the activity  */
+    public override fun onResume() {
+        super.onResume()
+        adView.resume()
+    }
+
+    /** Called before the activity is destroyed  */
+    public override fun onDestroy() {
+        adView.destroy()
+        super.onDestroy()
     }
 
     /**

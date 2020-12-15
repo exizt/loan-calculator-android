@@ -1,4 +1,4 @@
-package kr.asv.apps.loancalculator
+package kr.asv.loancalculator.app
 
 import android.content.Context
 import android.util.Log

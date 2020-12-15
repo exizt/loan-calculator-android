@@ -1,4 +1,4 @@
-package kr.asv.apps.loancalculator.fragments
+package kr.asv.loancalculator.app.fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import kr.asv.androidutils.InputFilterDoubleMinMax
-import kr.asv.androidutils.MoneyTextWatcher
-import kr.asv.apps.loancalculator.R
-import kr.asv.apps.loancalculator.Services
-import kr.asv.apps.loancalculator.activities.ReportActivity
-import kr.asv.apps.loancalculator.databinding.FragmentEqualPrincipalBinding
+import kr.asv.loancalculator.app.R
+import kr.asv.loancalculator.app.Services
+import kr.asv.loancalculator.app.activities.ReportActivity
+import kr.asv.loancalculator.app.databinding.FragmentEqualPrincipalBinding
 import kr.asv.loancalculator.calculator.LoanCalculator
+import kr.asv.loancalculator.utils.InputFilterDoubleMinMax
+import kr.asv.loancalculator.utils.MoneyTextWatcher
 import java.math.BigDecimal
 import java.math.BigInteger
 
