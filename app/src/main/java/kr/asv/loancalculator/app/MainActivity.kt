@@ -123,6 +123,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.navView.setNavigationItemSelectedListener(this)
     }
 
+    fun closeNavigationDrawer(){
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
+    }
+
     /**
      * drawer 형태이고 open 이라면 closeDrawer 호출
      */

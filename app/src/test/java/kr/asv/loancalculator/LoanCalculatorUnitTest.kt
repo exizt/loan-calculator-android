@@ -97,7 +97,7 @@ class LoanCalculatorUnitTest {
         //val r = s.setScale(6, RoundingMode.HALF_EVEN)
         //r.setScale(6, RoundingMode.HALF_EVEN)
         //val r = CalcUtil.round(s, 2, RoundingMode.HALF_EVEN)
-        //debug(r)
+        debug(s)
     }
 
     /**
