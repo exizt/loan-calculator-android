@@ -15,6 +15,9 @@ class AboutFragment : Fragment() {
     private var _binding: FragmentAboutBinding? = null
     private val binding get() = _binding!!
 
+    /**
+     * onCreateView
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
@@ -45,5 +48,14 @@ class AboutFragment : Fragment() {
             e.printStackTrace()
         }
         return version
+    }
+
+    /**
+     * view 소멸 이벤트
+     * view binding 메모리 해제 구문 추가.
+     */
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

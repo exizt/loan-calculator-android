@@ -137,6 +137,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     /**
      * navigationDrawer 에서 item 을 선택했을 때 발생하는 메서드
      * 해당 항목이 없을 시에는 '준비중입니다' 가 뜨도록 처리
+     * NavigationView.OnNavigationItemSelectedListener 에 해당하는 내용
      */
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         @Suppress("ControlFlowWithEmptyBody")

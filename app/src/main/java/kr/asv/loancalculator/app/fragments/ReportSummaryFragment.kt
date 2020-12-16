@@ -23,6 +23,9 @@ class ReportSummaryFragment : Fragment() {
     private var _binding: FragmentReportSummaryBinding? = null
     private val binding get() = _binding!!
 
+    /**
+     * onCreateView
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         _binding = FragmentReportSummaryBinding.inflate(inflater, container, false)
@@ -78,6 +81,15 @@ class ReportSummaryFragment : Fragment() {
             @Suppress("DEPRECATION")
             context.resources.configuration.locale
         }
+    }
+
+    /**
+    * view 소멸 이벤트
+    * view binding 메모리 해제 구문 추가.
+    */
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {

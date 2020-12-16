@@ -33,6 +33,9 @@ class EqualPrincipalFragment : Fragment() {
      */
     private val periodMinimum = 1
 
+    /**
+     * onCreateView
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         _binding = FragmentEqualPrincipalBinding.inflate(inflater, container, false)
@@ -153,6 +156,15 @@ class EqualPrincipalFragment : Fragment() {
         //결과 화면 호출
         val intent = Intent(activity, ReportActivity::class.java)
         startActivity(intent)
+    }
+
+    /**
+     * view 소멸 이벤트
+     * view binding 메모리 해제 구문 추가.
+     */
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {

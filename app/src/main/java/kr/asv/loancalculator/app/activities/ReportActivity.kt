@@ -58,13 +58,14 @@ class ReportActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        //setSupportActionBar(toolbar)
         setSupportActionBar(binding.toolbar)
 
+        // 뒤로가기 버튼 활성화
         supportActionBar?.run {
             setDisplayHomeAsUpEnabled(true)
         }
 
+        // pageAdapter 지정
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
 
         // tab container
