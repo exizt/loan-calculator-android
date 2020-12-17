@@ -1,26 +1,29 @@
-# 기술적인 구조도
+# 개요
 
-## 호출 흐름
-MainActivity (some Calculator Fragments) -> Services.calc (e.g.)
--> ReportActivity (some Fragments) -> Services.get (e.g.) 결과값들을 Services 에서 Get 해서 가져옴.
+대출 이자를 계산하고, 회차별 금액을 모의확인하는 용도의 앱
 
-정리하자면,
-* 호출 액티비티 -> 결과 액티비티
-* 중간에서 Services 가 있음.
+* 개발 문서 : https://swiki.asv.kr/wiki/개발:대출_이자_계산기_-_SLC_프로젝트/안드로이드_앱
+* 구글 플레이 : https://play.google.com/store/apps/details?id=kr.asv.apps.loancalculator
+* 소개 페이지 : https://chosim.asv.kr/softwares/loan-calculator-for-android
 
 
-이런 구조로 가게 된 이유
-* 매번 '결과 액티비티' 에서 무언가를 new 하는 과정을 생략시키고 싶기 때문. (결과 액티비티는 결과값들을 단순히 layout 으로 긁어와서 보여주는 역할만 하기 때문)
-* '계산 액티비티'에서 new 하는 과정을 생략시키고 싶기 때문. options 값만 바뀔 뿐이기 때문.
-* HTTP 과정을 흉내내고 싶었기 때문.
+
+# 버저닝 룰
+
+버전 구분 : `{Major} {Minor} {Build}`
+* Major : 큰 변경이 있을 시 증가.
+* Minor : 어느 정도 유의미한 변경이 있을 시 증가.
+* Build : 무조건적으로 증가. versionCode 와 동일하거나 그보다 높게 설정.
 
 
-# 코드 구조도
-메인 액티비티
-- '원금 균등 계산기' 프레그먼트
-- '원리금 균등 계산기' 프레그먼트
 
 
-레포트 액티비티
-- '종합 레포트' 프레그먼트
-- '스케쥴 레포트' 프레그먼트
+# 참고 사항
+gitignore 참조
+* https://github.com/github/gitignore/blob/master/Android.gitignore
+
+
+
+
+# 특이사항
+* 안드로이드 앱은 간이 기능만 구현하도록 한다. (어차피.. 경쟁 앱이 너무 많고 계속 생겨나고 있는데다가, 앱을 크랙한다거나  리버스 엔지니어링 하기도 쉬워서, 고급 기능을 넣기에 부담스럽다. 고급 기능은 가능한 다 빼버리도록 할 것.)

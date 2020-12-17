@@ -1,4 +1,4 @@
-package kr.asv.loancalculator
+package kr.asv.loancalculator.calculator
 
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -127,7 +127,7 @@ class FullAmortization : Amortization {
 
                 // 월 납부 이자액 계산
                 //paidInterest = CalcUtil.divide(loanBalance.toBigDecimal() * rate, 12, 6, RoundingMode.HALF_EVEN).toBigInteger()
-                paidInterestDecimal = CalcUtil.divide(loanBalance.toBigDecimal() * rate, 12, 6, RoundingMode.DOWN)
+                paidInterestDecimal = CalcMath.divide(loanBalance.toBigDecimal() * rate, 12, 6, RoundingMode.FLOOR)
 
             }
 
@@ -174,7 +174,7 @@ class FullAmortization : Amortization {
     private fun calculatePaidInterestAdvanced(loanBalance: BigInteger, rate: BigDecimal, currentPaidDate: Date, days: Int): BigDecimal{
         // 일일 기준 이자액을 산출함.
         // 소수점 6자리 이하에서 Half_even 반올림.
-        val interestOfDay = CalcUtil.divide(loanBalance.toBigDecimal() * rate, CalcUtil.getDaysOfYear(currentPaidDate), 6, RoundingMode.HALF_EVEN)
+        val interestOfDay = CalcMath.divide(loanBalance.toBigDecimal() * rate, CalcUtil.getDaysOfYear(currentPaidDate), 6, RoundingMode.HALF_EVEN)
 
         // 일일 기준 이자액 * 일자 수
         return (interestOfDay * days.toBigDecimal())
@@ -208,7 +208,7 @@ class FullAmortization : Amortization {
 
             // '(1 + 이자율  ÷ 12)^ 기간' 을 연산
             //val calc: BigDecimal = (BigDecimal.valueOf(1) + monthlyRate).pow(period)
-            val calcT = (1.toBigDecimal() + CalcUtil.divide(rate, 12, 6 , RoundingMode.HALF_EVEN))
+            val calcT = (1.toBigDecimal() + CalcMath.divide(rate, 12, 6 , RoundingMode.HALF_EVEN))
             calcT.setScale(6, RoundingMode.HALF_EVEN)
 
             val calc = calcT.pow(period)
@@ -219,14 +219,14 @@ class FullAmortization : Amortization {
             }
 
             // 대출원금 x 이자율 ÷ 12 계산
-            val monthlyPaymentInterest = CalcUtil.divide(principal.toBigDecimal() * rate, 12, 6 , RoundingMode.HALF_EVEN)
+            val monthlyPaymentInterest = CalcMath.divide(principal.toBigDecimal() * rate, 12, 6 , RoundingMode.HALF_EVEN)
 
             if(isDebug){
                 debug("monthlyPaymentInterest [$monthlyPaymentInterest]")
             }
 
             // 1 + 이자율 ÷ 12 계산
-            val calcA = 1.toBigDecimal() + CalcUtil.divide(rate, 12, 36 , RoundingMode.HALF_EVEN)
+            val calcA = 1.toBigDecimal() + CalcMath.divide(rate, 12, 36 , RoundingMode.HALF_EVEN)
             if(isDebug){
                 debug("calcA [$calcA]")
             }

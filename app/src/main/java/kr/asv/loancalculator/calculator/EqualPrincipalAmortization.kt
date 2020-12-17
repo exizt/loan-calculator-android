@@ -1,4 +1,4 @@
-package kr.asv.loancalculator
+package kr.asv.loancalculator.calculator
 
 import android.annotation.SuppressLint
 import java.math.BigDecimal
@@ -65,21 +65,23 @@ class EqualPrincipalAmortization : Amortization {
         // 연 이자율
         val rate: BigDecimal = options!!.interestRate2
 
-        // 원금 잔액
-        var loanBalance: BigInteger = options!!.principal
+        // 대출액
+        val principal: BigInteger = options!!.principal
 
-        // 월 원금 상환액. '원금 균등'방식에서는 매월(또는 회차별) 상환원금은 동일.
-        var paidPrincipal: BigInteger = CalcUtil.divide(loanBalance, period)
+        // (원금 균등식) 회차별 원금 상환액 = 원금 / 회차수
+        var paidPrincipal: BigInteger = CalcMath.divide(principal, period, 0, RoundingMode.FLOOR).toBigInteger()
+
+        // 원금 잔액
+        var loanBalance = principal
 
         // 월 이자 납부액
-        var paidInterest: BigInteger = 0.toBigInteger()
+        var paidInterest = BigInteger.ZERO
 
         // 월 납부액
         var payment: BigInteger
 
         // 이자 총합계
         summaryInterest = BigInteger.ZERO
-
 
         // 원리금 상환일. 처음에는 최초 상환일부터.
         //var currentPaidDate = CalcUtil.getDate(2016,12,6)
@@ -135,7 +137,7 @@ class EqualPrincipalAmortization : Amortization {
                 //paidInterest = CalcUtil.roundUp(paidInterest, 1);// 소수점 이하 절삭
                 //paidInterest = CalcUtil.divide(loanBalanceMultiplyRate, 12) // 이자 금액
                 //paidInterest = CalcUtil.divide(loanBalance.toBigDecimal() * rate, 12, options!!.interestDigits, RoundingMode.HALF_EVEN).toBigInteger()
-                paidInterestDecimal = CalcUtil.divide(loanBalance.toBigDecimal() * rate, 12, 6, RoundingMode.DOWN)
+                paidInterestDecimal = CalcMath.divide(loanBalance.toBigDecimal() * rate, 12, 6, RoundingMode.FLOOR)
 
             }
 
@@ -143,7 +145,7 @@ class EqualPrincipalAmortization : Amortization {
             paidInterest = paidInterestDecimal.setScale(0, RoundingMode.DOWN).toBigInteger()
 
             // 10^n 원 단위 절삭이 필요한 경우.
-            paidInterest = CalcUtil.round(paidInterest, options!!.interestDigits)
+            paidInterest = CalcMath.roundFloor(paidInterest, options!!.interestDigits * (-1))
 
             // 잔여 원금 계산 (직전 잔여 원금 - 월 원금 상환액)
             //loanBalance = CalcUtil.minus(loanBalance, paidPrincipal)
@@ -189,7 +191,7 @@ class EqualPrincipalAmortization : Amortization {
     private fun calculatePaidInterestAdvanced(loanBalance: BigInteger, rate: BigDecimal, currentPaidDate: Date, days: Int): BigDecimal{
         // 일일 기준 이자액을 산출함.
         // 소수점 6자리 이하에서 Half_even 반올림.
-        val interestOfDay = CalcUtil.divide(loanBalance.toBigDecimal() * rate, CalcUtil.getDaysOfYear(currentPaidDate), 6, RoundingMode.HALF_EVEN)
+        val interestOfDay = CalcMath.divide(loanBalance.toBigDecimal() * rate, CalcUtil.getDaysOfYear(currentPaidDate), 6, RoundingMode.HALF_EVEN)
 
         // 일일 기준 이자액 * 일자 수
         return (interestOfDay * days.toBigDecimal())

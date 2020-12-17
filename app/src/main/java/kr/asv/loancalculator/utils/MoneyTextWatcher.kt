@@ -1,4 +1,4 @@
-package kr.asv.androidutils
+package kr.asv.loancalculator.utils
 
 import android.text.Editable
 import android.text.TextWatcher

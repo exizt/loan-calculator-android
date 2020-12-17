@@ -1,4 +1,4 @@
-package kr.asv.androidutils
+package kr.asv.loancalculator.utils
 
 import android.text.InputFilter
 import android.text.Spanned

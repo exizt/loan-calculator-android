@@ -1,15 +1,12 @@
-package kr.asv.apps.loancalculator
+package kr.asv.loancalculator.app
 
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import android.view.MenuItem
-import android.view.View
-import kr.asv.apps.loancalculator.fragments.AboutFragment
-import kr.asv.apps.loancalculator.fragments.EqualPrincipalFragment
+import kr.asv.loancalculator.app.fragments.AboutFragment
+import kr.asv.loancalculator.app.fragments.EqualPrincipalFragment
 
 /**
  * 메인 액티비티 등에서 상단 좌측 의 메뉴 네비게이션
@@ -20,13 +17,14 @@ class NavigationItemFactory {
         /**
          * 네비게이션 메뉴 선택시
          */
-        fun onItemSelected(activity: FragmentActivity, item: MenuItem, backStack: Boolean): Boolean {
+        fun onItemSelected(activity: MainActivity, item: MenuItem, backStack: Boolean): Boolean {
             val isAvailable: Boolean = onItemSelectedEvent(activity, item.itemId, backStack)
 
             // 해당 메뉴를 선택하고 fragment 전환이 이루어졌으므로 navigation을 close 한다.
             if (isAvailable) {
-                val drawerLayout = activity.findViewById<View>(R.id.drawer_layout) as DrawerLayout
-                drawerLayout.closeDrawer(GravityCompat.START)
+                //val drawerLayout = activity.findViewById<View>(R.id.drawer_layout) as DrawerLayout
+                //drawerLayout.closeDrawer(GravityCompat.START)
+                activity.closeNavigationDrawer()
             }
             return isAvailable
         }
